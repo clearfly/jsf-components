@@ -11,4 +11,4 @@ cache:
   - $HOME/.m2
   
 install: true
-script: mvn clean build
+script: mvn clean test
