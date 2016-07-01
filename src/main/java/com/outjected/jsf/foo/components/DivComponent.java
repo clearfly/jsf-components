@@ -5,7 +5,7 @@ import javax.faces.component.UIComponentBase;
 
 import com.outjected.jsf.foo.renderers.DivRenderer;
 
-@FacesComponent(namespace = Famlies.NAMESPACE)
+@FacesComponent(value = "com.outjected.jsf.foo.components.DivComponent", namespace = Famlies.NAMESPACE)
 public class DivComponent extends UIComponentBase {
 
     public DivComponent() {
