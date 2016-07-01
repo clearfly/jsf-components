@@ -1,0 +1,34 @@
+<facelet-taglib version="2.2"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd">
+	<namespace>http://outjected.com/jsf/foo</namespace>
+	<tag>
+	</attribute>
+		<attribute>
+			<description>id</description>
+			<name>id</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+		</attribute>
+		<description>Renders a simple HTML Div</description>
+		<tag-name>div</tag-name>
+		<attribute>
+			<description>CSS Style </description>
+			<name>style</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<description>CSS Style Classes</description>
+			<name>styleClass</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<description>onclick</description>
+			<name>onclick</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+		</attribute>
+	</tag>
+</facelet-taglib>
