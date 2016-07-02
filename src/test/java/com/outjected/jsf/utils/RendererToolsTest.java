@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import com.outjected.jsf.foo.utils.RendererTools;
 
-public class RendererToolsTests {
+public class RendererToolsTest {
 
     @Test
     public void spaceSeperatedString1() {
