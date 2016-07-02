@@ -24,4 +24,12 @@ public class RendererBase extends Renderer {
             context.getResponseWriter().writeAttribute(name, value, attributeName);
         }
     }
+
+    public void writeAttributeIfExistsOrDefault(String attributeName, String name, String defaultValue, FacesContext context, UIComponent component) throws IOException {
+        String value = (String) component.getAttributes().get(attributeName);
+        if (value == null || value.length() == 0) {
+            value = defaultValue;
+        }
+        context.getResponseWriter().writeAttribute(name, value, attributeName);
+    }
 }
