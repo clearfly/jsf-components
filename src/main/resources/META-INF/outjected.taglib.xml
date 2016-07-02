@@ -36,6 +36,44 @@
 		</attribute>
 	</tag>
 	<tag>
+		<description>Renders a copy component</description>
+		<tag-name>div</tag-name>
+		<component>
+			<component-type>com.outjected.jsf.foo.components.CopyComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.CopyyRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description>id</description>
+			<name>id</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Copy Class</description>
+			<name>copyClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Copied Class</description>
+			<name>copiedClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>CSS Style </description>
+			<name>style</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>CSS Style Classes</description>
+			<name>styleClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Type of the Button (submit,button,reset). Default is button</description>
+			<name>type</name>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
 		<description>Renders a simple HTML Div</description>
 		<tag-name>div</tag-name>
 		<component>

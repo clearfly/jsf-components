@@ -18,12 +18,9 @@ public class DivRenderer extends RendererBase {
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
         writer.startElement("div", component);
-        writeAttributeIfExists("clientId", "id", context, component);
-        writeAttributeIfExists("style", "style", context, component);
-        writeAttributeIfExists("styleClass", "class", context, component);
-        writeAttributeIfExists("onclick", "onclick", context, component);
-
+        writeStandardAttributes(context,component);
     }
+
 
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {

@@ -18,12 +18,8 @@ public class ButtonRenderer extends RendererBase {
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
         writer.startElement("button", component);
-        writeAttributeIfExists("clientId", "id", context, component);
+        writeStandardAttributes(context,component);
         writeAttributeIfExistsOrDefault("type", "type", "button", context, component);
-        writeAttributeIfExists("style", "style", context, component);
-        writeAttributeIfExists("styleClass", "class", context, component);
-        writeAttributeIfExists("onclick", "onclick", context, component);
-
     }
 
     @Override
@@ -31,5 +27,4 @@ public class ButtonRenderer extends RendererBase {
         ResponseWriter writer = context.getResponseWriter();
         writer.endElement("button");
     }
-
 }
