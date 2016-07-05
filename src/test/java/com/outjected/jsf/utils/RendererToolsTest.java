@@ -3,7 +3,7 @@ package com.outjected.jsf.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.outjected.jsf.foo.utils.RendererTools;
+import test.outjected.utils.RendererTools;
 
 public class RendererToolsTest {
 

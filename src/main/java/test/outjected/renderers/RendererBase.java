@@ -1,4 +1,4 @@
-package com.outjected.jsf.foo.renderers;
+package test.outjected.renderers;
 
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ public abstract class RendererBase extends Renderer {
     }
 
     public void writeId(FacesContext context, UIComponent component) throws IOException {
-        writeAttributeIfExists("id", "clientId", context, component);
+        writeAttributeIfExists("clientId", "id", context, component);
     }
 
     public void writeStandardAttributes(FacesContext context, UIComponent component) throws IOException {

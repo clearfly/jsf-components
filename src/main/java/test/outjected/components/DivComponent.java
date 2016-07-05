@@ -1,11 +1,11 @@
-package com.outjected.jsf.foo.components;
+package test.outjected.components;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
-import com.outjected.jsf.foo.renderers.DivRenderer;
+import test.outjected.renderers.DivRenderer;
 
-@FacesComponent(value = "com.outjected.jsf.foo.components.DivComponent", namespace = Famlies.NAMESPACE)
+@FacesComponent(value = "test.outjected.components.DivComponent", namespace = Famlies.NAMESPACE)
 public class DivComponent extends UIComponentBase {
 
     public DivComponent() {

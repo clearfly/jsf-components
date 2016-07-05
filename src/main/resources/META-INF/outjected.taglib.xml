@@ -1,17 +1,22 @@
 <facelet-taglib version="2.2"
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd">
-	<namespace>http://outjected.com/jsf/foo</namespace>
+	<namespace>http://outjected.com/jsf/test</namespace>
 	<tag>
 		<description>Renders a simple Button</description>
-		<tag-name>div</tag-name>
+		<tag-name>button</tag-name>
 		<component>
-			<component-type>com.outjected.jsf.foo.components.ButtonComponent</component-type>
-			<renderer-type>com.outjected.jsf.renderers.ButtonRenderer</renderer-type>
+			<component-type>test.outjected.components.ButtonComponent</component-type>
+			<renderer-type>test.outjected.renderers.ButtonRenderer</renderer-type>
 		</component>
 		<attribute>
 			<description>id</description>
 			<name>id</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Text value of the button</description>
+			<name>value</name>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -37,14 +42,19 @@
 	</tag>
 	<tag>
 		<description>Renders a copy component</description>
-		<tag-name>div</tag-name>
+		<tag-name>copy</tag-name>
 		<component>
-			<component-type>com.outjected.jsf.foo.components.CopyComponent</component-type>
-			<renderer-type>com.outjected.jsf.renderers.CopyyRenderer</renderer-type>
+			<component-type>test.outjected.components.CopyComponent</component-type>
+			<renderer-type>test.outjected.renderers.CopyRenderer</renderer-type>
 		</component>
 		<attribute>
 			<description>id</description>
 			<name>id</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Text value to be copied</description>
+			<name>value</name>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -77,8 +87,8 @@
 		<description>Renders a simple HTML Div</description>
 		<tag-name>div</tag-name>
 		<component>
-			<component-type>com.outjected.jsf.foo.components.DivComponent</component-type>
-			<renderer-type>com.outjected.jsf.renderers.DivRenderer</renderer-type>
+			<component-type>test.outjected.components.DivComponent</component-type>
+			<renderer-type>test.outjected.renderers.DivRenderer</renderer-type>
 		</component>
 		<attribute>
 			<description>id</description>

@@ -1,7 +1,8 @@
-package com.outjected.jsf.foo.renderers;
+package test.outjected.renderers;
 
 import java.io.IOException;
 
+import javax.faces.application.Resource;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.UIComponent;
@@ -9,14 +10,14 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import com.outjected.jsf.foo.components.Famlies;
-import com.outjected.jsf.foo.utils.RendererTools;
+import test.outjected.components.Famlies;
+import test.outjected.utils.RendererTools;
 
-@ResourceDependencies({ @ResourceDependency(name = "ZeroClipboard.min.js", library = "com.outjected.jsf.foo") })
+@ResourceDependencies({ @ResourceDependency(name = "ZeroClipboard.min.js", library = "test.outjected") })
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = CopyRenderer.RENDERER_TYPE)
 public class CopyRenderer extends RendererBase {
 
-    public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.CopyRenderer";
+    public static final String RENDERER_TYPE = "test.outjected.renderers.CopyRenderer";
 
     private boolean closeNeeded;
     private String divId = null;
@@ -32,11 +33,11 @@ public class CopyRenderer extends RendererBase {
             writeId(context, component);
 
             // Write styleClass
-            String copyClass = (String) component.getAttributes().get("copyClass");
+            String copyClass = (String) component.getAttributes().getOrDefault("copyClass", "icon-copy");
             String styleClass = (String) component.getAttributes().get("styleClass");
             String styleClassValue = RendererTools.spaceSeperateStrings("clipboard-copy-div", copyClass, styleClass);
             writeAttribute("class", styleClassValue, context);
-
+            writeAttribute("data-clipboard-text", value, context);
         }
     }
 
@@ -48,11 +49,12 @@ public class CopyRenderer extends RendererBase {
             writer.startElement("script", component);
             writer.writeAttribute("type", "text/javascript", null);
 
-            String resourcePath = context.getApplication().getResourceHandler().createResource("ZeroClipboard.swf", "com.outjected.jsf.foo").getRequestPath();
+            Resource resource = context.getApplication().getResourceHandler().createResource("ZeroClipboard.swf", "test.outjected");
+            String resourcePath = resource != null ? resource.getRequestPath() : "Missing";
             String copyClass = (String) component.getAttributes().getOrDefault("copyClass", "icon-copy");
             String copiedClass = (String) component.getAttributes().getOrDefault("copied", "icon-paste");
 
-            String content = String.format("startZclip('%s','%s', '#{component.attributes['copyClass']}', '#{component.attributes['copiedClass']}'", resourcePath, divId, copyClass, copiedClass);
+            String content = String.format("startZclip('%s','%s', '%s', '%s');", divId, resourcePath, copyClass, copiedClass);
 
             writer.write(content);
             writer.endElement("script");
