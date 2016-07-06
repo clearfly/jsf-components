@@ -1,6 +1,7 @@
-<facelet-taglib version="2.2"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd">
+<facelet-taglib xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd"
+	version="2.2">
 	<namespace>http://outjected.com/jsf/test</namespace>
 	<tag>
 		<description>Renders a simple Button</description>
@@ -55,6 +56,7 @@
 		<attribute>
 			<description>Text value to be copied</description>
 			<name>value</name>
+			<required>true</required>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -109,6 +111,53 @@
 			<description>onclick</description>
 			<name>onclick</name>
 			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Renders a Select2 Autocomplete Component</description>
+		<tag-name>select2AutoComplete</tag-name>
+		<component>
+			<component-type>test.outjected.components.Select2AutoCompleteComponent</component-type>
+			<renderer-type>test.outjected.renderers.Select2AutoCompleteRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description>id</description>
+			<name>id</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>value</description>
+			<name>value</name>
+			<required>true</required>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description>placeholder</description>
+			<name>placeholder</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>required</description>
+			<name>required</name>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description>initPath</description>
+			<name>initPath</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>searchPath</description>
+			<name>searchPath</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>converter</description>
+			<name>converter</name>
+			<required>false</required>
+			<type>javax.faces.convert.Converter</type>
 		</attribute>
 	</tag>
 </facelet-taglib>

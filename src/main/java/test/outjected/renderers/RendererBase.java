@@ -9,6 +9,11 @@ import javax.faces.render.Renderer;
 public abstract class RendererBase extends Renderer {
 
     @Override
+    public void decode(FacesContext context, UIComponent component) {
+        super.decode(context, component);
+    }
+
+    @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         super.encodeBegin(context, component);
     }
