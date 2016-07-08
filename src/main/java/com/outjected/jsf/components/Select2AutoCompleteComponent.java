@@ -13,7 +13,7 @@ import com.outjected.jsf.renderers.Select2AutoCompleteRenderer;
 @FacesComponent(value = "com.outjected.jsf.components.Select2AutoCompleteComponent", namespace = Famlies.NAMESPACE)
 public class Select2AutoCompleteComponent extends UIInput implements ClientBehaviorHolder {
 
-    private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("select", "valueChange", "change", "keyup", "keydown", "keypress"));
+    private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("valueChange"));
 
     public Select2AutoCompleteComponent() {
         setRendererType(Select2AutoCompleteRenderer.RENDERER_TYPE);
