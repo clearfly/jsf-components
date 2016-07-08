@@ -160,4 +160,66 @@
 			<type>javax.faces.convert.Converter</type>
 		</attribute>
 	</tag>
+	<tag>
+		<tag-name>decorateInput</tag-name>
+		<component>
+			<component-type>test.outjected.components.DecorateInputComponent</component-type>
+			<renderer-type>test.outjected.renderers.DecorateInputRenderer</renderer-type>
+		</component>
+		<attribute>
+			<name>label</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>labelClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<display-name>CSS Styles</display-name>
+			<name>style</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<display-name>CSS Style Classes</display-name>
+			<name>styleClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>help</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpContainer</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpDelay</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpHtml</name>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>helpPlacement</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpTitle</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpTrigger</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>skipControlClass</name>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>valueClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
 </facelet-taglib>

@@ -67,8 +67,7 @@ public class Select2AutoCompleteRenderer extends RendererBase {
 
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-        ResponseWriter writer = context.getResponseWriter();
-        writer.endElement("div");
+        // NOOP
     }
 
     private void writeScript(FacesContext context, ResponseWriter writer, UIComponent component) throws IOException {

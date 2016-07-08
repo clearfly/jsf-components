@@ -27,6 +27,11 @@ public abstract class RendererBase extends Renderer {
         writeAttributeIfExists("clientId", "id", context, component);
     }
 
+    @Override
+    public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
+        super.encodeChildren(context, component);
+    }
+
     public void writeStandardAttributes(FacesContext context, UIComponent component) throws IOException {
         writeId(context, component);
         writeAttributeIfExists("style", "style", context, component);
@@ -45,8 +50,8 @@ public abstract class RendererBase extends Renderer {
         }
     }
 
-    public void writeAttributeIfExistsOrDefault(String attributeName, String name, String defaultValue, FacesContext context, UIComponent component) throws IOException {
-        String value = (String) component.getAttributes().getOrDefault(attributeName, defaultValue);
+    public void writeAttributeIfExistsOrDefault(String attributeName, String name, Object defaultValue, FacesContext context, UIComponent component) throws IOException {
+        Object value = component.getAttributes().getOrDefault(attributeName, defaultValue);
         context.getResponseWriter().writeAttribute(name, value, attributeName);
     }
 }
