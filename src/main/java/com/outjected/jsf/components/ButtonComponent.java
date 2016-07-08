@@ -1,11 +1,11 @@
-package test.outjected.components;
+package com.outjected.jsf.components;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
-import test.outjected.renderers.ButtonRenderer;
+import com.outjected.jsf.renderers.ButtonRenderer;
 
-@FacesComponent(value = "test.outjected.components.ButtonComponent", namespace = Famlies.NAMESPACE)
+@FacesComponent(value = "com.outjected.jsf.components.ButtonComponent", namespace = Famlies.NAMESPACE)
 public class ButtonComponent extends UIComponentBase {
 
     public ButtonComponent() {

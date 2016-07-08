@@ -1,11 +1,11 @@
-package test.outjected.components;
+package com.outjected.jsf.components;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
-import test.outjected.renderers.CopyRenderer;
+import com.outjected.jsf.renderers.CopyRenderer;
 
-@FacesComponent(value = "test.outjected.components.CopyComponent", namespace = Famlies.NAMESPACE)
+@FacesComponent(value = "com.outjected.jsf.components.CopyComponent", namespace = Famlies.NAMESPACE)
 public class CopyComponent extends UIComponentBase {
 
     public CopyComponent() {

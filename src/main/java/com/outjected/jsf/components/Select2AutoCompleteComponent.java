@@ -1,0 +1,36 @@
+package com.outjected.jsf.components;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
+import javax.faces.component.FacesComponent;
+import javax.faces.component.UIInput;
+import javax.faces.component.behavior.ClientBehaviorHolder;
+
+import com.outjected.jsf.renderers.Select2AutoCompleteRenderer;
+
+@FacesComponent(value = "com.outjected.jsf.components.Select2AutoCompleteComponent", namespace = Famlies.NAMESPACE)
+public class Select2AutoCompleteComponent extends UIInput implements ClientBehaviorHolder {
+
+    private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("select", "valueChange", "change", "keyup", "keydown", "keypress"));
+
+    public Select2AutoCompleteComponent() {
+        setRendererType(Select2AutoCompleteRenderer.RENDERER_TYPE);
+    }
+
+    @Override
+    public String getFamily() {
+        return Famlies.INPUT_COMPONENT_FAMILY;
+    }
+
+    @Override
+    public Collection<String> getEventNames() {
+        return EVENT_NAMES;
+    }
+
+    @Override
+    public String getDefaultEventName() {
+        return "valueChange";
+    }
+}

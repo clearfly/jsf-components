@@ -1,16 +1,28 @@
-package test.outjected.renderers;
+package com.outjected.jsf.renderers;
 
 import java.io.IOException;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
-import javax.faces.render.Renderer;
 
-public abstract class RendererBase extends Renderer {
+import com.sun.faces.renderkit.html_basic.HtmlBasicRenderer;
+
+public abstract class RendererBase extends HtmlBasicRenderer {
 
     @Override
     public void decode(FacesContext context, UIComponent component) {
         super.decode(context, component);
+    }
+
+    @Override
+    protected void setSubmittedValue(UIComponent component, Object newValue) {
+        if (component instanceof UIInput) {
+            UIInput input = (UIInput) component;
+            if (null != newValue) {
+                input.setSubmittedValue(newValue);
+            }
+        }
     }
 
     @Override
@@ -25,6 +37,15 @@ public abstract class RendererBase extends Renderer {
 
     public void writeId(FacesContext context, UIComponent component) throws IOException {
         writeAttributeIfExists("clientId", "id", context, component);
+    }
+
+    public void writeStyle(FacesContext context, UIComponent component) throws IOException {
+        writeAttributeIfExists("style", "style", context, component);
+
+    }
+
+    public void writeStyleClass(FacesContext context, UIComponent component) throws IOException {
+        writeAttributeIfExists("styleClass", "class", context, component);
     }
 
     @Override

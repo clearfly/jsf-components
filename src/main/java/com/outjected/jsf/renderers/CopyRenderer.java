@@ -1,4 +1,4 @@
-package test.outjected.renderers;
+package com.outjected.jsf.renderers;
 
 import java.io.IOException;
 
@@ -10,14 +10,14 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import test.outjected.components.Famlies;
-import test.outjected.utils.RendererTools;
+import com.outjected.jsf.components.Famlies;
+import com.outjected.jsf.utils.RendererTools;
 
-@ResourceDependencies({ @ResourceDependency(name = "ZeroClipboard.min.js", library = "test.outjected") })
+@ResourceDependencies({ @ResourceDependency(name = "ZeroClipboard.min.js", library = "com.outjected.jsf.core") })
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = CopyRenderer.RENDERER_TYPE)
 public class CopyRenderer extends RendererBase {
 
-    public static final String RENDERER_TYPE = "test.outjected.renderers.CopyRenderer";
+    public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.CopyRenderer";
 
     private boolean closeNeeded;
     private String divId = null;
@@ -49,7 +49,7 @@ public class CopyRenderer extends RendererBase {
             writer.startElement("script", component);
             writer.writeAttribute("type", "text/javascript", null);
 
-            Resource resource = context.getApplication().getResourceHandler().createResource("ZeroClipboard.swf", "test.outjected");
+            Resource resource = context.getApplication().getResourceHandler().createResource("ZeroClipboard.swf", "com.outjected.jsf.core");
             String resourcePath = resource != null ? resource.getRequestPath() : "Missing";
             String copyClass = (String) component.getAttributes().getOrDefault("copyClass", "icon-copy");
             String copiedClass = (String) component.getAttributes().getOrDefault("copied", "icon-paste");

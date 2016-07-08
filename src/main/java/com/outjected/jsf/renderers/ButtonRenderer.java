@@ -1,4 +1,4 @@
-package test.outjected.renderers;
+package com.outjected.jsf.renderers;
 
 import java.io.IOException;
 
@@ -7,12 +7,12 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import test.outjected.components.Famlies;
+import com.outjected.jsf.components.Famlies;
 
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = ButtonRenderer.RENDERER_TYPE)
 public class ButtonRenderer extends RendererBase {
 
-    public static final String RENDERER_TYPE = "test.outjected.renderers.ButtonRenderer";
+    public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.ButtonRenderer";
 
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {

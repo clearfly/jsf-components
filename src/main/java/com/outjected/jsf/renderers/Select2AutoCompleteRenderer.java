@@ -1,7 +1,6 @@
-package test.outjected.renderers;
+package com.outjected.jsf.renderers;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
@@ -10,26 +9,15 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.convert.ConverterException;
 import javax.faces.render.FacesRenderer;
 
-import test.outjected.components.Famlies;
+import com.outjected.jsf.components.Famlies;
+import com.sun.faces.renderkit.RenderKitUtils;
 
 @FacesRenderer(componentFamily = Famlies.INPUT_COMPONENT_FAMILY, rendererType = Select2AutoCompleteRenderer.RENDERER_TYPE)
 public class Select2AutoCompleteRenderer extends RendererBase {
 
-    public static final String RENDERER_TYPE = "test.outjected.renderers.Select2AutoCompleteRenderer";
+    public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.Select2AutoCompleteRenderer";
 
     private String divId;
-
-    @Override
-    public void decode(FacesContext context, UIComponent component) {
-        UIInput input = (UIInput) component;
-        String clientId = component.getClientId(context);
-        Map<String, String> requestParameterMap = context.getExternalContext().getRequestParameterMap();
-        String newValue = (String) requestParameterMap.get(clientId);
-        if (null != newValue) {
-            input.setSubmittedValue(newValue);
-        }
-
-    }
 
     @Override
     public Object getConvertedValue(FacesContext context, UIComponent component, Object val) throws ConverterException {
@@ -61,6 +49,7 @@ public class Select2AutoCompleteRenderer extends RendererBase {
         writeAttribute("value", value, context);
         writeAttribute("type", "hidden", context);
         writeAttribute("name", divId, context);
+        RenderKitUtils.renderOnchange(context, component, false);
         writer.endElement("input");
         writeScript(context, writer, component);
     }

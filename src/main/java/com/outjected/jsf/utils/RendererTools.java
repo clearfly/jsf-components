@@ -1,4 +1,4 @@
-package test.outjected.utils;
+package com.outjected.jsf.utils;
 
 public class RendererTools {
 

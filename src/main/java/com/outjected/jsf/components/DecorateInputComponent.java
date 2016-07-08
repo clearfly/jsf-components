@@ -1,11 +1,11 @@
-package test.outjected.components;
+package com.outjected.jsf.components;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
-import test.outjected.renderers.DecorateInputRenderer;
+import com.outjected.jsf.renderers.DecorateInputRenderer;
 
-@FacesComponent(value = "test.outjected.components.DecorateInputComponent", namespace = Famlies.NAMESPACE)
+@FacesComponent(value = "com.outjected.jsf.components.DecorateInputComponent", namespace = Famlies.NAMESPACE)
 public class DecorateInputComponent extends UIComponentBase {
 
     public DecorateInputComponent() {

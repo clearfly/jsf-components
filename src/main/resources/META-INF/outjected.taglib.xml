@@ -2,13 +2,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd"
 	version="2.2">
-	<namespace>http://outjected.com/jsf/test</namespace>
+	<namespace>http://outjected.com/jsf/core</namespace>
 	<tag>
 		<description>Renders a simple Button</description>
 		<tag-name>button</tag-name>
 		<component>
-			<component-type>test.outjected.components.ButtonComponent</component-type>
-			<renderer-type>test.outjected.renderers.ButtonRenderer</renderer-type>
+			<component-type>com.outjected.jsf.components.ButtonComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.ButtonRenderer</renderer-type>
 		</component>
 		<attribute>
 			<description>id</description>
@@ -45,8 +45,8 @@
 		<description>Renders a copy component</description>
 		<tag-name>copy</tag-name>
 		<component>
-			<component-type>test.outjected.components.CopyComponent</component-type>
-			<renderer-type>test.outjected.renderers.CopyRenderer</renderer-type>
+			<component-type>com.outjected.jsf.components.CopyComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.CopyRenderer</renderer-type>
 		</component>
 		<attribute>
 			<description>id</description>
@@ -89,8 +89,8 @@
 		<description>Renders a simple HTML Div</description>
 		<tag-name>div</tag-name>
 		<component>
-			<component-type>test.outjected.components.DivComponent</component-type>
-			<renderer-type>test.outjected.renderers.DivRenderer</renderer-type>
+			<component-type>com.outjected.jsf.components.DivComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.DivRenderer</renderer-type>
 		</component>
 		<attribute>
 			<description>id</description>
@@ -117,8 +117,8 @@
 		<description>Renders a Select2 Autocomplete Component</description>
 		<tag-name>select2AutoComplete</tag-name>
 		<component>
-			<component-type>test.outjected.components.Select2AutoCompleteComponent</component-type>
-			<renderer-type>test.outjected.renderers.Select2AutoCompleteRenderer</renderer-type>
+			<component-type>com.outjected.jsf.components.Select2AutoCompleteComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.Select2AutoCompleteRenderer</renderer-type>
 		</component>
 		<attribute>
 			<description>id</description>
@@ -163,8 +163,8 @@
 	<tag>
 		<tag-name>decorateInput</tag-name>
 		<component>
-			<component-type>test.outjected.components.DecorateInputComponent</component-type>
-			<renderer-type>test.outjected.renderers.DecorateInputRenderer</renderer-type>
+			<component-type>com.outjected.jsf.components.DecorateInputComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.DecorateInputRenderer</renderer-type>
 		</component>
 		<attribute>
 			<name>label</name>
@@ -215,11 +215,176 @@
 		</attribute>
 		<attribute>
 			<name>skipControlClass</name>
-			<type>boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<name>valueClass</name>
 			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<tag-name>decorateOutput</tag-name>
+		<component>
+			<component-type>com.outjected.jsf.components.DecorateOutputComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.DecorateOutputRenderer</renderer-type>
+		</component>
+		<attribute>
+			<name>label</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>labelClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<display-name>CSS Styles</display-name>
+			<name>style</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<display-name>CSS Style Classes</display-name>
+			<name>styleClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>help</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpContainer</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpDelay</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpHtml</name>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>helpPlacement</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpTitle</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpTrigger</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>valueClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<tag-name>objectField</tag-name>
+		<component>
+			<component-type>com.outjected.jsf.components.ObjectFieldComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.ObjectFieldRenderer</renderer-type>
+		</component>
+		<attribute>
+			<name>label</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>labelClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<display-name>CSS Styles</display-name>
+			<name>style</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<display-name>CSS Style Classes</display-name>
+			<name>styleClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>help</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpContainer</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpDelay</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpHtml</name>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>helpPlacement</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpTitle</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>helpTrigger</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>valueClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<tag-name>modal</tag-name>
+		<component>
+			<component-type>com.outjected.jsf.components.ModalComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.ModalRenderer</renderer-type>
+		</component>
+		<attribute>
+			<name>header</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>maxWidth</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>backdrop</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>keyboard</name>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<tag-name>notice</tag-name>
+		<component>
+			<component-type>com.outjected.jsf.components.NoticesComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.NoticesRenderer</renderer-type>
+		</component>
+		<attribute>
+			<name>errorTitle</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>warningTitle</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>expanded</name>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>notices</name>
+			<required>true</required>
+			<type>com.outjected.jsf.core.Notices</type>
 		</attribute>
 	</tag>
 </facelet-taglib>

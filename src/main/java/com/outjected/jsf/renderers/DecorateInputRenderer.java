@@ -1,4 +1,4 @@
-package test.outjected.renderers;
+package com.outjected.jsf.renderers;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -12,13 +12,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import test.outjected.components.Famlies;
-import test.outjected.utils.RendererTools;
+import com.outjected.jsf.components.Famlies;
+import com.outjected.jsf.utils.RendererTools;
 
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = DecorateInputRenderer.RENDERER_TYPE)
 public class DecorateInputRenderer extends RendererBase {
 
-    public static final String RENDERER_TYPE = "test.outjected.renderers.DecorateInputRenderer";
+    public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.DecorateInputRenderer";
     private static final String STYLE_CLASS_ATTR_NAME = "styleClass";
     private static final String SKIP_CONTROL_CLASS_ATTR_NAME = "skipControlClass";
     private static final String FORM_CONTROL_STYLE = "form-control";
@@ -150,7 +150,7 @@ public class DecorateInputRenderer extends RendererBase {
 
     private void encodeValue(FacesContext facesContext, UIComponent component) throws IOException {
         for (UIComponent c : component.getChildren()) {
-            boolean skipControlClass = (Boolean) component.getAttributes().getOrDefault(SKIP_CONTROL_CLASS_ATTR_NAME, false);
+            boolean skipControlClass = (Boolean.valueOf((String) component.getAttributes().getOrDefault(SKIP_CONTROL_CLASS_ATTR_NAME, "false")));
             if (!skipControlClass && c instanceof EditableValueHolder) {
                 String styleClass = (String) c.getAttributes().get(STYLE_CLASS_ATTR_NAME);
                 if (styleClass != null) {
