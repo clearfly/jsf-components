@@ -114,53 +114,6 @@
 		</attribute>
 	</tag>
 	<tag>
-		<description>Renders a Select2 Autocomplete Component</description>
-		<tag-name>select2AutoComplete</tag-name>
-		<component>
-			<component-type>com.outjected.jsf.components.Select2AutoCompleteComponent</component-type>
-			<renderer-type>com.outjected.jsf.renderers.Select2AutoCompleteRenderer</renderer-type>
-		</component>
-		<attribute>
-			<description>id</description>
-			<name>id</name>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>value</description>
-			<name>value</name>
-			<required>true</required>
-			<type>java.lang.Object</type>
-		</attribute>
-		<attribute>
-			<description>placeholder</description>
-			<name>placeholder</name>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>required</description>
-			<name>required</name>
-			<type>boolean</type>
-		</attribute>
-		<attribute>
-			<description>initPath</description>
-			<name>initPath</name>
-			<required>true</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>searchPath</description>
-			<name>searchPath</name>
-			<required>true</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>converter</description>
-			<name>converter</name>
-			<required>false</required>
-			<type>javax.faces.convert.Converter</type>
-		</attribute>
-	</tag>
-	<tag>
 		<tag-name>decorateInput</tag-name>
 		<component>
 			<component-type>com.outjected.jsf.components.DecorateInputComponent</component-type>
@@ -280,6 +233,56 @@
 			<type>java.lang.String</type>
 		</attribute>
 	</tag>
+
+	<tag>
+		<tag-name>modal</tag-name>
+		<component>
+			<component-type>com.outjected.jsf.components.ModalComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.ModalRenderer</renderer-type>
+		</component>
+		<attribute>
+			<name>header</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>maxWidth</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>backdrop</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>keyboard</name>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<tag-name>notice</tag-name>
+		<component>
+			<component-type>com.outjected.jsf.components.NoticesComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.NoticesRenderer</renderer-type>
+		</component>
+		<attribute>
+			<name>errorTitle</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>warningTitle</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>expanded</name>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>notices</name>
+			<required>true</required>
+			<type>com.outjected.jsf.core.Notices</type>
+		</attribute>
+	</tag>
 	<tag>
 		<tag-name>objectField</tag-name>
 		<component>
@@ -339,52 +342,101 @@
 		</attribute>
 	</tag>
 	<tag>
-		<tag-name>modal</tag-name>
+		<tag-name>popover</tag-name>
 		<component>
-			<component-type>com.outjected.jsf.components.ModalComponent</component-type>
-			<renderer-type>com.outjected.jsf.renderers.ModalRenderer</renderer-type>
+			<component-type>com.outjected.jsf.components.PopoverComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.PopoverRenderer</renderer-type>
 		</component>
 		<attribute>
-			<name>header</name>
-			<required>false</required>
+			<description>id</description>
+			<name>id</name>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>maxWidth</name>
+			<description>CSS Style </description>
+			<name>style</name>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>backdrop</name>
+			<description>CSS Style Classes</description>
+			<name>styleClass</name>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>keyboard</name>
+			<name>content</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>popoverTitle</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>placement</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>trigger</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>html</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>delay</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>container</name>
 			<type>java.lang.String</type>
 		</attribute>
 	</tag>
 	<tag>
-		<tag-name>notice</tag-name>
+		<description>Renders a Select2 Autocomplete Component</description>
+		<tag-name>select2AutoComplete</tag-name>
 		<component>
-			<component-type>com.outjected.jsf.components.NoticesComponent</component-type>
-			<renderer-type>com.outjected.jsf.renderers.NoticesRenderer</renderer-type>
+			<component-type>com.outjected.jsf.components.Select2AutoCompleteComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.Select2AutoCompleteRenderer</renderer-type>
 		</component>
 		<attribute>
-			<name>errorTitle</name>
-			<required>false</required>
+			<description>id</description>
+			<name>id</name>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>warningTitle</name>
+			<description>value</description>
+			<name>value</name>
+			<required>true</required>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description>placeholder</description>
+			<name>placeholder</name>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<name>expanded</name>
+			<description>required</description>
+			<name>required</name>
 			<type>boolean</type>
 		</attribute>
 		<attribute>
-			<name>notices</name>
+			<description>initPath</description>
+			<name>initPath</name>
 			<required>true</required>
-			<type>com.outjected.jsf.core.Notices</type>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>searchPath</description>
+			<name>searchPath</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>converter</description>
+			<name>converter</name>
+			<required>false</required>
+			<type>javax.faces.convert.Converter</type>
 		</attribute>
 	</tag>
 </facelet-taglib>
