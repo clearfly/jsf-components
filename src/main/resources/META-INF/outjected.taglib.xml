@@ -342,6 +342,28 @@
 		</attribute>
 	</tag>
 	<tag>
+		<tag-name>panel</tag-name>
+		<component>
+			<component-type>com.outjected.jsf.components.PanelComponent</component-type>
+			<renderer-type>com.outjected.jsf.renderers.PanelRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description>id</description>
+			<name>id</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<display-name>CSS Styles</display-name>
+			<name>style</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<display-name>CSS Style Classes</display-name>
+			<name>styleClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
 		<tag-name>popover</tag-name>
 		<component>
 			<component-type>com.outjected.jsf.components.PopoverComponent</component-type>
