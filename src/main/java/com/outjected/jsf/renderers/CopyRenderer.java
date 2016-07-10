@@ -24,8 +24,15 @@ public class CopyRenderer extends RendererBase {
 
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-        String value = (String) component.getAttributes().get("value");
-        if (value != null) {
+        Object objectValue = component.getAttributes().get("value");
+        if (objectValue != null) {
+            String value = null;
+            if (objectValue instanceof String) {
+                value = (String) objectValue;
+            }
+            else {
+                value = objectValue.toString();
+            }
             divId = component.getClientId();
             closeNeeded = true;
             ResponseWriter writer = context.getResponseWriter();
@@ -38,6 +45,7 @@ public class CopyRenderer extends RendererBase {
             String styleClassValue = RendererTools.spaceSeperateStrings("clipboard-copy-div", copyClass, styleClass);
             writeAttribute("class", styleClassValue, context);
             writeAttribute("data-clipboard-text", value, context);
+
         }
     }
 

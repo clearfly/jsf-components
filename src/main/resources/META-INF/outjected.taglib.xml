@@ -353,6 +353,10 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>header</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<display-name>CSS Styles</display-name>
 			<name>style</name>
 			<type>java.lang.String</type>

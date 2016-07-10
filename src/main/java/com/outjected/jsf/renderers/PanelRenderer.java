@@ -20,6 +20,7 @@ public class PanelRenderer extends RendererBase {
         ResponseWriter writer = context.getResponseWriter();
 
         final UIComponent top = component.getFacet("top");
+        final String header = (String) component.getAttributes().get("header");
 
         // Write Outer Div
         final String style = (String) component.getAttributes().get("style");
@@ -30,11 +31,22 @@ public class PanelRenderer extends RendererBase {
         writeAttribute("class", divComputedStyleClass, context);
         writeAttributeIfExists("style", style, context, component);
 
-        if (top != null) {
+        if (top != null && header == null) {
             writer.startElement("div", component);
             writer.writeAttribute("class", "panel-top", null);
             top.encodeAll(context);
             writer.endElement("div");
+        }
+        else if (header != null && top == null) {
+            writer.startElement("div", component);
+            writer.writeAttribute("class", "panel-top", null);
+            writer.startElement("h5", component);
+            writer.write(header);
+            writer.endElement("h5");
+            writer.endElement("div");
+        }
+        else {
+            throw new IllegalArgumentException("Cannot define both a top facet and a header");
         }
 
         writer.startElement("div", component); //
