@@ -33,9 +33,12 @@ public class NoticesRenderer extends RendererBase {
             // Title Div
             writer.startElement("div", component);
             writer.writeAttribute("id", "noticesTitleDiv", null);
-            writer.writeAttribute("class", notices.containsErrors() ? "alert alert-danger" : "alert alert-warning", null);
+            writer.writeAttribute("class", notices.containsErrors() ? "alert alert-danger alert-thin text-center" : "alert alert-warning alert-thin text-center", null);
             writer.writeAttribute("style", "display:" + (expanded ? "none" : "block") + ";", null);
+            writer.startElement("strong", component);
             writer.write(notices.containsErrors() ? errorTitle : warningTitle);
+            writer.endElement("strong");
+
             writer.endElement("div"); // End Title Div
 
             // Content Div
@@ -43,8 +46,8 @@ public class NoticesRenderer extends RendererBase {
             writer.writeAttribute("id", "noticesContentDiv", null);
             writer.writeAttribute("style", "display:" + (expanded ? "block" : "none") + ";", null);
 
-            writeSection(context, component, notices.getErrors(), "alert alert-danger");
-            writeSection(context, component, notices.getWarnings(), "alert alert-warning");
+            writeSection(context, component, notices.getErrors(), "alert alert-thin alert-danger");
+            writeSection(context, component, notices.getWarnings(), "alert alert-thin alert-warning");
             writer.endElement("div"); // End Content Div
         }
     }
