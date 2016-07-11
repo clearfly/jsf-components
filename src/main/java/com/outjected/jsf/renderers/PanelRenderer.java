@@ -31,22 +31,23 @@ public class PanelRenderer extends RendererBase {
         writeAttribute("class", divComputedStyleClass, context);
         writeAttributeIfExists("style", style, context, component);
 
-        if (top != null && header == null) {
+        if (header != null && top != null) {
+            throw new IllegalArgumentException("Cannot define both a top facet and a header");
+        }
+
+        if (top != null) {
             writer.startElement("div", component);
             writer.writeAttribute("class", "panel-top", null);
             top.encodeAll(context);
             writer.endElement("div");
         }
-        else if (header != null && top == null) {
+        else if (header != null) {
             writer.startElement("div", component);
             writer.writeAttribute("class", "panel-top", null);
             writer.startElement("h5", component);
             writer.write(header);
             writer.endElement("h5");
             writer.endElement("div");
-        }
-        else {
-            throw new IllegalArgumentException("Cannot define both a top facet and a header");
         }
 
         writer.startElement("div", component); //
