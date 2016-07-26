@@ -12,6 +12,7 @@ import javax.faces.render.FacesRenderer;
 import com.outjected.jsf.components.Famlies;
 import com.sun.faces.renderkit.RenderKitUtils;
 
+@SuppressWarnings("resource")
 @FacesRenderer(componentFamily = Famlies.INPUT_COMPONENT_FAMILY, rendererType = Select2AutoCompleteRenderer.RENDERER_TYPE)
 public class Select2AutoCompleteRenderer extends RendererBase {
 
@@ -33,7 +34,7 @@ public class Select2AutoCompleteRenderer extends RendererBase {
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         UIInput inputComponent = (UIInput) component;
-        divId = component.getClientId();
+        String placeholder = (String) component.getAttributes().getOrDefault("placeholder", "Choose");
 
         String value = null;
         if (inputComponent.getConverter() != null) {
@@ -44,14 +45,21 @@ public class Select2AutoCompleteRenderer extends RendererBase {
         }
 
         ResponseWriter writer = context.getResponseWriter();
-        writer.startElement("input", component);
+        writer.startElement("select", component);
         writeId(context, component);
+        divId = component.getClientId();
         writeAttribute("value", value, context);
-        writeAttribute("type", "hidden", context);
         writeAttribute("name", divId, context);
+        writeAttribute("class", "form-control", context);
+        writeAttribute("style", "width:100%", context);
         RenderKitUtils.renderOnchange(context, component, false);
-        writer.endElement("input");
-        writeScript(context, writer, component);
+
+        writer.startElement("option", inputComponent);
+        writer.writeAttribute("value", "", "value");
+        writer.write(placeholder);
+
+        writer.endElement("select");
+        writeScript(context, writer, component, value);
     }
 
     @Override
@@ -59,11 +67,12 @@ public class Select2AutoCompleteRenderer extends RendererBase {
         // NOOP
     }
 
-    private void writeScript(FacesContext context, ResponseWriter writer, UIComponent component) throws IOException {
+    private void writeScript(FacesContext context, ResponseWriter writer, UIComponent component, String value) throws IOException {
         writer.startElement("script", component);
         writer.writeAttribute("type", "text/javascript", null);
 
-        boolean allowClear = !(boolean) component.getAttributes().getOrDefault("required", false);
+        Boolean required = (Boolean) component.getAttributes().getOrDefault("required", Boolean.FALSE);
+        Boolean allowClear = required.equals(Boolean.TRUE) ? Boolean.FALSE : Boolean.TRUE;
         String placeholder = (String) component.getAttributes().getOrDefault("placeholder", "Choose");
         String searchPath = (String) component.getAttributes().get("searchPath");
         String initPath = (String) component.getAttributes().get("initPath");
@@ -73,16 +82,17 @@ public class Select2AutoCompleteRenderer extends RendererBase {
             throw new IOException("searchPath was not defined");
         }
 
-        if (initPath == null) {
-            throw new IOException("initPath was not defined");
+        if (initPath != null && value != null) {
+            String initScript = String.format("$.ajax('%s?id='+%s, { dataType: 'json'}).done(function(data) { $(document.getElementById('%s')).append(new Option(data.text, data.id, true, true)); });",
+                    requestContextPath + initPath, value, divId);
+            writer.write(initScript);
         }
 
-        String content = String.format("var s2 = $(jsfId('%s')).select2({minimumInputLength: 2, allowClear: %s, placeholder: '%s',"
-                + "ajax: { url: '%s', quietMillis: 500, dataType: 'json', data: function (term, page) { return { q: term }; }, results: function (data, page) { return { results: data }; } },"
-                + "initSelection: function(element, callback) { var id=$(element).val(); if (id!=='') { $.ajax('%s?id='+id, { dataType: 'json'}).done(function(data) { callback(data); }); } } });",
-                divId, allowClear, placeholder, requestContextPath + searchPath, requestContextPath + initPath);
+        String baseScript = String.format("var s2 = $(document.getElementById('%s')).select2({minimumInputLength: 2, allowClear: %s, placeholder: '%s',"
+                + "ajax: { url: '%s', quietMillis: 500, dataType: 'json', data: function (params) { return { q: params.term, page: params.page }; } },});", divId, allowClear, placeholder,
+                requestContextPath + searchPath, requestContextPath + initPath);
 
-        writer.write(content);
+        writer.write(baseScript);
         writer.endElement("script");
     }
 }

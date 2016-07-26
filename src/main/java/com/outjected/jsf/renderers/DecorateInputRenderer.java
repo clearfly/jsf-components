@@ -15,6 +15,7 @@ import javax.faces.render.FacesRenderer;
 import com.outjected.jsf.components.Famlies;
 import com.outjected.jsf.utils.RendererTools;
 
+@SuppressWarnings("resource")
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = DecorateInputRenderer.RENDERER_TYPE)
 public class DecorateInputRenderer extends RendererBase {
 
@@ -150,8 +151,8 @@ public class DecorateInputRenderer extends RendererBase {
 
     private void encodeValue(FacesContext facesContext, UIComponent component) throws IOException {
         for (UIComponent c : component.getChildren()) {
-            boolean skipControlClass = (Boolean.valueOf((String) component.getAttributes().getOrDefault(SKIP_CONTROL_CLASS_ATTR_NAME, "false")));
-            if (!skipControlClass && c instanceof EditableValueHolder) {
+            Boolean skipControlClass = (Boolean.valueOf((String) component.getAttributes().getOrDefault(SKIP_CONTROL_CLASS_ATTR_NAME, "false")));
+            if (!skipControlClass.booleanValue() && c instanceof EditableValueHolder) {
                 String styleClass = (String) c.getAttributes().get(STYLE_CLASS_ATTR_NAME);
                 if (styleClass != null) {
                     if (!styleClass.contains(FORM_CONTROL_STYLE)) {

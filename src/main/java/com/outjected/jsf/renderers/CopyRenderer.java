@@ -13,6 +13,7 @@ import javax.faces.render.FacesRenderer;
 import com.outjected.jsf.components.Famlies;
 import com.outjected.jsf.utils.RendererTools;
 
+@SuppressWarnings("resource")
 @ResourceDependencies({ @ResourceDependency(name = "ZeroClipboard.min.js", library = "com.outjected.jsf.core") })
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = CopyRenderer.RENDERER_TYPE)
 public class CopyRenderer extends RendererBase {

@@ -10,6 +10,7 @@ import javax.faces.render.FacesRenderer;
 import com.outjected.jsf.components.Famlies;
 import com.outjected.jsf.utils.RendererTools;
 
+@SuppressWarnings("resource")
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = ModalRenderer.RENDERER_TYPE)
 public class ModalRenderer extends RendererBase {
 

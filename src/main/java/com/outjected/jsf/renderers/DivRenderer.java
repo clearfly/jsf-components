@@ -9,6 +9,7 @@ import javax.faces.render.FacesRenderer;
 
 import com.outjected.jsf.components.Famlies;
 
+@SuppressWarnings("resource")
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = DivRenderer.RENDERER_TYPE)
 public class DivRenderer extends RendererBase {
 
