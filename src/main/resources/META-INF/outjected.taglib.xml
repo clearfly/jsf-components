@@ -58,17 +58,7 @@
 			<name>value</name>
 			<required>true</required>
 			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Copy Class</description>
-			<name>copyClass</name>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Copied Class</description>
-			<name>copiedClass</name>
-			<type>java.lang.String</type>
-		</attribute>
+		</attribute>	
 		<attribute>
 			<description>CSS Style </description>
 			<name>style</name>
@@ -78,12 +68,7 @@
 			<description>CSS Style Classes</description>
 			<name>styleClass</name>
 			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>Type of the Button (submit,button,reset). Default is button</description>
-			<name>type</name>
-			<type>java.lang.String</type>
-		</attribute>
+		</attribute>	
 	</tag>
 	<tag>
 		<description>Renders a simple HTML Div</description>
