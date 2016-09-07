@@ -30,7 +30,7 @@ public class PanelRenderer extends RendererBase {
         writer.startElement("div", component); // Outer Div
         writeId(context, component);
         writeAttribute("class", divComputedStyleClass, context);
-        writeAttributeIfExists("style", style, context, component);
+        writeAttribute("style", style, context);
 
         if (header != null && top != null) {
             throw new IllegalArgumentException("Cannot define both a top facet and a header");

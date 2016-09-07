@@ -43,7 +43,7 @@ public class DecorateInputRenderer extends RendererBase {
         writer.startElement("div", component); // Outer Div
         writeId(context, component);
         writeAttribute("class", divComputedStyleClass, context);
-        writeAttributeIfExists("style", style, context, component);
+        writeAttribute("style", style, context);
 
         final boolean required = isRequired(valueComponent);
         final String clientId = component.getClientId();
