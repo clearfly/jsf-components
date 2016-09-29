@@ -6,6 +6,7 @@ import java.util.Iterator;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.EditableValueHolder;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
 import javax.faces.component.UIMessages;
 import javax.faces.component.UISelectBoolean;
 import javax.faces.context.FacesContext;
@@ -28,6 +29,8 @@ public class DecorateInputRenderer extends RendererBase {
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
 
+        final UIForm parentForm = RendererTools.parentForm(component);
+        final boolean horizontalLayout = RendererTools.horzontalLayout(parentForm);
         final String label = (String) component.getAttributes().get("label");
         final UIComponent valueComponent = findValueComponent(component, label);
 
@@ -35,11 +38,11 @@ public class DecorateInputRenderer extends RendererBase {
         final String style = (String) component.getAttributes().get("style");
         final String styleClass = (String) component.getAttributes().get("styleClass");
         final String errorsClass = hasErrors(context, valueComponent) ? "has-error" : null;
-        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("o-decorate-input row form-group", styleClass, errorsClass);
+        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("o-decorate-input form-group", styleClass, errorsClass);
 
-        final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", "col-md-4");
+        final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", horizontalLayout ? "col-md-4" : null);
         final String help = (String) component.getAttributes().get("help");
-        final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", "col-md-6");
+        final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", horizontalLayout ? "col-md-6" : null);
         writer.startElement("div", component); // Outer Div
         writeId(context, component);
         writeAttribute("class", divComputedStyleClass, context);
