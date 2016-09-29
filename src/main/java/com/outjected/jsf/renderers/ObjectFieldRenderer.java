@@ -27,9 +27,9 @@ public class ObjectFieldRenderer extends RendererBase {
         final String styleClass = (String) component.getAttributes().get("styleClass");
         final String divComputedStyleClass = RendererTools.spaceSeperateStrings("object-field row", styleClass);
 
-        final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", "col-md-4");
+        final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", "col-md-5");
         final String help = (String) component.getAttributes().get("help");
-        final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", "col-md-8");
+        final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", "col-md-7");
         writer.startElement("div", component); // Outer Div
         writeId(context, component);
         writeAttribute("class", divComputedStyleClass, context);

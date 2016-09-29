@@ -27,9 +27,9 @@ public class DecorateOutputRenderer extends RendererBase {
         final String styleClass = (String) component.getAttributes().get("styleClass");
         final String divComputedStyleClass = RendererTools.spaceSeperateStrings("o-decorate-output row form-group", styleClass);
 
-        final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", "col-md-3");
+        final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", "col-md-4");
         final String help = (String) component.getAttributes().get("help");
-        final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", "col-md-9");
+        final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", "col-md-6");
         writer.startElement("div", component); // Outer Div
         writeId(context, component);
         writeAttribute("class", divComputedStyleClass, context);

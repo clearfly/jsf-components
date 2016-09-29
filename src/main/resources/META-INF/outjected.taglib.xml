@@ -246,6 +246,10 @@
 			<name>binding</name>
 			<type>javax.faces.component.UIComponent</type>
 		</attribute>
+		<attribute>
+			<name>size</name>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
 	<tag>
 		<tag-name>notice</tag-name>

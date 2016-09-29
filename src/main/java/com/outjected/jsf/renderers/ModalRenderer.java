@@ -19,7 +19,8 @@ public class ModalRenderer extends RendererBase {
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
 
-        final String maxWidth = (String) component.getAttributes().getOrDefault("maxWidth", "600");
+        final String maxWidth = (String) component.getAttributes().get("maxWidth");
+        final String size = (String) component.getAttributes().getOrDefault("size", "default");
         final String header = (String) component.getAttributes().get("header");
         final String styleClass = (String) component.getAttributes().get("styleClass");
         final String computedStyleClass = RendererTools.spaceSeperateStrings("modal fade", styleClass);
@@ -36,8 +37,25 @@ public class ModalRenderer extends RendererBase {
 
         // Modal Dialog Div
         writer.startElement("div", component);
-        writer.writeAttribute("class", "modal-dialog", null);
-        writer.writeAttribute("style", "max-width:" + maxWidth + "px;", null);
+
+        switch (size) {
+            case ("xl"):
+                writer.writeAttribute("class", "modal-dialog modal-xl", null);
+                break;
+            case ("lg"):
+                writer.writeAttribute("class", "modal-dialog modal-lg", null);
+                break;
+            case ("sm"):
+                writer.writeAttribute("class", "modal-dialog modal-sm", null);
+                break;
+            default:
+                writer.writeAttribute("class", "modal-dialog", null);
+                break;
+        }
+
+        if (maxWidth != null) {
+            writer.writeAttribute("style", "max-width:" + maxWidth + "px;", null);
+        }
 
         // Modal Content Div
         writer.startElement("div", component);
