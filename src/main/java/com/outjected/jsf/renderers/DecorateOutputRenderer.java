@@ -21,9 +21,9 @@ public class DecorateOutputRenderer extends RendererBase {
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
 
+        final String label = (String) component.getAttributes().get("label");
         final UIForm parentForm = RendererTools.parentForm(component);
         final boolean horizontalLayout = RendererTools.horzontalLayout(parentForm);
-        final String label = (String) component.getAttributes().get("label");
 
         // Write Outer Div
         final String style = (String) component.getAttributes().get("style");

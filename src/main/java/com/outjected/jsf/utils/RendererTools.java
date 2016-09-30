@@ -34,7 +34,7 @@ public class RendererTools {
                 currentComponent = currentComponent.getNamingContainer();
             }
         }
-        throw new IllegalArgumentException("No parent form found for " + component.getClientId());
+        throw new IllegalStateException("No parent form found for " + component.getClientId());
     }
 
     public static boolean horzontalLayout(UIForm parentForm) {
