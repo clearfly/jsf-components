@@ -4,13 +4,14 @@
 	<groupId>com.outjected</groupId>
 	<artifactId>jsf-components</artifactId>
 	<packaging>jar</packaging>
-	<version>3.0.9</version>
+	<version>3.0.10</version>
 	<name>JSF Components</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven.compiler.source>1.8</maven.compiler.source>
+		<version.java>1.8</version.java>
+		<version.plugin.compiler>3.6.0</version.plugin.compiler>
+		<version.plugin.source>3.0.1</version.plugin.source>
 	</properties>
 
 	<distributionManagement>
@@ -48,16 +49,16 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
+				<version>${version.plugin.compiler}</version>
 				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
+					<source>${version.java}</source>
+					<target>${version.java}</target>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>3.0.1</version>
+				<version>${version.plugin.source}</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>

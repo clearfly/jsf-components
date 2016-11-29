@@ -40,6 +40,11 @@
 			<name>type</name>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>Modal Component which will be toggled when clicked</description>
+			<name>modal</name>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
 	</tag>
 	<tag>
 		<description>Renders a copy component</description>

@@ -22,6 +22,14 @@ public class ButtonRenderer extends RendererBase {
         writeStandardAttributes(context, component);
         writeAttributeIfExistsOrDefault("type", "type", "button", context, component);
         String value = (String) component.getAttributes().get("value");
+        UIComponent modalToToggle = (UIComponent) component.getAttributes().get("modal");
+
+        if (modalToToggle != null) {
+            String id = modalToToggle.getClientId().replace(":", "\\:");
+            writeAttribute("data-toggle", "modal", context);
+            writeAttribute("data-target", "#" + id, context);
+        }
+
         if (value != null) {
             writer.startElement("span", component);
             writer.write(value);

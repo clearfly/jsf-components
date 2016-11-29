@@ -25,8 +25,7 @@ public class RendererTools {
 
     public static UIForm parentForm(final UIComponent component) {
         UIComponent currentComponent = component;
-        UIForm result = null;
-        while (result == null && currentComponent != null) {
+        while (currentComponent != null) {
             if (currentComponent.getNamingContainer() instanceof UIForm) {
                 return (UIForm) currentComponent.getNamingContainer();
             }
