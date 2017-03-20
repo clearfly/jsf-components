@@ -34,6 +34,7 @@ public class Select2AutoCompleteRenderer extends RendererBase {
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         UIInput inputComponent = (UIInput) component;
+        final boolean disabled = (boolean) inputComponent.getAttributes().getOrDefault("disabled", false);
         String placeholder = (String) component.getAttributes().getOrDefault("placeholder", "Choose");
 
         String value = null;
@@ -52,6 +53,10 @@ public class Select2AutoCompleteRenderer extends RendererBase {
         writeAttribute("name", divId, context);
         writeAttribute("class", "form-control", context);
         writeAttribute("style", "width:100%", context);
+        if (disabled) {
+            writeAttribute("disabled", "true", context);
+        }
+
         RenderKitUtils.renderOnchange(context, component, false);
 
         writer.startElement("option", inputComponent);

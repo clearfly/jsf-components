@@ -45,6 +45,10 @@
 			<name>modal</name>
 			<type>javax.faces.component.UIComponent</type>
 		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<type>boolean</type>
+		</attribute>
 	</tag>
 	<tag>
 		<description>Renders a copy component</description>
@@ -101,6 +105,10 @@
 			<description>onclick</description>
 			<name>onclick</name>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<type>boolean</type>
 		</attribute>
 	</tag>
 	<tag>
@@ -338,6 +346,10 @@
 			<name>valueClass</name>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<type>boolean</type>
+		</attribute>
 	</tag>
 	<tag>
 		<tag-name>panel</tag-name>
@@ -363,6 +375,10 @@
 			<display-name>CSS Style Classes</display-name>
 			<name>styleClass</name>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<type>boolean</type>
 		</attribute>
 	</tag>
 	<tag>
@@ -442,6 +458,11 @@
 		<attribute>
 			<description>required</description>
 			<name>required</name>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description>disabled</description>
+			<name>disabled</name>
 			<type>boolean</type>
 		</attribute>
 		<attribute>
