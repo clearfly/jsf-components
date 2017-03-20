@@ -40,4 +40,13 @@ public class RendererTools {
         String styleClass = (String) parentForm.getAttributes().get("styleClass");
         return styleClass != null && styleClass.contains("form-horizontal");
     }
+
+    public static Long asLong(Object o) {
+        if (o instanceof Number) {
+            return ((Number) o).longValue();
+        }
+        else {
+            return null;
+        }
+    }
 }
