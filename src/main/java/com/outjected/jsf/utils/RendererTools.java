@@ -30,7 +30,7 @@ public class RendererTools {
                 return (UIForm) currentComponent.getNamingContainer();
             }
             else {
-                currentComponent = currentComponent.getNamingContainer();
+                currentComponent = currentComponent.getParent();
             }
         }
         throw new IllegalStateException("No parent form found for " + component.getClientId());
