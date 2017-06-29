@@ -49,13 +49,13 @@ public class DecorateInputRenderer extends RendererBase {
         writeAttribute("style", style, context);
 
         final boolean required = isRequired(valueComponent);
-        final String clientId = component.getClientId();
+        final String valueComponentId = valueComponent.getClientId();
 
         // Write Label
         final String labelHelpClass = help != null ? "popover-source" : null;
         final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("control-label", labelClass, labelHelpClass);
         writer.startElement("label", component); // Label
-        writeAttribute("for", clientId, context);
+        writeAttribute("for", valueComponentId, context);
         writeAttribute("title", label, context);
         writeAttribute("class", labelComputedStyleClass, context);
         if (help != null) {
@@ -84,18 +84,17 @@ public class DecorateInputRenderer extends RendererBase {
         writeAttribute("class", valueClass, context);
         encodeValue(context, component);
 
-        // Write Help Block
+        // Write Help Block and Messages
         writer.startElement("span", component);
         writeAttribute("class", "help-block", context);
-
-        // Write Messages if existing
         UIMessages messages = new UIMessages();
-        messages.setFor(valueComponent.getClientId());
+        messages.setParent(valueComponent.getParent());
+        messages.setFor(valueComponentId);
         messages.encodeAll(context);
-
         writer.endElement("span");
 
         writer.endElement("div"); // Value Div
+
     }
 
     @Override
