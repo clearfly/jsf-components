@@ -25,7 +25,7 @@ public class PopoverRenderer extends RendererBase {
         writeAttributeIfExists("style", "style", context, component);
         writeStandardAttributes(context, component);
         writeAttributeIfExistsOrDefault("placement", "data-placement", "right", context, component);
-        writeAttributeIfExistsOrDefault("trigger", "data-trigger", "focus", context, component);
+        writeAttributeIfExistsOrDefault("trigger", "data-trigger", "click", context, component);
         writeAttributeIfExistsOrDefault("html", "data-html", "true", context, component);
         writeAttributeIfExistsOrDefault("delay", "data-delay", "0", context, component);
         writeAttributeIfExists("popoverTitle", "data-title", context, component);

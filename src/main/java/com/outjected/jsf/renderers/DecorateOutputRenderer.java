@@ -53,7 +53,7 @@ public class DecorateOutputRenderer extends RendererBase {
             writeAttributeIfExistsOrDefault("helpTitle", "data-title", label, context, component);
             writeAttributeIfExistsOrDefault("helpContainer", "data-container", "body", context, component);
             writeAttributeIfExistsOrDefault("helpPlacement", "data-placement", "right", context, component);
-            writeAttributeIfExistsOrDefault("helpTrigger", "data-trigger", "focus", context, component);
+            writeAttributeIfExistsOrDefault("helpTrigger", "data-trigger", "click", context, component);
             writeAttributeIfExistsOrDefault("helpDelay", "data-delay", "0", context, component);
             writeAttributeIfExistsOrDefault("helpHtml", "data-html", "true", context, component);
         }
