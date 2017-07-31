@@ -8,7 +8,6 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import com.outjected.jsf.components.Famlies;
-import com.outjected.jsf.utils.RendererTools;
 
 @SuppressWarnings("resource")
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = PopoverRenderer.RENDERER_TYPE)
@@ -21,7 +20,8 @@ public class PopoverRenderer extends RendererBase {
         ResponseWriter writer = context.getResponseWriter();
         writer.startElement("div", component);
         writeId(context, component);
-        writeAttribute("styleClass", RendererTools.spaceSeperateStrings("popover-source", (String) component.getAttributes().get("styleClass")), context);
+        writeAttribute("data-toggle", "popover", context);
+        writeAttribute("class", (String) component.getAttributes().get("styleClass"), context);
         writeAttributeIfExists("style", "style", context, component);
         writeStandardAttributes(context, component);
         writeAttributeIfExistsOrDefault("placement", "data-placement", "right", context, component);

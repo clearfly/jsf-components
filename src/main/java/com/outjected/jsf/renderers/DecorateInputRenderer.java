@@ -59,6 +59,7 @@ public class DecorateInputRenderer extends RendererBase {
         writeAttribute("title", label, context);
         writeAttribute("class", labelComputedStyleClass, context);
         if (help != null) {
+            writeAttribute("data-toggle", "popover", context);
             writeAttributeIfExists("helpContainer", "data-container", context, component);
             writeAttributeIfExists("help", "data-content", context, component);
             writeAttributeIfExistsOrDefault("helpTitle", "data-title", label, context, component);
