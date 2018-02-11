@@ -19,6 +19,8 @@ public class TabsRenderer extends RendererBase {
 
     public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.TabsRenderer";
 
+    private boolean closingDivNeeded = false;
+
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
@@ -31,11 +33,17 @@ public class TabsRenderer extends RendererBase {
             }
         }
 
+        if (tabs.isEmpty()) {
+            // No tabs so don't render anything;
+            return;
+        }
+
         // Write Outer Div
         final String style = (String) component.getAttributes().get("style");
         final String styleClass = (String) component.getAttributes().get("styleClass");
         final String divComputedStyleClass = RendererTools.spaceSeperateStrings("tabs", styleClass);
         writer.startElement("div", component); // Outer Div
+        closingDivNeeded = true;
         writeId(context, component);
         writeAttribute("class", divComputedStyleClass, context);
         writeAttribute("style", style, context);
@@ -100,7 +108,9 @@ public class TabsRenderer extends RendererBase {
 
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-        ResponseWriter writer = context.getResponseWriter();
-        writer.endElement("div"); // Outer Div
+        if (closingDivNeeded) {
+            ResponseWriter writer = context.getResponseWriter();
+            writer.endElement("div"); // Outer Div
+        }
     }
 }
