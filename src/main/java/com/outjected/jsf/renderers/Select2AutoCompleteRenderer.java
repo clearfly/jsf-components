@@ -18,8 +18,6 @@ public class Select2AutoCompleteRenderer extends RendererBase {
 
     public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.Select2AutoCompleteRenderer";
 
-    private String divId;
-
     @Override
     public Object getConvertedValue(FacesContext context, UIComponent component, Object val) throws ConverterException {
         UIInput input = (UIInput) component;
@@ -31,6 +29,7 @@ public class Select2AutoCompleteRenderer extends RendererBase {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         UIInput inputComponent = (UIInput) component;
@@ -48,7 +47,7 @@ public class Select2AutoCompleteRenderer extends RendererBase {
         ResponseWriter writer = context.getResponseWriter();
         writer.startElement("select", component);
         writeId(context, component);
-        divId = component.getClientId();
+        String divId = component.getClientId();
         writeAttribute("value", value, context);
         writeAttribute("name", divId, context);
         writeAttribute("class", "form-control", context);
@@ -62,9 +61,10 @@ public class Select2AutoCompleteRenderer extends RendererBase {
         writer.startElement("option", inputComponent);
         writer.writeAttribute("value", "", "value");
         writer.write(placeholder);
-
+        writer.endElement("option");
+        
         writer.endElement("select");
-        writeScript(context, writer, component, value);
+        writeScript(context, writer, component, value, divId);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Select2AutoCompleteRenderer extends RendererBase {
         // NOOP
     }
 
-    private void writeScript(FacesContext context, ResponseWriter writer, UIComponent component, String value) throws IOException {
+    private void writeScript(FacesContext context, ResponseWriter writer, UIComponent component, String value, String divId) throws IOException {
         writer.startElement("script", component);
         writer.writeAttribute("type", "text/javascript", null);
 
