@@ -40,7 +40,7 @@ public class Notices {
         return errors != null && !errors.isEmpty();
     }
 
-    public boolean containsWarnings() {
+    private boolean containsWarnings() {
         return warnings != null && !warnings.isEmpty();
     }
 

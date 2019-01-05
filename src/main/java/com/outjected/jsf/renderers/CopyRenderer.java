@@ -20,7 +20,7 @@ public class CopyRenderer extends RendererBase {
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         Object objectValue = component.getAttributes().get("value");
         if (objectValue != null) {
-            String value = null;
+            final String value;
             if (objectValue instanceof String) {
                 value = (String) objectValue;
             }
@@ -46,6 +46,7 @@ public class CopyRenderer extends RendererBase {
     }
 
     @Override
-    public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+    public void encodeEnd(FacesContext context, UIComponent component) {
+        //NOOP
     }
 }

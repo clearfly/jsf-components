@@ -36,7 +36,7 @@ public class Select2AutoCompleteRenderer extends RendererBase {
         final boolean disabled = (boolean) inputComponent.getAttributes().getOrDefault("disabled", false);
         String placeholder = (String) component.getAttributes().getOrDefault("placeholder", "Choose");
 
-        String value = null;
+        final String value;
         if (inputComponent.getConverter() != null) {
             value = inputComponent.getConverter().getAsString(context, component, inputComponent.getValue());
         }
@@ -68,7 +68,7 @@ public class Select2AutoCompleteRenderer extends RendererBase {
     }
 
     @Override
-    public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+    public void encodeEnd(FacesContext context, UIComponent component) {
         // NOOP
     }
 
@@ -95,7 +95,7 @@ public class Select2AutoCompleteRenderer extends RendererBase {
 
         String baseScript = String.format("var s2 = $(document.getElementById('%s')).select2({minimumInputLength: 2, allowClear: %s, placeholder: '%s',"
                 + "ajax: { url: '%s', quietMillis: 500, dataType: 'json', data: function (params) { return { q: params.term, page: params.page }; } },});", divId, allowClear, placeholder,
-                requestContextPath + searchPath, requestContextPath + initPath);
+                requestContextPath + searchPath);
 
         writer.write(baseScript);
         writer.endElement("script");
