@@ -52,24 +52,22 @@ public class DecorateInputRenderer extends RendererBase {
         final String valueComponentId = valueComponent.getClientId();
 
         // Write Label
-        final String labelHelpClass = help != null ? "popover-source" : null;
-        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("control-label", labelClass, labelHelpClass);
+        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("control-label", labelClass);
         writer.startElement("label", component); // Label
         writeAttribute("for", valueComponentId, context);
-        writeAttribute("title", label, context);
         writeAttribute("class", labelComputedStyleClass, context);
+        writer.startElement("span", component);
         if (help != null) {
+            writeAttribute("class", "popover-source", context);
             writeAttribute("data-toggle", "popover", context);
             writeAttributeIfExists("helpContainer", "data-container", context, component);
             writeAttributeIfExists("help", "data-content", context, component);
-            writeAttributeIfExistsOrDefault("helpTitle", "data-title", label, context, component);
             writeAttributeIfExistsOrDefault("helpContainer", "data-container", "body", context, component);
             writeAttributeIfExistsOrDefault("helpPlacement", "data-placement", "right", context, component);
-            writeAttributeIfExistsOrDefault("helpTrigger", "data-trigger", "click", context, component);
+            writeAttributeIfExistsOrDefault("helpTrigger", "data-trigger", "hover", context, component);
             writeAttributeIfExistsOrDefault("helpDelay", "data-delay", "0", context, component);
             writeAttributeIfExistsOrDefault("helpHtml", "data-html", "true", context, component);
         }
-        writer.startElement("span", component);
         writer.write(label);
         if (required) {
             writer.startElement("span", component);
@@ -155,7 +153,7 @@ public class DecorateInputRenderer extends RendererBase {
     private void encodeValue(FacesContext facesContext, UIComponent component) throws IOException {
         for (UIComponent c : component.getChildren()) {
             Boolean skipControlClass = (Boolean.valueOf((String) component.getAttributes().getOrDefault(SKIP_CONTROL_CLASS_ATTR_NAME, "false")));
-            if (!skipControlClass.booleanValue() && c instanceof EditableValueHolder) {
+            if (!skipControlClass && c instanceof EditableValueHolder) {
                 String styleClass = (String) c.getAttributes().get(STYLE_CLASS_ATTR_NAME);
                 if (styleClass != null) {
                     if (!styleClass.contains(FORM_CONTROL_STYLE)) {
