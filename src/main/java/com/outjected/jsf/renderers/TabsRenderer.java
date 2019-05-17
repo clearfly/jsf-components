@@ -13,16 +13,11 @@ import com.outjected.jsf.components.Famlies;
 import com.outjected.jsf.components.TabComponent;
 import com.outjected.jsf.utils.RendererTools;
 
-@SuppressWarnings("resource")
-@FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = TabsRenderer.RENDERER_TYPE)
-public class TabsRenderer extends RendererBase {
+@SuppressWarnings("resource") @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = TabsRenderer.RENDERER_TYPE) public class TabsRenderer extends RendererBase {
 
     public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.TabsRenderer";
 
-    private boolean closingDivNeeded = false;
-
-    @Override
-    public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+    @Override public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
 
         List<TabComponent> tabs = new ArrayList<>();
@@ -43,7 +38,7 @@ public class TabsRenderer extends RendererBase {
         final String styleClass = (String) component.getAttributes().get("styleClass");
         final String divComputedStyleClass = RendererTools.spaceSeperateStrings("tabs", styleClass);
         writer.startElement("div", component); // Outer Div
-        closingDivNeeded = true;
+        component.getAttributes().put("writeClosingDiv", true);
         writeId(context, component);
         writeAttribute("class", divComputedStyleClass, context);
         writeAttribute("style", style, context);
@@ -101,14 +96,13 @@ public class TabsRenderer extends RendererBase {
         writer.endElement("div"); // Tab Content DIV
     }
 
-    @Override
-    public void encodeChildren(FacesContext context, UIComponent component) {
+    @Override public void encodeChildren(FacesContext context, UIComponent component) {
         // Noop
     }
 
-    @Override
-    public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-        if (closingDivNeeded) {
+    @Override public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+        final boolean writeClosingDiv = (boolean) component.getAttributes().getOrDefault("writeClosingDiv", false);
+        if (writeClosingDiv) {
             ResponseWriter writer = context.getResponseWriter();
             writer.endElement("div"); // Outer Div
         }
