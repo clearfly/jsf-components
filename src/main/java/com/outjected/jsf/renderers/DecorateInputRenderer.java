@@ -40,9 +40,9 @@ public class DecorateInputRenderer extends RendererBase {
         final String errorsClass = hasErrors(context, valueComponent) ? "has-error" : null;
         final String divComputedStyleClass = RendererTools.spaceSeperateStrings("o-decorate-input form-group", styleClass, errorsClass);
 
-        final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", horizontalLayout ? "col-md-4" : null);
+        final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", horizontalLayout ? "col-sm-4" : null);
         final String help = (String) component.getAttributes().get("help");
-        final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", horizontalLayout ? "col-md-6" : null);
+        final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", horizontalLayout ? "col-sm-6" : null);
         writer.startElement("div", component); // Outer Div
         writeId(context, component);
         writeAttribute("class", divComputedStyleClass, context);
@@ -52,7 +52,7 @@ public class DecorateInputRenderer extends RendererBase {
         final String valueComponentId = valueComponent.getClientId();
 
         // Write Label
-        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("control-label", labelClass);
+        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("col-form-label", labelClass);
         writer.startElement("label", component); // Label
         writeAttribute("for", valueComponentId, context);
         writeAttribute("class", labelComputedStyleClass, context);

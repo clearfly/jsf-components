@@ -31,7 +31,7 @@ public class CopyRenderer extends RendererBase {
             writer.startElement("button", component);
             writer.writeAttribute("type", "button", "type");
             writeId(context, component);
-            String styleClass = (String) component.getAttributes().getOrDefault("styleClass", "btn btn-default btn-xs");
+            String styleClass = (String) component.getAttributes().getOrDefault("styleClass", "btn btn-outline-secondary btn-sm");
             String styleClassValue = RendererTools.spaceSeperateStrings("clipboard-copy-button", styleClass);
             writeAttribute("class", styleClassValue, context);
             writeAttributeIfExists("style", "style", context, component);

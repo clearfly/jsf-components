@@ -30,9 +30,9 @@ public class DecorateOutputRenderer extends RendererBase {
         final String styleClass = (String) component.getAttributes().get("styleClass");
         final String divComputedStyleClass = RendererTools.spaceSeperateStrings("o-decorate-output form-group", styleClass);
 
-        final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", horizontalLayout ? "col-md-4" : null);
+        final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", horizontalLayout ? "col-sm-4" : null);
         final String help = (String) component.getAttributes().get("help");
-        final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", horizontalLayout ? "col-md-6" : null);
+        final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", horizontalLayout ? "col-sm-6" : null);
         writer.startElement("div", component); // Outer Div
         writeId(context, component);
         writeAttribute("class", divComputedStyleClass, context);
@@ -41,7 +41,7 @@ public class DecorateOutputRenderer extends RendererBase {
         final String clientId = component.getClientId();
 
         // Write Label
-        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("control-label", labelClass);
+        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("col-form-label", labelClass);
         writer.startElement("label", component); // Label
         writeAttribute("for", clientId, context);
         writeAttribute("class", labelComputedStyleClass, context);

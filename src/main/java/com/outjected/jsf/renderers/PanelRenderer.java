@@ -25,7 +25,7 @@ import com.outjected.jsf.utils.RendererTools;
             // Write Outer Div
             final String style = (String) component.getAttributes().get("style");
             final String styleClass = (String) component.getAttributes().get("styleClass");
-            final String divComputedStyleClass = RendererTools.spaceSeperateStrings("panel panel-default", styleClass);
+            final String divComputedStyleClass = RendererTools.spaceSeperateStrings("card", styleClass);
             writer.startElement("div", component); // Outer Div
             writeId(context, component);
             writeAttribute("class", divComputedStyleClass, context);
@@ -37,13 +37,13 @@ import com.outjected.jsf.utils.RendererTools;
 
             if (top != null) {
                 writer.startElement("div", component);
-                writer.writeAttribute("class", "panel-top", null);
+                writer.writeAttribute("class", "card-top", null);
                 top.encodeAll(context);
                 writer.endElement("div");
             }
             else if (header != null) {
                 writer.startElement("div", component);
-                writer.writeAttribute("class", "panel-top", null);
+                writer.writeAttribute("class", "card-header", null);
                 writer.startElement("h5", component);
                 writer.write(header);
                 writer.endElement("h5");
@@ -51,7 +51,7 @@ import com.outjected.jsf.utils.RendererTools;
             }
 
             writer.startElement("div", component); //
-            writer.writeAttribute("class", "panel-body", null);
+            writer.writeAttribute("class", "card-body", null);
 
             for (UIComponent child : component.getChildren()) {
                 child.encodeAll(context);

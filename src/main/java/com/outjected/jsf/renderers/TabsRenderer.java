@@ -13,11 +13,14 @@ import com.outjected.jsf.components.Famlies;
 import com.outjected.jsf.components.TabComponent;
 import com.outjected.jsf.utils.RendererTools;
 
-@SuppressWarnings("resource") @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = TabsRenderer.RENDERER_TYPE) public class TabsRenderer extends RendererBase {
+@SuppressWarnings("resource")
+@FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = TabsRenderer.RENDERER_TYPE)
+public class TabsRenderer extends RendererBase {
 
     public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.TabsRenderer";
 
-    @Override public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+    @Override
+    public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
 
         List<TabComponent> tabs = new ArrayList<>();
@@ -54,6 +57,7 @@ import com.outjected.jsf.utils.RendererTools;
             final String title = (String) tab.getAttributes().get("title");
             final Long count = RendererTools.asLong(tab.getAttributes().get("count"));
             writer.startElement("li", component);
+            writeAttribute("class", "nav-item", context);
             writeAttribute("role", "presentation", context);
             writer.startElement("a", component);
             writeAttribute("href", "#" + hash, context);
@@ -96,11 +100,13 @@ import com.outjected.jsf.utils.RendererTools;
         writer.endElement("div"); // Tab Content DIV
     }
 
-    @Override public void encodeChildren(FacesContext context, UIComponent component) {
+    @Override
+    public void encodeChildren(FacesContext context, UIComponent component) {
         // Noop
     }
 
-    @Override public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+    @Override
+    public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         final boolean writeClosingDiv = (boolean) component.getAttributes().getOrDefault("writeClosingDiv", false);
         if (writeClosingDiv) {
             ResponseWriter writer = context.getResponseWriter();
