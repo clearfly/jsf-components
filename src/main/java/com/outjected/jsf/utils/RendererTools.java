@@ -36,11 +36,6 @@ public class RendererTools {
         throw new IllegalStateException("No parent form found for " + component.getClientId());
     }
 
-    public static boolean horzontalLayout(UIForm parentForm) {
-        String styleClass = (String) parentForm.getAttributes().get("styleClass");
-        return styleClass != null && styleClass.contains("form-horizontal");
-    }
-
     public static Long asLong(Object o) {
         if (o instanceof Number) {
             return ((Number) o).longValue();

@@ -6,7 +6,6 @@ import java.util.Iterator;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.EditableValueHolder;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
 import javax.faces.component.UIMessages;
 import javax.faces.component.UISelectBoolean;
 import javax.faces.context.FacesContext;
@@ -30,19 +29,17 @@ public class DecorateInputRenderer extends RendererBase {
         ResponseWriter writer = context.getResponseWriter();
 
         final String label = (String) component.getAttributes().get("label");
-        final UIForm parentForm = RendererTools.parentForm(component);
-        final boolean horizontalLayout = RendererTools.horzontalLayout(parentForm);
         final UIComponent valueComponent = findValueComponent(component, label);
 
         // Write Outer Div
         final String style = (String) component.getAttributes().get("style");
         final String styleClass = (String) component.getAttributes().get("styleClass");
-        final String errorsClass = hasErrors(context, valueComponent) ? "has-error" : null;
-        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("o-decorate-input form-group", styleClass, errorsClass);
+        final String errorsClass = hasErrors(context, valueComponent) ? "is-invalid" : null;
+        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("o-decorate-input form-group", styleClass);
 
-        final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", horizontalLayout ? "col-md-4" : null);
+        final String labelClass = (String) component.getAttributes().get("labelClass");
         final String help = (String) component.getAttributes().get("help");
-        final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", horizontalLayout ? "col-md-6" : null);
+        final String valueClass = (String) component.getAttributes().get("valueClass");
         writer.startElement("div", component); // Outer Div
         writeId(context, component);
         writeAttribute("class", divComputedStyleClass, context);
@@ -52,7 +49,7 @@ public class DecorateInputRenderer extends RendererBase {
         final String valueComponentId = valueComponent.getClientId();
 
         // Write Label
-        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("control-label", labelClass);
+        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("col-form-label", labelClass);
         writer.startElement("label", component); // Label
         writeAttribute("for", valueComponentId, context);
         writeAttribute("class", labelComputedStyleClass, context);
@@ -81,16 +78,16 @@ public class DecorateInputRenderer extends RendererBase {
         // Write Value Div
         writer.startElement("div", component); // Value Div
         writeAttribute("class", valueClass, context);
-        encodeValue(context, component);
+        encodeValue(context, component,errorsClass);
 
         // Write Help Block and Messages
-        writer.startElement("span", component);
-        writeAttribute("class", "help-block", context);
+        writer.startElement("div", component);
+        writeAttribute("class", "invalid-feedback", context);
         UIMessages messages = new UIMessages();
         messages.setParent(valueComponent.getParent());
         messages.setFor(valueComponentId);
         messages.encodeAll(context);
-        writer.endElement("span");
+        writer.endElement("div");
 
         writer.endElement("div"); // Value Div
 
@@ -150,20 +147,13 @@ public class DecorateInputRenderer extends RendererBase {
         }
     }
 
-    private void encodeValue(FacesContext facesContext, UIComponent component) throws IOException {
+    private void encodeValue(FacesContext facesContext, UIComponent component, String errorClass) throws IOException {
         for (UIComponent c : component.getChildren()) {
             Boolean skipControlClass = (Boolean.valueOf((String) component.getAttributes().getOrDefault(SKIP_CONTROL_CLASS_ATTR_NAME, "false")));
             if (!skipControlClass && c instanceof EditableValueHolder) {
                 String styleClass = (String) c.getAttributes().get(STYLE_CLASS_ATTR_NAME);
-                if (styleClass != null) {
-                    if (!styleClass.contains(FORM_CONTROL_STYLE)) {
-                        styleClass = styleClass + " " + FORM_CONTROL_STYLE;
-                        c.getAttributes().put(STYLE_CLASS_ATTR_NAME, styleClass);
-                    }
-                }
-                else {
-                    c.getAttributes().put(STYLE_CLASS_ATTR_NAME, FORM_CONTROL_STYLE);
-                }
+                final String divComputedStyleClass = RendererTools.spaceSeperateStrings(FORM_CONTROL_STYLE, styleClass, errorClass);
+                c.getAttributes().put(STYLE_CLASS_ATTR_NAME, divComputedStyleClass);
             }
             c.encodeAll(facesContext);
         }

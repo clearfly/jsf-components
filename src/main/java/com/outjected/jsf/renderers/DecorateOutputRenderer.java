@@ -3,7 +3,6 @@ package com.outjected.jsf.renderers;
 import java.io.IOException;
 
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
@@ -22,17 +21,15 @@ public class DecorateOutputRenderer extends RendererBase {
         ResponseWriter writer = context.getResponseWriter();
 
         final String label = (String) component.getAttributes().get("label");
-        final UIForm parentForm = RendererTools.parentForm(component);
-        final boolean horizontalLayout = RendererTools.horzontalLayout(parentForm);
 
         // Write Outer Div
         final String style = (String) component.getAttributes().get("style");
         final String styleClass = (String) component.getAttributes().get("styleClass");
         final String divComputedStyleClass = RendererTools.spaceSeperateStrings("o-decorate-output form-group", styleClass);
 
-        final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", horizontalLayout ? "col-md-4" : null);
+        final String labelClass = (String) component.getAttributes().get("labelClass");
         final String help = (String) component.getAttributes().get("help");
-        final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", horizontalLayout ? "col-md-6" : null);
+        final String valueClass = (String) component.getAttributes().get("valueClass");
         writer.startElement("div", component); // Outer Div
         writeId(context, component);
         writeAttribute("class", divComputedStyleClass, context);
@@ -41,7 +38,7 @@ public class DecorateOutputRenderer extends RendererBase {
         final String clientId = component.getClientId();
 
         // Write Label
-        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("control-label", labelClass);
+        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("col-form-label", labelClass);
         writer.startElement("label", component); // Label
         writeAttribute("for", clientId, context);
         writeAttribute("class", labelComputedStyleClass, context);

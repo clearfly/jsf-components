@@ -3,6 +3,7 @@ package com.outjected.jsf.renderers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -13,11 +14,14 @@ import com.outjected.jsf.components.Famlies;
 import com.outjected.jsf.components.TabComponent;
 import com.outjected.jsf.utils.RendererTools;
 
-@SuppressWarnings("resource") @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = TabsRenderer.RENDERER_TYPE) public class TabsRenderer extends RendererBase {
+@SuppressWarnings("resource")
+@FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = TabsRenderer.RENDERER_TYPE)
+public class TabsRenderer extends RendererBase {
 
     public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.TabsRenderer";
 
-    @Override public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+    @Override
+    public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
 
         List<TabComponent> tabs = new ArrayList<>();
@@ -45,7 +49,7 @@ import com.outjected.jsf.utils.RendererTools;
 
         writer.startElement("ul", component);
         writeAttribute("id", "tabs", context);
-        writeAttribute("class", "nav nav-pills", context);
+        writeAttribute("class", "nav nav-tabs", context);
         writeAttribute("role", "tablist", context);
 
         for (TabComponent tab : tabs) {
@@ -53,19 +57,25 @@ import com.outjected.jsf.utils.RendererTools;
             final String hash = (String) tab.getAttributes().get("hash");
             final String title = (String) tab.getAttributes().get("title");
             final Long count = RendererTools.asLong(tab.getAttributes().get("count"));
+            final boolean hasCountBadge = Objects.nonNull(count) && count > 0;
             writer.startElement("li", component);
+            writeAttribute("class", "nav-item", context);
             writeAttribute("role", "presentation", context);
             writer.startElement("a", component);
+            writeAttribute("class", "nav-link", context);
             writeAttribute("href", "#" + hash, context);
             writeAttribute("aria-controls", hash, context);
             writeAttribute("role", "tab", context);
             writeAttribute("data-toggle", "tab", context);
-            writer.write(title);
-            if (count != null && count > 0) {
+            if (hasCountBadge) {
+                writer.write(title + " ");
                 writer.startElement("span", component);
-                writeAttribute("class", "badge", context);
+                writeAttribute("class", "badge badge-primary", context);
                 writer.write(count.toString());
                 writer.endElement("span");
+            }
+            else {
+                writer.write(title);
             }
             writer.endElement("a");
             writer.endElement("li");
@@ -96,11 +106,13 @@ import com.outjected.jsf.utils.RendererTools;
         writer.endElement("div"); // Tab Content DIV
     }
 
-    @Override public void encodeChildren(FacesContext context, UIComponent component) {
+    @Override
+    public void encodeChildren(FacesContext context, UIComponent component) {
         // Noop
     }
 
-    @Override public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+    @Override
+    public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         final boolean writeClosingDiv = (boolean) component.getAttributes().getOrDefault("writeClosingDiv", false);
         if (writeClosingDiv) {
             ResponseWriter writer = context.getResponseWriter();

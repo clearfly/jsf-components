@@ -3,13 +3,13 @@ package com.outjected.jsf.components;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
-import com.outjected.jsf.renderers.PanelRenderer;
+import com.outjected.jsf.renderers.CardRenderer;
 
 @FacesComponent(value = "com.outjected.jsf.components.TabComponent", namespace = Famlies.NAMESPACE)
 public class TabComponent extends UIComponentBase {
 
     public TabComponent() {
-        setRendererType(PanelRenderer.RENDERER_TYPE);
+        setRendererType(CardRenderer.RENDERER_TYPE);
     }
 
     @Override
