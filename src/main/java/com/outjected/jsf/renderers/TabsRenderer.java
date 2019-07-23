@@ -3,6 +3,7 @@ package com.outjected.jsf.renderers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -48,7 +49,7 @@ public class TabsRenderer extends RendererBase {
 
         writer.startElement("ul", component);
         writeAttribute("id", "tabs", context);
-        writeAttribute("class", "nav nav-pills", context);
+        writeAttribute("class", "nav nav-tabs", context);
         writeAttribute("role", "tablist", context);
 
         for (TabComponent tab : tabs) {
@@ -56,20 +57,25 @@ public class TabsRenderer extends RendererBase {
             final String hash = (String) tab.getAttributes().get("hash");
             final String title = (String) tab.getAttributes().get("title");
             final Long count = RendererTools.asLong(tab.getAttributes().get("count"));
+            final boolean hasCountBadge = Objects.nonNull(count) && count > 0;
             writer.startElement("li", component);
             writeAttribute("class", "nav-item", context);
             writeAttribute("role", "presentation", context);
             writer.startElement("a", component);
+            writeAttribute("class", "nav-link", context);
             writeAttribute("href", "#" + hash, context);
             writeAttribute("aria-controls", hash, context);
             writeAttribute("role", "tab", context);
             writeAttribute("data-toggle", "tab", context);
-            writer.write(title);
-            if (count != null && count > 0) {
+            if (hasCountBadge) {
+                writer.write(title + " ");
                 writer.startElement("span", component);
-                writeAttribute("class", "badge", context);
+                writeAttribute("class", "badge badge-primary", context);
                 writer.write(count.toString());
                 writer.endElement("span");
+            }
+            else {
+                writer.write(title);
             }
             writer.endElement("a");
             writer.endElement("li");

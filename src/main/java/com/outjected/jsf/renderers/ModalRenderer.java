@@ -1,6 +1,7 @@
 package com.outjected.jsf.renderers;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -53,7 +54,7 @@ public class ModalRenderer extends RendererBase {
                 break;
         }
 
-        if (maxWidth != null) {
+        if (Objects.nonNull(maxWidth)) {
             writer.writeAttribute("style", "max-width:" + maxWidth + "px;", null);
         }
 
@@ -61,9 +62,13 @@ public class ModalRenderer extends RendererBase {
         writer.startElement("div", component);
         writer.writeAttribute("class", "modal-content", null);
 
-        if (header != null) {
+        if (Objects.nonNull(header)) {
             writer.startElement("div", component);
             writer.writeAttribute("class", "modal-header", null);
+            writer.startElement("h4", component);
+            writer.writeAttribute("class", "modal-title", null);
+            writer.write(header);
+            writer.endElement("h4");
             writer.startElement("button", component);
             writer.writeAttribute("class", "close", null);
             writer.writeAttribute("type", "button", null);
@@ -71,10 +76,6 @@ public class ModalRenderer extends RendererBase {
             writer.writeAttribute("aria-hidden", "true", null);
             writer.write(Character.toChars(215));
             writer.endElement("button");
-            writer.startElement("h4", component);
-            writer.writeAttribute("class", "modal-title", null);
-            writer.write(header);
-            writer.endElement("h4");
             writer.endElement("div");// End Modal Header Div
         }
         // Modal Body Div

@@ -1,6 +1,6 @@
 package com.outjected.jsf.components;
 
-import com.outjected.jsf.renderers.PanelRenderer;
+import com.outjected.jsf.renderers.CardRenderer;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
@@ -9,7 +9,7 @@ import javax.faces.component.UIComponentBase;
 @FacesComponent(value = "com.outjected.jsf.components.TabsComponent", namespace = Famlies.NAMESPACE) public class TabsComponent extends UIComponentBase {
 
     public TabsComponent() {
-        setRendererType(PanelRenderer.RENDERER_TYPE);
+        setRendererType(CardRenderer.RENDERER_TYPE);
     }
 
     @Override public String getFamily() {

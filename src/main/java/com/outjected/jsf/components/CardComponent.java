@@ -3,13 +3,13 @@ package com.outjected.jsf.components;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
-import com.outjected.jsf.renderers.PanelRenderer;
+import com.outjected.jsf.renderers.CardRenderer;
 
-@FacesComponent(value = "com.outjected.jsf.components.PanelComponent", namespace = Famlies.NAMESPACE)
-public class PanelComponent extends UIComponentBase {
+@FacesComponent(value = "com.outjected.jsf.components.CardComponent", namespace = Famlies.NAMESPACE)
+public class CardComponent extends UIComponentBase {
 
-    public PanelComponent() {
-        setRendererType(PanelRenderer.RENDERER_TYPE);
+    public CardComponent() {
+        setRendererType(CardRenderer.RENDERER_TYPE);
     }
 
     @Override
