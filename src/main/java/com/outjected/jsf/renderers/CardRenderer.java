@@ -50,20 +50,20 @@ public class CardRenderer extends RendererBase {
                 writer.endElement("div");
             }
             else if (Objects.nonNull(header)) {
-                writer.startElement("h5", component);
+                writer.startElement("h6", component);
                 writer.writeAttribute("class", "card-header", null);
                 writer.write(header);
-                writer.endElement("h5");
+                writer.endElement("h6");
             }
 
             writer.startElement("div", component); //
             writer.writeAttribute("class", "card-body", null);
 
             if (Objects.nonNull(title)) {
-                writer.startElement("h5", component);
+                writer.startElement("h6", component);
                 writer.writeAttribute("class", "card-title", null);
                 writer.write(title);
-                writer.endElement("h5");
+                writer.endElement("h6");
             }
             if (Objects.nonNull(subtitle)) {
                 writer.startElement("h6", component);

@@ -65,10 +65,10 @@ public class ModalRenderer extends RendererBase {
         if (Objects.nonNull(header)) {
             writer.startElement("div", component);
             writer.writeAttribute("class", "modal-header", null);
-            writer.startElement("h5", component);
+            writer.startElement("h6", component);
             writer.writeAttribute("class", "modal-title", null);
             writer.write(header);
-            writer.endElement("h5");
+            writer.endElement("h6");
             writer.startElement("button", component);
             writer.writeAttribute("class", "close", null);
             writer.writeAttribute("type", "button", null);
