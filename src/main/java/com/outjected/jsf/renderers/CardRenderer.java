@@ -50,10 +50,10 @@ public class CardRenderer extends RendererBase {
                 writer.endElement("div");
             }
             else if (Objects.nonNull(header)) {
-                writer.startElement("h6", component);
+                writer.startElement("h5", component);
                 writer.writeAttribute("class", "card-header", null);
                 writer.write(header);
-                writer.endElement("h6");
+                writer.endElement("h5");
             }
 
             writer.startElement("div", component); //
