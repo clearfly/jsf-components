@@ -44,10 +44,12 @@ public class CardRenderer extends RendererBase {
             }
 
             if (Objects.nonNull(headerFacet)) {
-                writer.startElement("div", component);
-                writer.writeAttribute("class", "card-header", null);
-                headerFacet.encodeAll(context);
-                writer.endElement("div");
+                if (headerFacet.isRendered() && headerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
+                    writer.startElement("div", component);
+                    writer.writeAttribute("class", "card-header", null);
+                    headerFacet.encodeAll(context);
+                    writer.endElement("div");
+                }
             }
             else if (Objects.nonNull(header)) {
                 writer.startElement("h5", component);
@@ -79,10 +81,12 @@ public class CardRenderer extends RendererBase {
             writer.endElement("div");
 
             if (Objects.nonNull(footerFacet)) {
-                writer.startElement("div", component);
-                writer.writeAttribute("class", "card-footer", null);
-                footerFacet.encodeAll(context);
-                writer.endElement("div");
+                if (footerFacet.isRendered() && footerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
+                    writer.startElement("div", component);
+                    writer.writeAttribute("class", "card-footer", null);
+                    footerFacet.encodeAll(context);
+                    writer.endElement("div");
+                }
             }
         }
     }
