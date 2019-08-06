@@ -1,7 +1,8 @@
 package com.outjected.jsf.utils;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class RendererTools {
 
@@ -10,30 +11,8 @@ public class RendererTools {
             return values[0];
         }
         else {
-            StringBuilder sb = new StringBuilder();
-            for (String s : values) {
-                if (s != null) {
-                    if (sb.length() != 0) {
-                        sb.append(" ");
-                    }
-                    sb.append(s);
-                }
-            }
-            return sb.toString();
+            return Arrays.stream(values).filter(Objects::nonNull).distinct().collect(Collectors.joining(" "));
         }
-    }
-
-    public static UIForm parentForm(final UIComponent component) {
-        UIComponent currentComponent = component;
-        while (currentComponent != null) {
-            if (currentComponent.getNamingContainer() instanceof UIForm) {
-                return (UIForm) currentComponent.getNamingContainer();
-            }
-            else {
-                currentComponent = currentComponent.getParent();
-            }
-        }
-        throw new IllegalStateException("No parent form found for " + component.getClientId());
     }
 
     public static Long asLong(Object o) {

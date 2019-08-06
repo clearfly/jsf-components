@@ -23,6 +23,7 @@ public class DecorateInputRenderer extends RendererBase {
     private static final String STYLE_CLASS_ATTR_NAME = "styleClass";
     private static final String SKIP_CONTROL_CLASS_ATTR_NAME = "skipControlClass";
     private static final String FORM_CONTROL_STYLE = "form-control";
+    private static final String HAS_ERROR_STYLE = "has-error";
 
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
@@ -34,8 +35,8 @@ public class DecorateInputRenderer extends RendererBase {
         // Write Outer Div
         final String style = (String) component.getAttributes().get("style");
         final String styleClass = (String) component.getAttributes().get("styleClass");
-        final String errorsClass = hasErrors(context, valueComponent) ? "is-invalid" : null;
-        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("o-decorate-input form-group", styleClass);
+        final String errorsClass = hasErrors(context, valueComponent) ? HAS_ERROR_STYLE : null;
+        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("o-decorate-input form-group", styleClass, errorsClass);
 
         final String labelClass = (String) component.getAttributes().get("labelClass");
         final String help = (String) component.getAttributes().get("help");
@@ -78,7 +79,7 @@ public class DecorateInputRenderer extends RendererBase {
         // Write Value Div
         writer.startElement("div", component); // Value Div
         writeAttribute("class", valueClass, context);
-        encodeValue(context, component,errorsClass);
+        encodeValue(context, component);
 
         // Write Help Block and Messages
         writer.startElement("div", component);
@@ -147,15 +148,22 @@ public class DecorateInputRenderer extends RendererBase {
         }
     }
 
-    private void encodeValue(FacesContext facesContext, UIComponent component, String errorClass) throws IOException {
+    private void encodeValue(FacesContext context, UIComponent component) throws IOException {
         for (UIComponent c : component.getChildren()) {
             Boolean skipControlClass = (Boolean.valueOf((String) component.getAttributes().getOrDefault(SKIP_CONTROL_CLASS_ATTR_NAME, "false")));
             if (!skipControlClass && c instanceof EditableValueHolder) {
                 String styleClass = (String) c.getAttributes().get(STYLE_CLASS_ATTR_NAME);
-                final String divComputedStyleClass = RendererTools.spaceSeperateStrings(FORM_CONTROL_STYLE, styleClass, errorClass);
-                c.getAttributes().put(STYLE_CLASS_ATTR_NAME, divComputedStyleClass);
+                if (styleClass != null) {
+                    if (!styleClass.contains(FORM_CONTROL_STYLE)) {
+                        styleClass = styleClass + " " + FORM_CONTROL_STYLE;
+                        c.getAttributes().put(STYLE_CLASS_ATTR_NAME, styleClass);
+                    }
+                }
+                else {
+                    c.getAttributes().put(STYLE_CLASS_ATTR_NAME, FORM_CONTROL_STYLE);
+                }
             }
-            c.encodeAll(facesContext);
+            c.encodeAll(context);
         }
     }
 }

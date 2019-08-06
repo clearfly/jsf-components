@@ -3,8 +3,6 @@ package com.outjected.jsf.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.outjected.jsf.utils.RendererTools;
-
 public class RendererToolsTest {
 
     @Test
@@ -37,5 +35,13 @@ public class RendererToolsTest {
         String two = null;
         String three = null;
         Assert.assertEquals("one", RendererTools.spaceSeperateStrings(one, two, three));
+    }
+
+    @Test
+    public void spaceSeperatedString5() {
+        String one_one = "one";
+        String one_two = "one";
+        String one_three = "one";
+        Assert.assertEquals("one", RendererTools.spaceSeperateStrings(one_one, one_two, one_three));
     }
 }

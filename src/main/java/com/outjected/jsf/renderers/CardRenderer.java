@@ -10,6 +10,7 @@ import javax.faces.render.FacesRenderer;
 
 import com.outjected.jsf.components.Famlies;
 import com.outjected.jsf.utils.RendererTools;
+import com.sun.faces.facelets.compiler.UIInstructions;
 
 @SuppressWarnings("resource")
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = CardRenderer.RENDERER_TYPE)
@@ -44,7 +45,15 @@ public class CardRenderer extends RendererBase {
             }
 
             if (Objects.nonNull(headerFacet)) {
-                if (headerFacet.isRendered() && headerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
+                boolean render;
+                if (footerFacet instanceof UIInstructions) {
+                    render = headerFacet.getChildren().stream().anyMatch(UIComponent::isRendered);
+                }
+                else {
+                    render = headerFacet.isRendered();
+                }
+
+                if (render) {
                     writer.startElement("div", component);
                     writer.writeAttribute("class", "card-header", null);
                     headerFacet.encodeAll(context);
@@ -81,7 +90,15 @@ public class CardRenderer extends RendererBase {
             writer.endElement("div");
 
             if (Objects.nonNull(footerFacet)) {
-                if (footerFacet.isRendered() && footerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
+                boolean render;
+                if (footerFacet instanceof UIInstructions) {
+                    render = footerFacet.getChildren().stream().anyMatch(UIComponent::isRendered);
+                }
+                else {
+                    render = footerFacet.isRendered();
+                }
+
+                if (render) {
                     writer.startElement("div", component);
                     writer.writeAttribute("class", "card-footer", null);
                     footerFacet.encodeAll(context);
