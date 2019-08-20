@@ -62,7 +62,7 @@ public class Select2AutoCompleteRenderer extends RendererBase {
         writer.writeAttribute("value", "", "value");
         writer.write(placeholder);
         writer.endElement("option");
-        
+
         writer.endElement("select");
         writeScript(context, writer, component, value, divId);
     }
@@ -87,14 +87,14 @@ public class Select2AutoCompleteRenderer extends RendererBase {
             throw new IOException("searchPath was not defined");
         }
 
-        if (initPath != null && value != null) {
+        if (initPath != null && value != null && value.length() > 0) {
             String initScript = String.format("$.ajax('%s?id='+%s, { dataType: 'json'}).done(function(data) { $(document.getElementById('%s')).append(new Option(data.text, data.id, true, true)); });",
                     requestContextPath + initPath, value, divId);
             writer.write(initScript);
         }
 
         String baseScript = String.format("var s2 = $(document.getElementById('%s')).select2({minimumInputLength: 2, allowClear: %s, placeholder: '%s',"
-                + "ajax: { url: '%s', quietMillis: 500, dataType: 'json', data: function (params) { return { q: params.term, page: params.page }; } },});", divId, allowClear, placeholder,
+                        + "ajax: { url: '%s', quietMillis: 500, dataType: 'json', data: function (params) { return { q: params.term, page: params.page }; } },});", divId, allowClear, placeholder,
                 requestContextPath + searchPath);
 
         writer.write(baseScript);
