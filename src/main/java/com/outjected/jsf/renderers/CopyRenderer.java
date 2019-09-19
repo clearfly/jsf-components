@@ -39,7 +39,7 @@ public class CopyRenderer extends RendererBase {
             writeAttribute("data-clipboard-action", "copy", context);
 
             writer.startElement("i", component);
-            writer.writeAttribute("class", "fa fa-copy", "class");
+            writer.writeAttribute("class", "far fa-copy", "class");
             writer.endElement("i");
             writer.endElement("button");
         }
