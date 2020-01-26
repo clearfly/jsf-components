@@ -1,15 +1,14 @@
 package com.outjected.jsf.renderers;
 
-import java.io.IOException;
-import java.util.Objects;
+import com.outjected.jsf.components.Famlies;
+import com.outjected.jsf.utils.RendererTools;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
-
-import com.outjected.jsf.components.Famlies;
-import com.outjected.jsf.utils.RendererTools;
+import java.io.IOException;
+import java.util.Objects;
 
 @SuppressWarnings("resource")
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = ModalRenderer.RENDERER_TYPE)
@@ -25,6 +24,7 @@ public class ModalRenderer extends RendererBase {
         final String header = (String) component.getAttributes().get("header");
         final String styleClass = (String) component.getAttributes().get("styleClass");
         final String computedStyleClass = RendererTools.spaceSeperateStrings("modal fade", styleClass);
+        final String focusId = (String) component.getAttributes().get("focus");
 
         ResponseWriter writer = context.getResponseWriter();
 
@@ -89,6 +89,13 @@ public class ModalRenderer extends RendererBase {
         writer.endElement("div"); // End Modal Body Div
         writer.endElement("div"); // End Modal Content Div
         writer.endElement("div"); // End Modal Dialog Div
+
+        if (Objects.nonNull(focusId)) {
+            writer.startElement("script", component);
+            writer.writeAttribute("type", "text/javascript", null);
+            writer.write(String.format("$(document.getElementById('%s')).on('shown.bs.modal', function () { $(document.getElementById('%s')).focus(); }) ", component.getClientId(), focusId));
+            writer.endElement("script");
+        }
     }
 
     @Override

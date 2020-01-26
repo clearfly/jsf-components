@@ -255,6 +255,11 @@
 			<name>size</name>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description>The form element that will have focus after modal shown event fires</description>
+			<name>focus</name>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
 	<tag>
 		<tag-name>notice</tag-name>
