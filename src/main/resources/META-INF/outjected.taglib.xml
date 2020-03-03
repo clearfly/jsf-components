@@ -338,6 +338,10 @@
 			<name>rendered</name>
 			<type>boolean</type>
 		</attribute>
+		<attribute>
+			<name>renderEmpty</name>
+			<type>boolean</type>
+		</attribute>
 	</tag>
 	<tag>
 		<tag-name>card</tag-name>

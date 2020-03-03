@@ -23,4 +23,16 @@ public class RendererTools {
             return null;
         }
     }
+
+    public static boolean attributeValueAsBoolean(Object attributeValue, boolean defaultValue) {
+        if (attributeValue instanceof String) {
+            return Boolean.parseBoolean((String) attributeValue);
+        }
+        else if (attributeValue instanceof Boolean) {
+            return (boolean) attributeValue;
+        }
+        else {
+            return defaultValue;
+        }
+    }
 }

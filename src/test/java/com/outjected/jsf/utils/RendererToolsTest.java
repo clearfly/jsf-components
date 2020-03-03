@@ -44,4 +44,24 @@ public class RendererToolsTest {
         String one_three = "one";
         Assert.assertEquals("one", RendererTools.spaceSeperateStrings(one_one, one_two, one_three));
     }
+
+    @Test
+    public void attributeValueAsBoolean() {
+        Object stringTrue = "true";
+        Object stringFalse = "false";
+        Object booleanTrue = Boolean.TRUE;
+        Object booleanFalse = Boolean.FALSE;
+        Object booleanTruePrimitive = true;
+        Object booleanFalsePrimitive = false;
+
+        Assert.assertTrue(RendererTools.attributeValueAsBoolean(stringTrue, false));
+        Assert.assertTrue(RendererTools.attributeValueAsBoolean(booleanTrue, false));
+        Assert.assertTrue(RendererTools.attributeValueAsBoolean(booleanTruePrimitive, false));
+        Assert.assertTrue(RendererTools.attributeValueAsBoolean(null, true));
+
+        Assert.assertFalse(RendererTools.attributeValueAsBoolean(stringFalse, true));
+        Assert.assertFalse(RendererTools.attributeValueAsBoolean(booleanFalse, true));
+        Assert.assertFalse(RendererTools.attributeValueAsBoolean(booleanFalsePrimitive, true));
+        Assert.assertFalse(RendererTools.attributeValueAsBoolean(null, false));
+    }
 }

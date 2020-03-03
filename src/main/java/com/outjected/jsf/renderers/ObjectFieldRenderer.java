@@ -19,51 +19,55 @@ public class ObjectFieldRenderer extends RendererBase {
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
+        final boolean hasChildrenToRender = component.getChildren().stream().anyMatch(UIComponent::isRendered);
+        final boolean renderEmpty = RendererTools.attributeValueAsBoolean(component.getAttributes().get("renderEmpty"), false);
+        if (hasChildrenToRender || renderEmpty) {
+            component.getAttributes().put("writeClosingDiv", true);
+            final String label = (String) component.getAttributes().get("label");
 
-        final String label = (String) component.getAttributes().get("label");
+            // Write Outer Div
+            final String style = (String) component.getAttributes().get("style");
+            final String styleClass = (String) component.getAttributes().get("styleClass");
+            final String divComputedStyleClass = RendererTools.spaceSeperateStrings("object-field row", styleClass);
 
-        // Write Outer Div
-        final String style = (String) component.getAttributes().get("style");
-        final String styleClass = (String) component.getAttributes().get("styleClass");
-        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("object-field row", styleClass);
+            final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", "col-5");
+            final String help = (String) component.getAttributes().get("help");
+            final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", "col-7");
+            writer.startElement("div", component); // Outer Div
+            writeId(context, component);
+            writeAttribute("class", divComputedStyleClass, context);
+            writeAttribute("style", style, context);
 
-        final String labelClass = (String) component.getAttributes().getOrDefault("labelClass", "col-5");
-        final String help = (String) component.getAttributes().get("help");
-        final String valueClass = (String) component.getAttributes().getOrDefault("valueClass", "col-7");
-        writer.startElement("div", component); // Outer Div
-        writeId(context, component);
-        writeAttribute("class", divComputedStyleClass, context);
-        writeAttribute("style", style, context);
+            final String clientId = component.getClientId();
 
-        final String clientId = component.getClientId();
+            // Write Label
+            final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("object-field-label", labelClass);
+            writer.startElement("label", component); // Label
+            writeAttribute("for", clientId, context);
+            writeAttribute("class", labelComputedStyleClass, context);
+            writer.startElement("span", component);
+            if (help != null) {
+                writeAttribute("class", "popover-source", context);
+                writeAttribute("data-toggle", "popover", context);
+                writeAttributeIfExists("helpContainer", "data-container", context, component);
+                writeAttributeIfExists("help", "data-content", context, component);
+                writeAttributeIfExistsOrDefault("helpContainer", "data-container", "body", context, component);
+                writeAttributeIfExistsOrDefault("helpPlacement", "data-placement", "right", context, component);
+                writeAttributeIfExistsOrDefault("helpTrigger", "data-trigger", "hover", context, component);
+                writeAttributeIfExistsOrDefault("helpDelay", "data-delay", "0", context, component);
+                writeAttributeIfExistsOrDefault("helpHtml", "data-html", "true", context, component);
+            }
+            writer.write(label);
+            writer.endElement("span");
+            writer.endElement("label");
 
-        // Write Label
-        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("object-field-label", labelClass);
-        writer.startElement("label", component); // Label
-        writeAttribute("for", clientId, context);
-        writeAttribute("class", labelComputedStyleClass, context);
-        writer.startElement("span", component);
-        if (help != null) {
-            writeAttribute("class", "popover-source", context);
-            writeAttribute("data-toggle", "popover", context);
-            writeAttributeIfExists("helpContainer", "data-container", context, component);
-            writeAttributeIfExists("help", "data-content", context, component);
-            writeAttributeIfExistsOrDefault("helpContainer", "data-container", "body", context, component);
-            writeAttributeIfExistsOrDefault("helpPlacement", "data-placement", "right", context, component);
-            writeAttributeIfExistsOrDefault("helpTrigger", "data-trigger", "hover", context, component);
-            writeAttributeIfExistsOrDefault("helpDelay", "data-delay", "0", context, component);
-            writeAttributeIfExistsOrDefault("helpHtml", "data-html", "true", context, component);
+            // Write Value Div
+            writer.startElement("div", component); // Value Div
+            writeAttribute("class", RendererTools.spaceSeperateStrings("object-field-value", valueClass), context);
+            encodeValue(context, component);
+
+            writer.endElement("div"); // Value Div
         }
-        writer.write(label);
-        writer.endElement("span");
-        writer.endElement("label");
-
-        // Write Value Div
-        writer.startElement("div", component); // Value Div
-        writeAttribute("class", RendererTools.spaceSeperateStrings("object-field-value", valueClass), context);
-        encodeValue(context, component);
-
-        writer.endElement("div"); // Value Div
     }
 
     @Override
@@ -73,8 +77,11 @@ public class ObjectFieldRenderer extends RendererBase {
 
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-        ResponseWriter writer = context.getResponseWriter();
-        writer.endElement("div"); // Outer Div
+        final boolean writeClosingDiv = (boolean) component.getAttributes().getOrDefault("writeClosingDiv", false);
+        if (writeClosingDiv) {
+            ResponseWriter writer = context.getResponseWriter();
+            writer.endElement("div"); // Outer Div
+        }
     }
 
     private void encodeValue(FacesContext facesContext, UIComponent component) throws IOException {

@@ -10,6 +10,7 @@ import javax.faces.render.FacesRenderer;
 
 import com.outjected.jsf.components.Famlies;
 import com.outjected.jsf.core.Notices;
+import com.outjected.jsf.utils.RendererTools;
 
 @SuppressWarnings("resource")
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = NoticesRenderer.RENDERER_TYPE)
@@ -22,7 +23,7 @@ public class NoticesRenderer extends RendererBase {
         final Notices notices = (Notices) component.getAttributes().get("notices");
         final String errorTitle = (String) component.getAttributes().getOrDefault("errorTitle", "Has Errors -- Click for Details");
         final String warningTitle = (String) component.getAttributes().getOrDefault("warningTitle", "Has Warnings -- Click for Details");
-        final Boolean expanded = (Boolean) component.getAttributes().getOrDefault("expanded", Boolean.TRUE);
+        final boolean expanded = RendererTools.attributeValueAsBoolean(component.getAttributes().get("expanded"), true);
 
         ResponseWriter writer = context.getResponseWriter();
         writer.startElement("div", component);
@@ -35,7 +36,7 @@ public class NoticesRenderer extends RendererBase {
             writer.startElement("div", component);
             writer.writeAttribute("id", "noticesTitleDiv", null);
             writer.writeAttribute("class", notices.containsErrors() ? "alert alert-danger alert-thin text-center" : "alert alert-warning alert-thin text-center", null);
-            writer.writeAttribute("style", "display:" + (expanded.booleanValue() ? "none" : "block") + ";", null);
+            writer.writeAttribute("style", "display:" + (expanded ? "none" : "block") + ";", null);
             writer.startElement("strong", component);
             writer.write(notices.containsErrors() ? errorTitle : warningTitle);
             writer.endElement("strong");
@@ -45,7 +46,7 @@ public class NoticesRenderer extends RendererBase {
             // Content Div
             writer.startElement("div", component);
             writer.writeAttribute("id", "noticesContentDiv", null);
-            writer.writeAttribute("style", "display:" + (expanded.booleanValue() ? "block" : "none") + ";", null);
+            writer.writeAttribute("style", "display:" + (expanded ? "block" : "none") + ";", null);
 
             writeSection(context, component, notices.getErrors(), "alert alert-thin alert-danger");
             writeSection(context, component, notices.getWarnings(), "alert alert-thin alert-warning");
