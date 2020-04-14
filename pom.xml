@@ -14,16 +14,22 @@
 		<version.plugin.source>3.0.1</version.plugin.source>
 	</properties>
 
+	<scm>
+		<connection>scm:git:git://github.com/codylerum/jsf-components.git</connection>
+		<developerConnection>scm:git:git@github.com:codylerum/jsf-components.git</developerConnection>
+		<url>https://github.com/codylerum/jsf-components</url>
+	</scm>
+
 	<distributionManagement>
 		<repository>
-			<id>central</id>
-			<name>clearfly-releases</name>
-			<url>https://mvn.clearfly.net/artifactory/libs-release</url>
+			<id>github</id>
+			<name>GitHub Clearfly Maven Repository</name>
+			<url>https://maven.pkg.github.com/clearfly/mvn</url>
 		</repository>
 		<snapshotRepository>
-			<id>snapshots</id>
-			<name>clearfly-snapshots</name>
-			<url>https://mvn.clearfly.net/artifactory/libs-snapshot</url>
+			<id>github</id>
+			<name>GitHub Clearfly Maven Repository</name>
+			<url>https://maven.pkg.github.com/clearfly/mvn</url>
 		</snapshotRepository>
 	</distributionManagement>
 
