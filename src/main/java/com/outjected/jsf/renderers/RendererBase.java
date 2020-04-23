@@ -58,6 +58,7 @@ public abstract class RendererBase extends HtmlBasicRenderer {
         writeAttributeIfExists("style", "style", context, component);
         writeAttributeIfExists("styleClass", "class", context, component);
         writeAttributeIfExists("onclick", "onclick", context, component);
+        writeAttributeIfExists("title", "title", context, component);
     }
 
     public void writeAttribute(String name, String value, FacesContext context) throws IOException {
