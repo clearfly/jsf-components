@@ -534,4 +534,22 @@
 			<type>boolean</type>
 		</attribute>
 	</tag>
+	<tag>
+		<tag-name>dropdown</tag-name>
+		<component>
+			<component-type>com.outjected.jsf.components.DropdownComponent</component-type>
+		</component>
+		<attribute>
+			<name>rendered</name>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>renderEmpty</name>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>alignRight</name>
+			<type>boolean</type>
+		</attribute>
+	</tag>
 </facelet-taglib>

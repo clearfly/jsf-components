@@ -42,7 +42,7 @@ public class TabsRenderer extends RendererBase {
         final String styleClass = (String) component.getAttributes().get("styleClass");
         final String divComputedStyleClass = RendererTools.spaceSeperateStrings("tabs", styleClass);
         writer.startElement("div", component); // Outer Div
-        component.getAttributes().put("writeClosingDiv", true);
+        component.getAttributes().put(WRITE_CLOSING_KEY, true);
         writeId(context, component);
         writeAttribute("class", divComputedStyleClass, context);
         writeAttribute("style", style, context);
@@ -108,12 +108,12 @@ public class TabsRenderer extends RendererBase {
 
     @Override
     public void encodeChildren(FacesContext context, UIComponent component) {
-        // Noop
+        // Children are rendered manually in the encodeBegin so we don't want to render them twice
     }
 
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-        final boolean writeClosingDiv = (boolean) component.getAttributes().getOrDefault("writeClosingDiv", false);
+        final boolean writeClosingDiv = (boolean) component.getAttributes().getOrDefault(WRITE_CLOSING_KEY, false);
         if (writeClosingDiv) {
             ResponseWriter writer = context.getResponseWriter();
             writer.endElement("div"); // Outer Div

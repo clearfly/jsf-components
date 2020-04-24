@@ -22,7 +22,7 @@ public class ObjectFieldRenderer extends RendererBase {
         final boolean hasChildrenToRender = component.getChildren().stream().anyMatch(UIComponent::isRendered);
         final boolean renderEmpty = RendererTools.attributeValueAsBoolean(component.getAttributes().get("renderEmpty"), false);
         if (hasChildrenToRender || renderEmpty) {
-            component.getAttributes().put("writeClosingDiv", true);
+            component.getAttributes().put(WRITE_CLOSING_KEY, true);
             final String label = (String) component.getAttributes().get("label");
 
             // Write Outer Div
@@ -72,12 +72,12 @@ public class ObjectFieldRenderer extends RendererBase {
 
     @Override
     public void encodeChildren(FacesContext context, UIComponent component) {
-        // Noop
+        // Children are rendered manually in the encodeBegin so we don't want to render them twice
     }
 
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-        final boolean writeClosingDiv = (boolean) component.getAttributes().getOrDefault("writeClosingDiv", false);
+        final boolean writeClosingDiv = (boolean) component.getAttributes().getOrDefault(WRITE_CLOSING_KEY, false);
         if (writeClosingDiv) {
             ResponseWriter writer = context.getResponseWriter();
             writer.endElement("div"); // Outer Div

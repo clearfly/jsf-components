@@ -96,7 +96,7 @@ public class DecorateInputRenderer extends RendererBase {
 
     @Override
     public void encodeChildren(FacesContext context, UIComponent component) {
-        // Noop
+        // Children are rendered manually in the encodeBegin so we don't want to render them twice
     }
 
     @Override

@@ -23,7 +23,7 @@ public class CardRenderer extends RendererBase {
         ResponseWriter writer = context.getResponseWriter();
         final boolean hasChildrenToRender = component.getChildren().stream().anyMatch(UIComponent::isRendered);
         if (hasChildrenToRender) {
-            component.getAttributes().put("writeClosingDiv", true);
+            component.getAttributes().put(WRITE_CLOSING_KEY, true);
             final UIComponent headerFacet = component.getFacet("header");
             final UIComponent footerFacet = component.getFacet("footer");
 
@@ -110,12 +110,12 @@ public class CardRenderer extends RendererBase {
 
     @Override
     public void encodeChildren(FacesContext context, UIComponent component) {
-        // Noop
+        // Children are rendered manually in the encodeBegin so we don't want to render them twice
     }
 
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-        final boolean writeClosingDiv = (boolean) component.getAttributes().getOrDefault("writeClosingDiv", false);
+        final boolean writeClosingDiv = (boolean) component.getAttributes().getOrDefault(WRITE_CLOSING_KEY, false);
         if (writeClosingDiv) {
             ResponseWriter writer = context.getResponseWriter();
             writer.endElement("div"); // Outer Div

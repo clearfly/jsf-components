@@ -10,6 +10,8 @@ import com.sun.faces.renderkit.html_basic.HtmlBasicRenderer;
 
 public abstract class RendererBase extends HtmlBasicRenderer {
 
+    public static final String WRITE_CLOSING_KEY = "writeClosing";
+
     @Override
     public void decode(FacesContext context, UIComponent component) {
         super.decode(context, component);
