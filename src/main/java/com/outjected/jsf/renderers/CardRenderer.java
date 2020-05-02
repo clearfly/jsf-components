@@ -45,15 +45,7 @@ public class CardRenderer extends RendererBase {
             }
 
             if (Objects.nonNull(headerFacet)) {
-                boolean render;
-                if (footerFacet instanceof UIInstructions) {
-                    render = headerFacet.getChildren().stream().anyMatch(UIComponent::isRendered);
-                }
-                else {
-                    render = headerFacet.isRendered();
-                }
-
-                if (render) {
+                if (headerFacet instanceof UIInstructions || headerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
                     writer.startElement("div", component);
                     writer.writeAttribute("class", "card-header", null);
                     headerFacet.encodeAll(context);
@@ -90,15 +82,7 @@ public class CardRenderer extends RendererBase {
             writer.endElement("div");
 
             if (Objects.nonNull(footerFacet)) {
-                boolean render;
-                if (footerFacet instanceof UIInstructions) {
-                    render = footerFacet.getChildren().stream().anyMatch(UIComponent::isRendered);
-                }
-                else {
-                    render = footerFacet.isRendered();
-                }
-
-                if (render) {
+                if (footerFacet instanceof UIInstructions || footerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
                     writer.startElement("div", component);
                     writer.writeAttribute("class", "card-footer", null);
                     footerFacet.encodeAll(context);

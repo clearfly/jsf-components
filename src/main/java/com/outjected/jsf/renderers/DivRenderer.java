@@ -8,6 +8,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import com.outjected.jsf.components.Famlies;
+import com.outjected.jsf.utils.RendererTools;
 
 @SuppressWarnings("resource")
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = DivRenderer.RENDERER_TYPE)
@@ -18,13 +19,20 @@ public class DivRenderer extends RendererBase {
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
-        writer.startElement("div", component);
-        writeStandardAttributes(context, component);
+        final boolean renderEmpty = RendererTools.attributeValueAsBoolean(component.getAttributes().get("renderEmpty"), false);
+        if (component.getChildren().stream().anyMatch(UIComponent::isRendered) || renderEmpty) {
+            component.getAttributes().put(WRITE_CLOSING_KEY, true);
+            writer.startElement("div", component);
+            writeStandardAttributes(context, component);
+        }
     }
 
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-        ResponseWriter writer = context.getResponseWriter();
-        writer.endElement("div");
+        final boolean writeClosingDiv = (boolean) component.getAttributes().getOrDefault(WRITE_CLOSING_KEY, false);
+        if (writeClosingDiv) {
+            ResponseWriter writer = context.getResponseWriter();
+            writer.endElement("div");
+        }
     }
 }
