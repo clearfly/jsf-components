@@ -4,12 +4,12 @@
 	<groupId>com.outjected</groupId>
 	<artifactId>jsf-components</artifactId>
 	<packaging>jar</packaging>
-	<version>4.0.10</version>
+	<version>4.0.11</version>
 	<name>JSF Components</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.java>1.8</version.java>
+		<version.java>11</version.java>
 		<version.plugin.compiler>3.8.1</version.plugin.compiler>
 		<version.plugin.source>3.2.0</version.plugin.source>
 	</properties>
@@ -37,8 +37,8 @@
 
 		<dependency>
 			<groupId>org.glassfish</groupId>
-			<artifactId>javax.faces</artifactId>
-			<version>2.3.5</version>
+			<artifactId>jakarta.faces</artifactId>
+			<version>2.3.14</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -77,7 +77,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19.1</version>
+				<version>3.0.0-M5</version>
 			</plugin>
 		</plugins>
 	</build>
