@@ -87,7 +87,7 @@ public class TabsRenderer extends RendererBase {
         writeAttribute("class", "tab-content", context);
 
         for (UIComponent child : component.getChildren()) {
-            if (child instanceof TabComponent) {
+            if (child instanceof TabComponent && child.isRendered()) {
                 TabComponent tab = (TabComponent) child;
                 final String hash = (String) tab.getAttributes().get("hash");
                 writer.startElement("div", component);
