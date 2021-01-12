@@ -21,8 +21,13 @@ public class DropdownComponent extends UIComponentBase {
 
     @Override
     public boolean isRendered() {
-        final boolean hasChildrenToRender = getChildren().stream().anyMatch(UIComponent::isRendered);
-        final boolean renderEmpty = RendererTools.attributeValueAsBoolean(getAttributes().get("renderEmpty"), false);
-        return hasChildrenToRender || renderEmpty;
+        if (super.isRendered()) {
+            final boolean hasChildrenToRender = getChildren().stream().anyMatch(UIComponent::isRendered);
+            final boolean renderEmpty = RendererTools.attributeValueAsBoolean(getAttributes().get("renderEmpty"), false);
+            return hasChildrenToRender || renderEmpty;
+        }
+        else {
+            return false;
+        }
     }
 }
