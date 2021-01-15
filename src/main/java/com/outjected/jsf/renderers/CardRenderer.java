@@ -21,73 +21,70 @@ public class CardRenderer extends RendererBase {
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
-        final boolean hasChildrenToRender = component.getChildren().stream().anyMatch(UIComponent::isRendered);
-        if (hasChildrenToRender) {
-            component.getAttributes().put(WRITE_CLOSING_KEY, true);
-            final UIComponent headerFacet = component.getFacet("header");
-            final UIComponent footerFacet = component.getFacet("footer");
+        component.getAttributes().put(WRITE_CLOSING_KEY, true);
+        final UIComponent headerFacet = component.getFacet("header");
+        final UIComponent footerFacet = component.getFacet("footer");
 
-            final String header = (String) component.getAttributes().get("header");
-            final String title = (String) component.getAttributes().get("title");
-            final String subtitle = (String) component.getAttributes().get("subtitle");
+        final String header = (String) component.getAttributes().get("header");
+        final String title = (String) component.getAttributes().get("title");
+        final String subtitle = (String) component.getAttributes().get("subtitle");
 
-            // Write Outer Div
-            final String style = (String) component.getAttributes().get("style");
-            final String styleClass = (String) component.getAttributes().get("styleClass");
-            final String divComputedStyleClass = RendererTools.spaceSeperateStrings("card", styleClass);
-            writer.startElement("div", component); // Outer Div
-            writeId(context, component);
-            writeAttribute("class", divComputedStyleClass, context);
-            writeAttribute("style", style, context);
+        // Write Outer Div
+        final String style = (String) component.getAttributes().get("style");
+        final String styleClass = (String) component.getAttributes().get("styleClass");
+        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("card", styleClass);
+        writer.startElement("div", component); // Outer Div
+        writeId(context, component);
+        writeAttribute("class", divComputedStyleClass, context);
+        writeAttribute("style", style, context);
 
-            if (Objects.nonNull(header) && Objects.nonNull(headerFacet)) {
-                throw new IllegalArgumentException("Cannot define both a top facet and a header");
-            }
+        if (Objects.nonNull(header) && Objects.nonNull(headerFacet)) {
+            throw new IllegalArgumentException("Cannot define both a top facet and a header");
+        }
 
-            if (Objects.nonNull(headerFacet)) {
-                if (headerFacet instanceof UIInstructions || headerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
-                    writer.startElement("div", component);
-                    writer.writeAttribute("class", "card-header", null);
-                    headerFacet.encodeAll(context);
-                    writer.endElement("div");
-                }
-            }
-            else if (Objects.nonNull(header)) {
-                writer.startElement("h5", component);
+        if (Objects.nonNull(headerFacet)) {
+            if (headerFacet instanceof UIInstructions || headerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
+                writer.startElement("div", component);
                 writer.writeAttribute("class", "card-header", null);
-                writer.write(header);
-                writer.endElement("h5");
+                headerFacet.encodeAll(context);
+                writer.endElement("div");
             }
+        }
+        else if (Objects.nonNull(header)) {
+            writer.startElement("h5", component);
+            writer.writeAttribute("class", "card-header", null);
+            writer.write(header);
+            writer.endElement("h5");
+        }
 
-            writer.startElement("div", component); //
-            writer.writeAttribute("class", "card-body", null);
+        writer.startElement("div", component); //
+        writer.writeAttribute("class", "card-body", null);
 
-            if (Objects.nonNull(title)) {
-                writer.startElement("h6", component);
-                writer.writeAttribute("class", "card-title", null);
-                writer.write(title);
-                writer.endElement("h6");
-            }
-            if (Objects.nonNull(subtitle)) {
-                writer.startElement("h6", component);
-                writer.writeAttribute("class", "card-subtitle mb-2 text-muted", null);
-                writer.write(subtitle);
-                writer.endElement("h6");
-            }
+        if (Objects.nonNull(title)) {
+            writer.startElement("h6", component);
+            writer.writeAttribute("class", "card-title", null);
+            writer.write(title);
+            writer.endElement("h6");
+        }
+        if (Objects.nonNull(subtitle)) {
+            writer.startElement("h6", component);
+            writer.writeAttribute("class", "card-subtitle mb-2 text-muted", null);
+            writer.write(subtitle);
+            writer.endElement("h6");
+        }
 
-            for (UIComponent child : component.getChildren()) {
-                child.encodeAll(context);
-            }
+        for (UIComponent child : component.getChildren()) {
+            child.encodeAll(context);
+        }
 
-            writer.endElement("div");
+        writer.endElement("div");
 
-            if (Objects.nonNull(footerFacet)) {
-                if (footerFacet instanceof UIInstructions || footerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
-                    writer.startElement("div", component);
-                    writer.writeAttribute("class", "card-footer", null);
-                    footerFacet.encodeAll(context);
-                    writer.endElement("div");
-                }
+        if (Objects.nonNull(footerFacet)) {
+            if (footerFacet instanceof UIInstructions || footerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
+                writer.startElement("div", component);
+                writer.writeAttribute("class", "card-footer", null);
+                footerFacet.encodeAll(context);
+                writer.endElement("div");
             }
         }
     }

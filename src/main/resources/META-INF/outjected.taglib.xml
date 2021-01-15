@@ -82,42 +82,6 @@
 		</attribute>
 	</tag>
 	<tag>
-		<description>Renders a simple HTML Div</description>
-		<tag-name>div</tag-name>
-		<component>
-			<component-type>com.outjected.jsf.components.DivComponent</component-type>
-			<renderer-type>com.outjected.jsf.renderers.DivRenderer</renderer-type>
-		</component>
-		<attribute>
-			<description>id</description>
-			<name>id</name>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>CSS Style </description>
-			<name>style</name>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>CSS Style Classes</description>
-			<name>styleClass</name>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>onclick</description>
-			<name>onclick</name>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>rendered</name>
-			<type>boolean</type>
-		</attribute>
-		<attribute>
-			<name>renderEmpty</name>
-			<type>boolean</type>
-		</attribute>
-	</tag>
-	<tag>
 		<tag-name>decorateInput</tag-name>
 		<component>
 			<component-type>com.outjected.jsf.components.DecorateInputComponent</component-type>

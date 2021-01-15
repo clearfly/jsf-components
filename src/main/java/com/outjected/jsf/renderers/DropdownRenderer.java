@@ -20,43 +20,39 @@ public class DropdownRenderer extends RendererBase {
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         final ResponseWriter writer = context.getResponseWriter();
-        final boolean hasChildrenToRender = component.getChildren().stream().anyMatch(UIComponent::isRendered);
-        final boolean renderEmpty = RendererTools.attributeValueAsBoolean(component.getAttributes().get("renderEmpty"), false);
 
-        if (hasChildrenToRender || renderEmpty) {
-            component.getAttributes().put(WRITE_CLOSING_KEY, true);
-            final UIComponent toggleFacet = component.getFacet("toggle");
-            final boolean alignRight = RendererTools.attributeValueAsBoolean(component.getAttributes().get("alignRight"), true);
+        component.getAttributes().put(WRITE_CLOSING_KEY, true);
+        final UIComponent toggleFacet = component.getFacet("toggle");
+        final boolean alignRight = RendererTools.attributeValueAsBoolean(component.getAttributes().get("alignRight"), true);
 
-            if (Objects.isNull(toggleFacet)) {
-                throw new IllegalArgumentException("Toggle Facet must be defined");
-            }
-
-            final String styleClass = (String) component.getAttributes().get("styleClass");
-            final String divComputedStyleClass = RendererTools.spaceSeperateStrings("dropdown", styleClass);
-
-            writer.startElement("div", component);
-            writer.writeAttribute("class", divComputedStyleClass, null);
-
-            toggleFacet.encodeAll(context);
-
-            writer.startElement("div", component);
-
-            if (alignRight) {
-                writer.writeAttribute("class", "dropdown-menu dropdown-menu-right", null);
-            }
-            else {
-                writer.writeAttribute("class", "dropdown-menu", null);
-            }
-
-            writer.writeAttribute("aria-labelledby", "dropdownMenuButton", null);
-
-            for (UIComponent child : component.getChildren()) {
-                child.encodeAll(context);
-            }
-
-            writer.endElement("div"); // dropdown-menu div
+        if (Objects.isNull(toggleFacet)) {
+            throw new IllegalArgumentException("Toggle Facet must be defined");
         }
+
+        final String styleClass = (String) component.getAttributes().get("styleClass");
+        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("dropdown", styleClass);
+
+        writer.startElement("div", component);
+        writer.writeAttribute("class", divComputedStyleClass, null);
+
+        toggleFacet.encodeAll(context);
+
+        writer.startElement("div", component);
+
+        if (alignRight) {
+            writer.writeAttribute("class", "dropdown-menu dropdown-menu-right", null);
+        }
+        else {
+            writer.writeAttribute("class", "dropdown-menu", null);
+        }
+
+        writer.writeAttribute("aria-labelledby", "dropdownMenuButton", null);
+
+        for (UIComponent child : component.getChildren()) {
+            child.encodeAll(context);
+        }
+
+        writer.endElement("div"); // dropdown-menu div
     }
 
     @Override
