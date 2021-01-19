@@ -42,7 +42,7 @@ public class CardRenderer extends RendererBase {
             throw new IllegalArgumentException("Cannot define both a top facet and a header");
         }
 
-        if (Objects.nonNull(headerFacet)) {
+        if (Objects.nonNull(headerFacet) && headerFacet.isRendered()) {
             if (headerFacet instanceof UIInstructions || headerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
                 writer.startElement("div", component);
                 writer.writeAttribute("class", "card-header", null);
@@ -79,7 +79,7 @@ public class CardRenderer extends RendererBase {
 
         writer.endElement("div");
 
-        if (Objects.nonNull(footerFacet)) {
+        if (Objects.nonNull(footerFacet) && footerFacet.isRendered()) {
             if (footerFacet instanceof UIInstructions || footerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
                 writer.startElement("div", component);
                 writer.writeAttribute("class", "card-footer", null);
