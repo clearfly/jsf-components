@@ -70,7 +70,7 @@ public class ModalRenderer extends RendererBase {
             writer.write(header);
             writer.endElement("h6");
             writer.startElement("button", component);
-            writer.writeAttribute("class", "close", null);
+            writer.writeAttribute("class", "btn-close", null);
             writer.writeAttribute("type", "button", null);
             writer.writeAttribute("data-bs-dismiss", "modal", null);
             writer.writeAttribute("aria-hidden", "true", null);
