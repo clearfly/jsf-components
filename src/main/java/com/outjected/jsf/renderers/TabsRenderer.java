@@ -72,7 +72,7 @@ public class TabsRenderer extends RendererBase {
             if (hasCountBadge) {
                 writer.write(title + " ");
                 writer.startElement("span", component);
-                writeAttribute("class", "badge badge-primary", context);
+                writeAttribute("class", "badge bg-primary", context);
                 writer.write(count.toString());
                 writer.endElement("span");
             }
