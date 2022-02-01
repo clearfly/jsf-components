@@ -74,7 +74,6 @@ public class ModalRenderer extends RendererBase {
             writer.writeAttribute("type", "button", null);
             writer.writeAttribute("data-bs-dismiss", "modal", null);
             writer.writeAttribute("aria-hidden", "true", null);
-            writer.write(Character.toChars(215));
             writer.endElement("button");
             writer.endElement("div");// End Modal Header Div
         }
