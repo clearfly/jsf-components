@@ -33,8 +33,8 @@ public class ModalRenderer extends RendererBase {
         writeId(context, component);
         writer.writeAttribute("class", computedStyleClass, null);
         writeStyle(context, component);
-        writeAttributeIfExistsOrDefault("keyboard", "data-keyboard", "false", context, component);
-        writeAttributeIfExistsOrDefault("backdrop", "data-backdrop", "static", context, component);
+        writeAttributeIfExistsOrDefault("keyboard", "data-bs-keyboard", "false", context, component);
+        writeAttributeIfExistsOrDefault("backdrop", "data-bs-backdrop", "static", context, component);
 
         // Modal Dialog Div
         writer.startElement("div", component);
@@ -72,7 +72,7 @@ public class ModalRenderer extends RendererBase {
             writer.startElement("button", component);
             writer.writeAttribute("class", "close", null);
             writer.writeAttribute("type", "button", null);
-            writer.writeAttribute("data-dismiss", "modal", null);
+            writer.writeAttribute("data-bs-dismiss", "modal", null);
             writer.writeAttribute("aria-hidden", "true", null);
             writer.write(Character.toChars(215));
             writer.endElement("button");
