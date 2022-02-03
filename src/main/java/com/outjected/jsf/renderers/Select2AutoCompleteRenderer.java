@@ -45,7 +45,7 @@ import java.io.IOException;
         String divId = component.getClientId();
         writeAttribute("value", value, context);
         writeAttribute("name", divId, context);
-        writeAttribute("class", "form-control", context);
+        writeAttribute("class", "form-select", context);
         writeAttribute("style", "width:100%", context);
         if (disabled) {
             writeAttribute("disabled", "true", context);
