@@ -93,7 +93,7 @@ public class Select2AutoCompleteRenderer extends RendererBase {
             writer.write(initScript);
         }
 
-        String baseScript = String.format("var s2 = $(document.getElementById('%s')).select2({minimumInputLength: 2, allowClear: %s, placeholder: '%s',"
+        String baseScript = String.format("var s2 = $(document.getElementById('%s')).select2({theme: 'bootstrap-5', minimumInputLength: 2, allowClear: %s, placeholder: '%s',"
                         + "ajax: { url: '%s', quietMillis: 500, dataType: 'json', data: function (params) { return { q: params.term, page: params.page }; } },});", divId, allowClear, placeholder,
                 requestContextPath + searchPath);
 
