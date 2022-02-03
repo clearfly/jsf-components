@@ -45,14 +45,14 @@ public class DecorateOutputRenderer extends RendererBase {
         writer.startElement("span", component);
         if (help != null) {
             writeAttribute("class", "popover-source", context);
-            writeAttribute("data-toggle", "popover", context);
-            writeAttributeIfExists("helpContainer", "data-container", context, component);
-            writeAttributeIfExists("help", "data-content", context, component);
-            writeAttributeIfExistsOrDefault("helpContainer", "data-container", "body", context, component);
-            writeAttributeIfExistsOrDefault("helpPlacement", "data-placement", "right", context, component);
-            writeAttributeIfExistsOrDefault("helpTrigger", "data-trigger", "hover", context, component);
-            writeAttributeIfExistsOrDefault("helpDelay", "data-delay", "0", context, component);
-            writeAttributeIfExistsOrDefault("helpHtml", "data-html", "true", context, component);
+            writeAttribute("data-bs-toggle", "popover", context);
+            writeAttributeIfExists("helpContainer", "data-bs-container", context, component);
+            writeAttributeIfExists("help", "data-bs-content", context, component);
+            writeAttributeIfExistsOrDefault("helpContainer", "data-bs-container", "body", context, component);
+            writeAttributeIfExistsOrDefault("helpPlacement", "data-bs-placement", "right", context, component);
+            writeAttributeIfExistsOrDefault("helpTrigger", "data-bs-trigger", "hover", context, component);
+            writeAttributeIfExistsOrDefault("helpDelay", "data-bs-delay", "0", context, component);
+            writeAttributeIfExistsOrDefault("helpHtml", "data-bs-html", "true", context, component);
         }
         writer.write(label);
         writer.endElement("span");

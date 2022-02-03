@@ -61,23 +61,25 @@ public class TabsRenderer extends RendererBase {
             writer.startElement("li", component);
             writeAttribute("class", "nav-item", context);
             writeAttribute("role", "presentation", context);
-            writer.startElement("a", component);
+            writer.startElement("button", component);
             writeAttribute("class", "nav-link", context);
-            writeAttribute("href", "#" + hash, context);
+            writeAttribute("data-bs-target", "#" + hash, context);
+            writeAttribute("type", "button", context);
+
             writeAttribute("aria-controls", hash, context);
             writeAttribute("role", "tab", context);
-            writeAttribute("data-toggle", "tab", context);
+            writeAttribute("data-bs-toggle", "tab", context);
             if (hasCountBadge) {
                 writer.write(title + " ");
                 writer.startElement("span", component);
-                writeAttribute("class", "badge badge-primary", context);
+                writeAttribute("class", "badge bg-primary", context);
                 writer.write(count.toString());
                 writer.endElement("span");
             }
             else {
                 writer.write(title);
             }
-            writer.endElement("a");
+            writer.endElement("button");
             writer.endElement("li");
         }
         writer.endElement("ul"); // End Pills

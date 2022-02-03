@@ -21,17 +21,17 @@ public class PopoverRenderer extends RendererBase {
         ResponseWriter writer = context.getResponseWriter();
         writer.startElement("span", component);
         writeId(context, component);
-        writeAttribute("data-toggle", "popover", context);
+        writeAttribute("data-bs-toggle", "popover", context);
         final String computedStyleClass = RendererTools.spaceSeperateStrings("popover-source", (String) component.getAttributes().get("styleClass"));
         writeAttribute("class", (computedStyleClass), context);
         writeAttributeIfExists("style", "style", context, component);
         writeStandardAttributes(context, component);
-        writeAttributeIfExistsOrDefault("placement", "data-placement", "right", context, component);
-        writeAttributeIfExistsOrDefault("trigger", "data-trigger", "hover", context, component);
-        writeAttributeIfExistsOrDefault("html", "data-html", "true", context, component);
-        writeAttributeIfExistsOrDefault("delay", "data-delay", "0", context, component);
-        writeAttributeIfExists("content", "data-content", context, component);
-        writeAttributeIfExistsOrDefault("container", "data-container", "false", context, component);
+        writeAttributeIfExistsOrDefault("placement", "data-bs-placement", "right", context, component);
+        writeAttributeIfExistsOrDefault("trigger", "data-bs-trigger", "hover", context, component);
+        writeAttributeIfExistsOrDefault("html", "data-bs-html", "true", context, component);
+        writeAttributeIfExistsOrDefault("delay", "data-bs-delay", "0", context, component);
+        writeAttributeIfExists("content", "data-bs-content", context, component);
+        writeAttributeIfExistsOrDefault("container", "data-bs-container", "false", context, component);
     }
 
     @Override

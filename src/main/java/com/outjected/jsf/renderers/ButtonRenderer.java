@@ -26,8 +26,8 @@ public class ButtonRenderer extends RendererBase {
 
         if (modalToToggle != null) {
             String id = modalToToggle.getClientId().replace(":", "\\:");
-            writeAttribute("data-toggle", "modal", context);
-            writeAttribute("data-target", "#" + id, context);
+            writeAttribute("data-bs-toggle", "modal", context);
+            writeAttribute("data-bs-target", "#" + id, context);
         }
 
         if (value != null) {
