@@ -1,15 +1,14 @@
 package com.outjected.jsf.renderers;
 
-import java.io.IOException;
-import java.util.Objects;
+import com.outjected.jsf.components.Famlies;
+import com.outjected.jsf.utils.RendererTools;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
-
-import com.outjected.jsf.components.Famlies;
-import com.outjected.jsf.utils.RendererTools;
+import java.io.IOException;
+import java.util.Objects;
 
 @SuppressWarnings("resource")
 @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = DropdownRenderer.RENDERER_TYPE)
@@ -24,13 +23,15 @@ public class DropdownRenderer extends RendererBase {
         component.getAttributes().put(WRITE_CLOSING_KEY, true);
         final UIComponent toggleFacet = component.getFacet("toggle");
         final boolean alignRight = RendererTools.attributeValueAsBoolean(component.getAttributes().get("alignRight"), true);
+        final boolean positionStatic = RendererTools.attributeValueAsBoolean(component.getAttributes().get("positionStatic"), false);
 
         if (Objects.isNull(toggleFacet)) {
             throw new IllegalArgumentException("Toggle Facet must be defined");
         }
 
         final String styleClass = (String) component.getAttributes().get("styleClass");
-        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("dropdown", styleClass);
+        final String positionClass = positionStatic ? "position-static" : null;
+        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("dropdown", positionClass, styleClass);
 
         writer.startElement("div", component);
         writer.writeAttribute("class", divComputedStyleClass, null);

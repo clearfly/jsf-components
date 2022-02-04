@@ -523,5 +523,9 @@
 			<name>alignRight</name>
 			<type>boolean</type>
 		</attribute>
+		<attribute>
+			<name>positionStatic</name>
+			<type>boolean</type>
+		</attribute>
 	</tag>
 </facelet-taglib>
