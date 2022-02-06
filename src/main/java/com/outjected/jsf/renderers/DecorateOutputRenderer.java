@@ -60,7 +60,7 @@ public class DecorateOutputRenderer extends RendererBase {
 
         // Write Value Div
         writer.startElement("div", component); // Value Div
-        writeAttribute("class", RendererTools.spaceSeperateStrings("form-control-static", valueClass), context);
+        writeAttribute("class", RendererTools.spaceSeperateStrings("form-control-plaintext", valueClass), context);
         encodeValue(context, component);
 
         writer.endElement("div"); // Value Div
