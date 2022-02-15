@@ -39,9 +39,7 @@ public class CardComponent extends ComponentBase {
     @Override
     public void encodeBegin(FacesContext context) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
-        getAttributes().put(WRITE_CLOSING_KEY, true);
         final UIComponent headerFacet = getFacet("header");
-        final UIComponent footerFacet = getFacet("footer");
 
         final String header = (String) getAttributes().get("header");
         final String title = (String) getAttributes().get("title");
@@ -91,12 +89,15 @@ public class CardComponent extends ComponentBase {
             writer.endElement("h6");
         }
 
-        for (UIComponent child : getChildren()) {
-            child.encodeAll(context);
-        }
+    }
 
-        writer.endElement("div");
+    @Override
+    public void encodeEnd(FacesContext context) throws IOException {
+        ResponseWriter writer = context.getResponseWriter();
 
+        writer.endElement("div"); //Body Div
+
+        final UIComponent footerFacet = getFacet("footer");
         if (Objects.nonNull(footerFacet) && footerFacet.isRendered()) {
             if (footerFacet instanceof UIInstructions || footerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
                 writer.startElement("div", this);
@@ -105,18 +106,6 @@ public class CardComponent extends ComponentBase {
                 writer.endElement("div");
             }
         }
-    }
-
-    @Override
-    public void encodeChildren(FacesContext context) {
-        // Children are rendered manually in the encodeBegin so we don't want to render them twice
-    }
-
-    @Override
-    public void encodeEnd(FacesContext context) throws IOException {
-        if (getAttribute(WRITE_CLOSING_KEY, false)) {
-            ResponseWriter writer = context.getResponseWriter();
-            writer.endElement("div"); // Outer Div
-        }
+        writer.endElement("div"); // Outer Div
     }
 }
