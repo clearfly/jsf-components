@@ -57,7 +57,6 @@
         <tag-name>inlineEdit</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.InlineEditComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.InlineEditRenderer</renderer-type>
         </component>
         <attribute>
             <description>id</description>
