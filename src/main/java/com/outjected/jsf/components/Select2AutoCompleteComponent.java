@@ -32,4 +32,11 @@ public class Select2AutoCompleteComponent extends UIInput implements ClientBehav
     public String getDefaultEventName() {
         return "valueChange";
     }
+
+    @Override
+    public void setSubmittedValue(Object newValue) {
+        if (null != newValue) {
+            super.setSubmittedValue(newValue);
+        }
+    }
 }
