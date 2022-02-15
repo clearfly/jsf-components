@@ -9,6 +9,8 @@ import com.outjected.jsf.utils.RendererTools;
 
 public abstract class ComponentBase extends UIComponentBase {
 
+    public static final String WRITE_CLOSING_KEY = "writeClosing";
+
     public void writeId(FacesContext context) throws IOException {
         writeAttributeIfExists("clientId", "id", context);
     }
@@ -47,6 +49,6 @@ public abstract class ComponentBase extends UIComponentBase {
     }
 
     public boolean getAttribute(String name, boolean defaultValue) {
-        return RendererTools.attributeValueAsBoolean(getAttributes().get("editable"), true);
+        return RendererTools.attributeValueAsBoolean(getAttributes().get(name), defaultValue);
     }
 }

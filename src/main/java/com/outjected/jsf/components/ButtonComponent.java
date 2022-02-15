@@ -16,6 +16,11 @@ public class ButtonComponent extends ComponentBase {
     }
 
     @Override
+    public boolean getRendersChildren() {
+        return true;
+    }
+
+    @Override
     public void encodeBegin(FacesContext context) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
         writer.startElement("button", this);
