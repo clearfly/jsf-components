@@ -102,7 +102,6 @@ public class DecorateInputComponent extends ComponentBase {
         writer.endElement("div");
 
         writer.endElement("div"); // Value Div
-
     }
 
     @Override

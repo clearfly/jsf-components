@@ -88,7 +88,6 @@ public class CardComponent extends ComponentBase {
             writer.write(subtitle);
             writer.endElement("h6");
         }
-
     }
 
     @Override

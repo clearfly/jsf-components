@@ -66,7 +66,6 @@ public class DecorateOutputComponent extends ComponentBase {
         // Write Value Div
         writer.startElement("div", this); // Value Div
         writeAttribute("class", RendererTools.spaceSeperateStrings("form-control-plaintext", valueClass), context);
-
     }
 
     @Override

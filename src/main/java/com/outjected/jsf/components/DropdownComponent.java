@@ -22,7 +22,7 @@ public class DropdownComponent extends ComponentBase {
     public boolean isRendered() {
         if (super.isRendered()) {
             final boolean hasChildrenToRender = getChildren().stream().anyMatch(UIComponent::isRendered);
-            final boolean renderEmpty = RendererTools.attributeValueAsBoolean(getAttributes().get("renderEmpty"), false);
+            final boolean renderEmpty = getAttribute("renderEmpty", false);
             return hasChildrenToRender || renderEmpty;
         }
         else {
@@ -34,8 +34,8 @@ public class DropdownComponent extends ComponentBase {
     public void encodeBegin(FacesContext context) throws IOException {
         final ResponseWriter writer = context.getResponseWriter();
         final UIComponent toggleFacet = getFacet("toggle");
-        final boolean alignRight = RendererTools.attributeValueAsBoolean(getAttributes().get("alignRight"), true);
-        final boolean positionStatic = RendererTools.attributeValueAsBoolean(getAttributes().get("positionStatic"), false);
+        final boolean alignRight = getAttribute("alignRight", true);
+        final boolean positionStatic = getAttribute("positionStatic", false);
 
         if (Objects.isNull(toggleFacet)) {
             throw new IllegalArgumentException("Toggle Facet must be defined");
@@ -60,7 +60,6 @@ public class DropdownComponent extends ComponentBase {
         }
 
         writer.writeAttribute("aria-labelledby", "dropdownMenuButton", null);
-
     }
 
     @Override

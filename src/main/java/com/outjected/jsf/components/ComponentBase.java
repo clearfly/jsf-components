@@ -2,16 +2,12 @@ package com.outjected.jsf.components;
 
 import java.io.IOException;
 
-import javax.faces.component.UIComponent;
 import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 
 import com.outjected.jsf.utils.RendererTools;
 
 public abstract class ComponentBase extends UIComponentBase {
-
-    public static final String WRITE_CLOSING_KEY = "writeClosing";
 
     public void writeId(FacesContext context) throws IOException {
         writeAttributeIfExists("clientId", "id", context);
@@ -19,11 +15,6 @@ public abstract class ComponentBase extends UIComponentBase {
 
     public void writeStyle(FacesContext context) throws IOException {
         writeAttributeIfExists("style", "style", context);
-
-    }
-
-    public void writeStyleClass(FacesContext context) throws IOException {
-        writeAttributeIfExists("styleClass", "class", context);
     }
 
     public void writeStandardAttributes(FacesContext context) throws IOException {
