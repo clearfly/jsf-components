@@ -1,14 +1,14 @@
 package com.outjected.jsf.components;
 
+import com.outjected.jsf.renderers.ButtonRenderer;
+
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
-import com.outjected.jsf.renderers.ButtonRenderer;
+@FacesComponent(value = "com.outjected.jsf.components.InlineEditComponent", namespace = Families.NAMESPACE)
+public class InlineEditComponent extends UIComponentBase {
 
-@FacesComponent(value = "com.outjected.jsf.components.ButtonComponent", namespace = Families.NAMESPACE)
-public class ButtonComponent extends UIComponentBase {
-
-    public ButtonComponent() {
+    public InlineEditComponent() {
         setRendererType(ButtonRenderer.RENDERER_TYPE);
     }
 

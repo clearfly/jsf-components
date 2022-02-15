@@ -1,6 +1,6 @@
 package com.outjected.jsf.renderers;
 
-import com.outjected.jsf.components.Famlies;
+import com.outjected.jsf.components.Families;
 import com.outjected.jsf.utils.RendererTools;
 
 import javax.faces.application.FacesMessage;
@@ -16,7 +16,7 @@ import javax.faces.render.FacesRenderer;
 import java.io.IOException;
 import java.util.Iterator;
 
-@SuppressWarnings("resource") @FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = DecorateInputRenderer.RENDERER_TYPE) public class DecorateInputRenderer
+@SuppressWarnings("resource") @FacesRenderer(componentFamily = Families.OUTPUT_COMPONENT_FAMILY, rendererType = DecorateInputRenderer.RENDERER_TYPE) public class DecorateInputRenderer
         extends RendererBase {
 
     public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.DecorateInputRenderer";

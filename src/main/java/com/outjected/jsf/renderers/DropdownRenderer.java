@@ -1,6 +1,6 @@
 package com.outjected.jsf.renderers;
 
-import com.outjected.jsf.components.Famlies;
+import com.outjected.jsf.components.Families;
 import com.outjected.jsf.utils.RendererTools;
 
 import javax.faces.component.UIComponent;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 @SuppressWarnings("resource")
-@FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = DropdownRenderer.RENDERER_TYPE)
+@FacesRenderer(componentFamily = Families.OUTPUT_COMPONENT_FAMILY, rendererType = DropdownRenderer.RENDERER_TYPE)
 public class DropdownRenderer extends RendererBase {
 
     public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.DropdownRenderer";

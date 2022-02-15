@@ -9,12 +9,12 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import com.outjected.jsf.components.Famlies;
+import com.outjected.jsf.components.Families;
 import com.outjected.jsf.core.Notices;
 import com.outjected.jsf.utils.RendererTools;
 
 @SuppressWarnings("resource")
-@FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = NoticesRenderer.RENDERER_TYPE)
+@FacesRenderer(componentFamily = Families.OUTPUT_COMPONENT_FAMILY, rendererType = NoticesRenderer.RENDERER_TYPE)
 public class NoticesRenderer extends RendererBase {
 
     public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.NoticesRenderer";

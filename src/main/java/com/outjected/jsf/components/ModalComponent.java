@@ -5,7 +5,7 @@ import javax.faces.component.UIComponentBase;
 
 import com.outjected.jsf.renderers.ModalRenderer;
 
-@FacesComponent(value = "com.outjected.jsf.components.ModalComponent", namespace = Famlies.NAMESPACE)
+@FacesComponent(value = "com.outjected.jsf.components.ModalComponent", namespace = Families.NAMESPACE)
 public class ModalComponent extends UIComponentBase {
 
     public ModalComponent() {
@@ -14,7 +14,7 @@ public class ModalComponent extends UIComponentBase {
 
     @Override
     public String getFamily() {
-        return Famlies.OUTPUT_COMPONENT_FAMILY;
+        return Families.OUTPUT_COMPONENT_FAMILY;
     }
 
     @Override

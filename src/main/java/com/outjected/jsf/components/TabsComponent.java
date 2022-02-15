@@ -6,14 +6,14 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIComponentBase;
 
-@FacesComponent(value = "com.outjected.jsf.components.TabsComponent", namespace = Famlies.NAMESPACE) public class TabsComponent extends UIComponentBase {
+@FacesComponent(value = "com.outjected.jsf.components.TabsComponent", namespace = Families.NAMESPACE) public class TabsComponent extends UIComponentBase {
 
     public TabsComponent() {
         setRendererType(CardRenderer.RENDERER_TYPE);
     }
 
     @Override public String getFamily() {
-        return Famlies.OUTPUT_COMPONENT_FAMILY;
+        return Families.OUTPUT_COMPONENT_FAMILY;
     }
 
     @Override public boolean getRendersChildren() {

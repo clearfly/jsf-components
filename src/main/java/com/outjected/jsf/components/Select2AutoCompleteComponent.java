@@ -1,6 +1,5 @@
 package com.outjected.jsf.components;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -10,7 +9,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import com.outjected.jsf.renderers.Select2AutoCompleteRenderer;
 
-@FacesComponent(value = "com.outjected.jsf.components.Select2AutoCompleteComponent", namespace = Famlies.NAMESPACE)
+@FacesComponent(value = "com.outjected.jsf.components.Select2AutoCompleteComponent", namespace = Families.NAMESPACE)
 public class Select2AutoCompleteComponent extends UIInput implements ClientBehaviorHolder {
 
     private static final Collection<String> EVENT_NAMES = Collections.singletonList("valueChange");
@@ -21,7 +20,7 @@ public class Select2AutoCompleteComponent extends UIInput implements ClientBehav
 
     @Override
     public String getFamily() {
-        return Famlies.INPUT_COMPONENT_FAMILY;
+        return Families.INPUT_COMPONENT_FAMILY;
     }
 
     @Override

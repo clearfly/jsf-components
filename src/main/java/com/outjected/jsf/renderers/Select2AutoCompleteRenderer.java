@@ -1,6 +1,6 @@
 package com.outjected.jsf.renderers;
 
-import com.outjected.jsf.components.Famlies;
+import com.outjected.jsf.components.Families;
 import com.sun.faces.renderkit.RenderKitUtils;
 
 import javax.faces.component.UIComponent;
@@ -11,7 +11,7 @@ import javax.faces.convert.ConverterException;
 import javax.faces.render.FacesRenderer;
 import java.io.IOException;
 
-@SuppressWarnings("resource") @FacesRenderer(componentFamily = Famlies.INPUT_COMPONENT_FAMILY, rendererType = Select2AutoCompleteRenderer.RENDERER_TYPE) public class Select2AutoCompleteRenderer
+@SuppressWarnings("resource") @FacesRenderer(componentFamily = Families.INPUT_COMPONENT_FAMILY, rendererType = Select2AutoCompleteRenderer.RENDERER_TYPE) public class Select2AutoCompleteRenderer
         extends RendererBase {
 
     public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.Select2AutoCompleteRenderer";

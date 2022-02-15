@@ -5,7 +5,7 @@ import javax.faces.component.UIComponentBase;
 
 import com.outjected.jsf.renderers.PopoverRenderer;
 
-@FacesComponent(value = "com.outjected.jsf.components.PopoverComponent", namespace = Famlies.NAMESPACE)
+@FacesComponent(value = "com.outjected.jsf.components.PopoverComponent", namespace = Families.NAMESPACE)
 public class PopoverComponent extends UIComponentBase {
 
     public PopoverComponent() {
@@ -14,6 +14,6 @@ public class PopoverComponent extends UIComponentBase {
 
     @Override
     public String getFamily() {
-        return Famlies.OUTPUT_COMPONENT_FAMILY;
+        return Families.OUTPUT_COMPONENT_FAMILY;
     }
 }

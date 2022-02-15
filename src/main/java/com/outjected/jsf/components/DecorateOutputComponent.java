@@ -5,7 +5,7 @@ import javax.faces.component.UIComponentBase;
 
 import com.outjected.jsf.renderers.DecorateOutputRenderer;
 
-@FacesComponent(value = "com.outjected.jsf.components.DecorateOutputComponent", namespace = Famlies.NAMESPACE)
+@FacesComponent(value = "com.outjected.jsf.components.DecorateOutputComponent", namespace = Families.NAMESPACE)
 public class DecorateOutputComponent extends UIComponentBase {
 
     public DecorateOutputComponent() {
@@ -14,7 +14,7 @@ public class DecorateOutputComponent extends UIComponentBase {
 
     @Override
     public String getFamily() {
-        return Famlies.OUTPUT_COMPONENT_FAMILY;
+        return Families.OUTPUT_COMPONENT_FAMILY;
     }
 
     @Override

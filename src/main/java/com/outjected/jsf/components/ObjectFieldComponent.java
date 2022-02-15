@@ -7,7 +7,7 @@ import javax.faces.component.UIComponentBase;
 import com.outjected.jsf.renderers.ObjectFieldRenderer;
 import com.outjected.jsf.utils.RendererTools;
 
-@FacesComponent(value = "com.outjected.jsf.components.ObjectFieldComponent", namespace = Famlies.NAMESPACE)
+@FacesComponent(value = "com.outjected.jsf.components.ObjectFieldComponent", namespace = Families.NAMESPACE)
 public class ObjectFieldComponent extends UIComponentBase {
 
     public ObjectFieldComponent() {
@@ -16,7 +16,7 @@ public class ObjectFieldComponent extends UIComponentBase {
 
     @Override
     public String getFamily() {
-        return Famlies.OUTPUT_COMPONENT_FAMILY;
+        return Families.OUTPUT_COMPONENT_FAMILY;
     }
 
     @Override

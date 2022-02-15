@@ -7,11 +7,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import com.outjected.jsf.components.Famlies;
+import com.outjected.jsf.components.Families;
 import com.outjected.jsf.utils.RendererTools;
 
 @SuppressWarnings("resource")
-@FacesRenderer(componentFamily = Famlies.OUTPUT_COMPONENT_FAMILY, rendererType = PopoverRenderer.RENDERER_TYPE)
+@FacesRenderer(componentFamily = Families.OUTPUT_COMPONENT_FAMILY, rendererType = PopoverRenderer.RENDERER_TYPE)
 public class PopoverRenderer extends RendererBase {
 
     public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.PopoverRenderer";

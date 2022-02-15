@@ -5,7 +5,7 @@ import javax.faces.component.UIComponentBase;
 
 import com.outjected.jsf.renderers.NoticesRenderer;
 
-@FacesComponent(value = "com.outjected.jsf.components.NoticesComponent", namespace = Famlies.NAMESPACE)
+@FacesComponent(value = "com.outjected.jsf.components.NoticesComponent", namespace = Families.NAMESPACE)
 public class NoticesComponent extends UIComponentBase {
 
     public NoticesComponent() {
@@ -14,6 +14,6 @@ public class NoticesComponent extends UIComponentBase {
 
     @Override
     public String getFamily() {
-        return Famlies.OUTPUT_COMPONENT_FAMILY;
+        return Families.OUTPUT_COMPONENT_FAMILY;
     }
 }
