@@ -1,7 +1,6 @@
 package com.outjected.jsf.renderers;
 
-import com.outjected.jsf.components.Families;
-import com.sun.faces.renderkit.RenderKitUtils;
+import java.io.IOException;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
@@ -9,14 +8,18 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.ConverterException;
 import javax.faces.render.FacesRenderer;
-import java.io.IOException;
 
-@SuppressWarnings("resource") @FacesRenderer(componentFamily = Families.INPUT_COMPONENT_FAMILY, rendererType = Select2AutoCompleteRenderer.RENDERER_TYPE) public class Select2AutoCompleteRenderer
-        extends RendererBase {
+import com.outjected.jsf.components.Families;
+import com.sun.faces.renderkit.RenderKitUtils;
+
+@SuppressWarnings("resource")
+@FacesRenderer(componentFamily = Families.INPUT_COMPONENT_FAMILY, rendererType = Select2AutoCompleteRenderer.RENDERER_TYPE)
+public class Select2AutoCompleteRenderer extends RendererBase {
 
     public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.Select2AutoCompleteRenderer";
 
-    @Override public Object getConvertedValue(FacesContext context, UIComponent component, Object val) throws ConverterException {
+    @Override
+    public Object getConvertedValue(FacesContext context, UIComponent component, Object val) throws ConverterException {
         UIInput input = (UIInput) component;
         if (input.getConverter() != null) {
             return input.getConverter().getAsObject(context, component, (String) input.getSubmittedValue());
@@ -26,7 +29,9 @@ import java.io.IOException;
         }
     }
 
-    @SuppressWarnings("unchecked") @Override public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         UIInput inputComponent = (UIInput) component;
         final boolean disabled = (boolean) inputComponent.getAttributes().getOrDefault("disabled", false);
         String placeholder = (String) component.getAttributes().getOrDefault("placeholder", "Choose");
@@ -62,7 +67,8 @@ import java.io.IOException;
         writeScript(context, writer, component, value, divId);
     }
 
-    @Override public void encodeEnd(FacesContext context, UIComponent component) {
+    @Override
+    public void encodeEnd(FacesContext context, UIComponent component) {
         // NOOP
     }
 
@@ -89,7 +95,7 @@ import java.io.IOException;
 
         final String options = String.format(
                 "{theme: 'bootstrap-5', minimumInputLength: 2, allowClear: %s, placeholder: '%s',ajax: { url: '%s', quietMillis: 500, dataType: 'json', data: function (params) { return { q: params.term, page: params.page };}}}",
-                 allowClear, placeholder, requestContextPath + searchPath);
+                allowClear, placeholder, requestContextPath + searchPath);
         final String baseScript = String.format("enableSelect2WithOptions(document.getElementById('%s'),%s);", divId, options);
         writer.write(baseScript);
         writer.endElement("script");

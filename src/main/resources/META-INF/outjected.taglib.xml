@@ -10,7 +10,6 @@
         <tag-name>button</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.ButtonComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.ButtonRenderer</renderer-type>
         </component>
         <attribute>
             <description>id</description>
@@ -57,7 +56,6 @@
         <tag-name>inlineEdit</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.InlineEditComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.InlineEditRenderer</renderer-type>
         </component>
         <attribute>
             <description>id</description>
@@ -95,7 +93,6 @@
         <tag-name>copy</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.CopyComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.CopyRenderer</renderer-type>
         </component>
         <attribute>
             <description>id</description>
@@ -123,7 +120,6 @@
         <tag-name>decorateInput</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.DecorateInputComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.DecorateInputRenderer</renderer-type>
         </component>
         <attribute>
             <name>label</name>
@@ -181,7 +177,6 @@
         <tag-name>decorateOutput</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.DecorateOutputComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.DecorateOutputRenderer</renderer-type>
         </component>
         <attribute>
             <name>label</name>
@@ -235,7 +230,6 @@
         <tag-name>modal</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.ModalComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.ModalRenderer</renderer-type>
         </component>
         <attribute>
             <name>header</name>
@@ -267,7 +261,6 @@
         <tag-name>notice</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.NoticesComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.NoticesRenderer</renderer-type>
         </component>
         <attribute>
             <name>errorTitle</name>
@@ -292,7 +285,6 @@
         <tag-name>objectField</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.ObjectFieldComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.ObjectFieldRenderer</renderer-type>
         </component>
         <attribute>
             <name>label</name>
@@ -354,7 +346,6 @@
         <tag-name>card</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.CardComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.CardRenderer</renderer-type>
         </component>
         <attribute>
             <description>id</description>
@@ -392,7 +383,6 @@
         <tag-name>popover</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.PopoverComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.PopoverRenderer</renderer-type>
         </component>
         <attribute>
             <description>id</description>
@@ -491,7 +481,6 @@
         <tag-name>tabs</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.TabsComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.TabsRenderer</renderer-type>
         </component>
         <attribute>
             <description>id</description>
@@ -517,7 +506,6 @@
         <tag-name>tab</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.TabComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.TabRenderer</renderer-type>
         </component>
         <attribute>
             <description>hash</description>
@@ -546,7 +534,6 @@
         <tag-name>dropdown</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.DropdownComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.DropdownRenderer</renderer-type>
         </component>
         <attribute>
             <name>rendered</name>
