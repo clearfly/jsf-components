@@ -10,7 +10,6 @@
         <tag-name>button</tag-name>
         <component>
             <component-type>com.outjected.jsf.components.ButtonComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.ButtonRenderer</renderer-type>
         </component>
         <attribute>
             <description>id</description>

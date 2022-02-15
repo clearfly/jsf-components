@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 
+import com.outjected.jsf.utils.RendererTools;
+
 public abstract class ComponentBase extends UIComponentBase {
 
     public void writeId(FacesContext context) throws IOException {
@@ -44,4 +46,7 @@ public abstract class ComponentBase extends UIComponentBase {
         context.getResponseWriter().writeAttribute(name, value, attributeName);
     }
 
+    public boolean getAttribute(String name, boolean defaultValue) {
+        return RendererTools.attributeValueAsBoolean(getAttributes().get("editable"), true);
+    }
 }

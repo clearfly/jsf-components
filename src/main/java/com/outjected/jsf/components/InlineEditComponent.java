@@ -25,7 +25,7 @@ public class InlineEditComponent extends ComponentBase {
     @Override
     public void encodeBegin(FacesContext context) throws IOException {
         final ResponseWriter writer = context.getResponseWriter();
-        final boolean editable = RendererTools.attributeValueAsBoolean(this.getAttributes().get("editable"), true);
+        final boolean editable = getAttribute("editable", true);
         if (editable) {
             writer.startElement("a", this);
             writeStandardAttributes(context);
