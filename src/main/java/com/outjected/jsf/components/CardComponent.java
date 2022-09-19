@@ -98,7 +98,9 @@ public class CardComponent extends ComponentBase {
 
         final UIComponent footerFacet = getFacet("footer");
         if (Objects.nonNull(footerFacet) && footerFacet.isRendered()) {
-            if (footerFacet instanceof UIInstructions || footerFacet.getChildren().stream().anyMatch(UIComponent::isRendered)) {
+            final boolean hasRenderedChildren = footerFacet.getChildren().stream().anyMatch(UIComponent::isRendered);
+            final boolean hasRenderedFacets = footerFacet.getFacets().values().stream().anyMatch(UIComponent::isRendered);
+            if (footerFacet instanceof UIInstructions || hasRenderedChildren || hasRenderedFacets) {
                 writer.startElement("div", this);
                 writer.writeAttribute("class", "card-footer", null);
                 footerFacet.encodeAll(context);
