@@ -3,9 +3,9 @@ package com.outjected.jsf.components;
 import java.util.Collection;
 import java.util.Collections;
 
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIInput;
-import javax.faces.component.behavior.ClientBehaviorHolder;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.component.behavior.ClientBehaviorHolder;
 
 import com.outjected.jsf.renderers.Select2AutoCompleteRenderer;
 

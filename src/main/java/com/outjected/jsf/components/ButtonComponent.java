@@ -2,10 +2,10 @@ package com.outjected.jsf.components;
 
 import java.io.IOException;
 
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
 
 @FacesComponent(value = "com.outjected.jsf.components.ButtonComponent", namespace = Families.NAMESPACE)
 public class ButtonComponent extends ComponentBase {

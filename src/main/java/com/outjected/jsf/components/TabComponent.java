@@ -1,7 +1,7 @@
 package com.outjected.jsf.components;
 
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIComponentBase;
 
 @FacesComponent(value = "com.outjected.jsf.components.TabComponent", namespace = Families.NAMESPACE)
 public class TabComponent extends UIComponentBase {

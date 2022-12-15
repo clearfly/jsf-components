@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-import javax.faces.component.FacesComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
 
 import com.outjected.jsf.core.Notices;
 

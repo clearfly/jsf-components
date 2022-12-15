@@ -2,11 +2,11 @@ package com.outjected.jsf.renderers;
 
 import java.io.IOException;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
-import javax.faces.context.FacesContext;
-
 import com.sun.faces.renderkit.html_basic.HtmlBasicRenderer;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.context.FacesContext;
+
 
 public abstract class RendererBase extends HtmlBasicRenderer {
 
