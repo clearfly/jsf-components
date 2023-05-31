@@ -4,12 +4,12 @@
 	<groupId>com.outjected</groupId>
 	<artifactId>jsf-components</artifactId>
 	<packaging>jar</packaging>
-	<version>5.0.6</version>
+	<version>5.0.7-SNAPSHOT</version>
 	<name>JSF Components</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.java>11</version.java>
+		<version.java>17</version.java>
 		<version.plugin.compiler>3.11.0</version.plugin.compiler>
 		<version.plugin.source>3.2.1</version.plugin.source>
 	</properties>

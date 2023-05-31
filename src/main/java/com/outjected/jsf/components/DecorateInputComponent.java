@@ -29,7 +29,6 @@ public class DecorateInputComponent extends ComponentBase {
         return true;
     }
 
-    public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.DecorateInputRenderer";
     private static final String STYLE_CLASS_ATTR_NAME = "styleClass";
     private static final String SKIP_CONTROL_CLASS_ATTR_NAME = "skipControlClass";
     private static final String FORM_INPUT_STYLE = "form-control";
@@ -63,7 +62,7 @@ public class DecorateInputComponent extends ComponentBase {
         // Write Label
         final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("col-form-label", labelClass);
         writer.startElement("label", this); // Label
-        writeAttribute("for", valueComponentId, context);
+
         writeAttribute("class", labelComputedStyleClass, context);
         writer.startElement("span", this);
         if (help != null) {
@@ -106,7 +105,7 @@ public class DecorateInputComponent extends ComponentBase {
 
     @Override
     public void encodeChildren(FacesContext context) {
-        // Children are rendered manually in the encodeBegin so we don't want to render them twice
+        // Since Children are rendered manually in the encodeBegin we don't want to render them twice
     }
 
     @Override
