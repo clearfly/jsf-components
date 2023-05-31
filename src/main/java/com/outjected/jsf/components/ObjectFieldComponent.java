@@ -60,7 +60,7 @@ public class ObjectFieldComponent extends ComponentBase {
         writeAttribute("class", RendererTools.spaceSeperateStrings("object-field-label", labelDivClass), context);
         writer.startElement("span", this); // Label span
         if (Objects.nonNull(help)) {
-            writeAttribute("class", "popover-source", context);
+            writeAttribute("class", "popover-source label-content", context);
             writeAttribute("data-bs-toggle", "popover", context);
             writeAttributeIfExists("helpContainer", "data-bs-container", context);
             writeAttributeIfExists("help", "data-bs-content", context);
@@ -69,6 +69,9 @@ public class ObjectFieldComponent extends ComponentBase {
             writeAttributeIfExistsOrDefault("helpTrigger", "data-bs-trigger", "hover", context);
             writeAttributeIfExistsOrDefault("helpDelay", "data-bs-delay", "0", context);
             writeAttributeIfExistsOrDefault("helpHtml", "data-bs-html", "true", context);
+        }
+        else {
+            writeAttribute("class", "label-content", context);
         }
 
         writer.write(label);
