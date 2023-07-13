@@ -25,15 +25,15 @@ public class ObjectFieldComponent extends ComponentBase {
 
     @Override
     public boolean isRendered() {
-        if (!super.isRendered()) {
-            //If explicitly set to not render then don't render
-            return false;
-        }
-        else {
+        if (super.isRendered()) {
             final boolean hasChildrenToRender = getChildren().stream().anyMatch(UIComponent::isRendered);
             final boolean renderEmpty = getAttribute("renderEmpty", false);
             //Only Render if some of the children are set to render
             return hasChildrenToRender || renderEmpty;
+        }
+        else {
+            //If explicitly set to not render then don't render
+            return false;
         }
     }
 
