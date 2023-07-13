@@ -1,6 +1,7 @@
 package com.outjected.jsf.renderers;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
@@ -12,9 +13,8 @@ public abstract class RendererBase extends HtmlBasicRenderer {
 
     @Override
     protected void setSubmittedValue(UIComponent component, Object newValue) {
-        if (component instanceof UIInput) {
-            UIInput input = (UIInput) component;
-            if (null != newValue) {
+        if (component instanceof final UIInput input) {
+            if (Objects.nonNull(newValue)) {
                 input.setSubmittedValue(newValue);
             }
         }
