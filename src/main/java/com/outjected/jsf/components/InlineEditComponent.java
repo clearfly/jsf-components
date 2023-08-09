@@ -29,16 +29,14 @@ public class InlineEditComponent extends ComponentBase {
         if (editable) {
             writer.startElement("a", this);
             writeStandardAttributes(context);
-            final UIComponent modalToToggle = (UIComponent) getAttributes().get("modal");
 
             String styleClass = (String) getAttributes().getOrDefault("styleClass", "");
             String styleClassValue = RendererTools.spaceSeperateStrings("inline-edit", styleClass);
             writeAttribute("class", styleClassValue, context);
 
-            if (modalToToggle != null) {
-                final String id = modalToToggle.getClientId().replace(":", "\\:");
+            if (getAttributes().get("modal") instanceof UIComponent modalComponent) {
                 writeAttribute("data-bs-toggle", "modal", context);
-                writeAttribute("data-bs-target", "#" + id, context);
+                writeAttribute("data-bs-target", "#" + modalComponent.getClientId(), context);
             }
         }
     }
