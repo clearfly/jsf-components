@@ -426,11 +426,11 @@
         </attribute>
     </tag>
     <tag>
-        <description>Renders a Select2 Autocomplete Component</description>
-        <tag-name>select2AutoComplete</tag-name>
+        <description>Renders a Choices Autocomplete Component</description>
+        <tag-name>choicesAutoComplete</tag-name>
         <component>
-            <component-type>com.outjected.jsf.components.Select2AutoCompleteComponent</component-type>
-            <renderer-type>com.outjected.jsf.renderers.Select2AutoCompleteRenderer</renderer-type>
+            <component-type>com.outjected.jsf.components.ChoicesAutoCompleteComponent</component-type>
+            <renderer-type>com.outjected.jsf.renderers.ChoicesAutoCompleteRenderer</renderer-type>
         </component>
         <attribute>
             <description>id</description>

@@ -13,10 +13,10 @@ import com.outjected.jsf.components.Families;
 import com.sun.faces.renderkit.RenderKitUtils;
 
 @SuppressWarnings("resource")
-@FacesRenderer(componentFamily = Families.INPUT_COMPONENT_FAMILY, rendererType = Select2AutoCompleteRenderer.RENDERER_TYPE)
-public class Select2AutoCompleteRenderer extends RendererBase {
+@FacesRenderer(componentFamily = Families.INPUT_COMPONENT_FAMILY, rendererType = ChoicesAutoCompleteRenderer.RENDERER_TYPE)
+public class ChoicesAutoCompleteRenderer extends RendererBase {
 
-    public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.Select2AutoCompleteRenderer";
+    public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.ChoicesAutoCompleteRenderer";
 
     @Override
     public Object getConvertedValue(FacesContext context, UIComponent component, Object val) throws ConverterException {
@@ -76,9 +76,6 @@ public class Select2AutoCompleteRenderer extends RendererBase {
         writer.startElement("script", component);
         writer.writeAttribute("type", "text/javascript", null);
 
-        Boolean required = (Boolean) component.getAttributes().getOrDefault("required", Boolean.FALSE);
-        Boolean allowClear = required.equals(Boolean.TRUE) ? Boolean.FALSE : Boolean.TRUE;
-        String placeholder = (String) component.getAttributes().getOrDefault("placeholder", "Choose");
         String searchPath = (String) component.getAttributes().get("searchPath");
         String initPath = (String) component.getAttributes().get("initPath");
         String requestContextPath = context.getExternalContext().getRequestContextPath();
@@ -87,16 +84,11 @@ public class Select2AutoCompleteRenderer extends RendererBase {
             throw new IOException("searchPath was not defined");
         }
 
-        if (initPath != null && value != null && value.length() > 0) {
-            String initScript = String.format("$.ajax('%s?id='+%s, { dataType: 'json'}).done(function(data) { $(document.getElementById('%s')).append(new Option(data.text, data.id, true, true)); });",
-                    requestContextPath + initPath, value, divId);
-            writer.write(initScript);
-        }
-
-        final String options = String.format(
-                "{theme: 'bootstrap-5', minimumInputLength: 2, allowClear: %s, placeholder: '%s',ajax: { url: '%s', quietMillis: 500, dataType: 'json', data: function (params) { return { q: params.term, page: params.page };}}}",
-                allowClear, placeholder, requestContextPath + searchPath);
-        final String baseScript = String.format("enableSelect2WithOptions(document.getElementById('%s'),%s);", divId, options);
+        final String initOptions = (initPath != null && !initPath.isEmpty() && value != null && !value.isEmpty())
+                ? String.format(", initPath: '%s', value: '%s'", requestContextPath + initPath, value)
+                : "";
+        final String options = String.format("{searchPath: '%s'%s}", requestContextPath + searchPath, initOptions);
+        final String baseScript = String.format("upgradeChoicesAutoComplete(document.getElementById('%s'), %s);", divId, options);
         writer.write(baseScript);
         writer.endElement("script");
     }
