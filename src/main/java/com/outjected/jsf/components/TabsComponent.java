@@ -27,14 +27,7 @@ public class TabsComponent extends ComponentBase {
 
     @Override
     public boolean isRendered() {
-        if (!super.isRendered()) {
-            //If explicitly set to not render then don't render
-            return false;
-        }
-        else {
-            //Only Render if some of the children are set to render
-            return getChildren().stream().filter(c -> c instanceof TabComponent).anyMatch(UIComponent::isRendered);
-        }
+        return super.isRendered() && getChildren().stream().filter(c -> c instanceof TabComponent).anyMatch(UIComponent::isRendered);
     }
 
     @Override
@@ -105,8 +98,7 @@ public class TabsComponent extends ComponentBase {
         writeAttribute("class", "tab-content", context);
 
         for (UIComponent child : getChildren()) {
-            if (child instanceof TabComponent && child.isRendered()) {
-                TabComponent tab = (TabComponent) child;
+            if (child instanceof TabComponent tab && child.isRendered()) {
                 final String hash = (String) tab.getAttributes().get("hash");
                 writer.startElement("div", this);
                 writeAttribute("role", "tabpanel", context);

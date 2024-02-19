@@ -1,6 +1,7 @@
 package com.outjected.jsf.components;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import jakarta.faces.component.FacesComponent;
 import jakarta.faces.component.UIComponent;
@@ -27,15 +28,13 @@ public class ButtonComponent extends ComponentBase {
         writeStandardAttributes(context);
         writeAttributeIfExistsOrDefault("type", "type", "button", context);
         String value = (String) getAttributes().get("value");
-        UIComponent modalToToggle = (UIComponent) getAttributes().get("modal");
 
-        if (modalToToggle != null) {
-            String id = modalToToggle.getClientId().replace(":", "\\:");
+        if (getAttributes().get("modal") instanceof UIComponent modalComponent) {
             writeAttribute("data-bs-toggle", "modal", context);
-            writeAttribute("data-bs-target", "#" + id, context);
+            writeAttribute("data-bs-target", "#" + modalComponent.getClientId(), context);
         }
 
-        if (value != null) {
+        if (Objects.nonNull(value)) {
             writer.startElement("span", this);
             writer.write(value);
             writer.endElement("span");

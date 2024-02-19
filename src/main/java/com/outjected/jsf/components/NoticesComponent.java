@@ -20,7 +20,7 @@ public class NoticesComponent extends ComponentBase {
 
     @Override
     public boolean isRendered() {
-        return ((Notices) getAttributes().get("notices")).isContainsNotices();
+        return super.isRendered() && getAttributes().get("notices") instanceof Notices notices && notices.isContainsNotices();
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.outjected.jsf.components;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Objects;
 
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.EditableValueHolder;
@@ -29,7 +30,6 @@ public class DecorateInputComponent extends ComponentBase {
         return true;
     }
 
-    public static final String RENDERER_TYPE = "com.outjected.jsf.renderers.DecorateInputRenderer";
     private static final String STYLE_CLASS_ATTR_NAME = "styleClass";
     private static final String SKIP_CONTROL_CLASS_ATTR_NAME = "skipControlClass";
     private static final String FORM_INPUT_STYLE = "form-control";
@@ -61,13 +61,13 @@ public class DecorateInputComponent extends ComponentBase {
         final String valueComponentId = valueComponent.getClientId();
 
         // Write Label
-        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("col-form-label", labelClass);
+        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("form-label", labelClass);
         writer.startElement("label", this); // Label
-        writeAttribute("for", valueComponentId, context);
         writeAttribute("class", labelComputedStyleClass, context);
-        writer.startElement("span", this);
-        if (help != null) {
-            writeAttribute("class", "popover-source", context);
+
+        if (Objects.nonNull(help)) {
+            writer.startElement("span", this);
+            writeAttribute("class", RendererTools.spaceSeperateStrings("popover-source", "label-content", labelClass), context);
             writeAttribute("data-bs-toggle", "popover", context);
             writeAttributeIfExists("helpContainer", "data-bs-container", context);
             writeAttributeIfExists("help", "data-bs-content", context);
@@ -76,19 +76,24 @@ public class DecorateInputComponent extends ComponentBase {
             writeAttributeIfExistsOrDefault("helpTrigger", "data-bs-trigger", "hover", context);
             writeAttributeIfExistsOrDefault("helpDelay", "data-bs-delay", "0", context);
             writeAttributeIfExistsOrDefault("helpHtml", "data-bs-html", "true", context);
+            writer.write(label);
+            writer.endElement("span");
         }
-        writer.write(label);
+        else {
+            writer.startElement("span", this);
+            writeAttribute("class", "label-content", context);
+            writer.write(label);
+            writer.endElement("span");
+        }
+
         if (required) {
             writer.startElement("span", this);
             writer.writeAttribute("class", "required", null);
             writer.write("*");
             writer.endElement("span");
         }
-        writer.endElement("span");
-        writer.endElement("label");
 
         // Write Value Div
-        writer.startElement("div", this); // Value Div
         writeAttribute("class", valueClass, context);
         encodeValue(context, this);
 
@@ -101,12 +106,12 @@ public class DecorateInputComponent extends ComponentBase {
         messages.encodeAll(context);
         writer.endElement("div");
 
-        writer.endElement("div"); // Value Div
+        writer.endElement("label");
     }
 
     @Override
     public void encodeChildren(FacesContext context) {
-        // Children are rendered manually in the encodeBegin so we don't want to render them twice
+        // Since Children are rendered manually in the encodeBegin we don't want to render them twice
     }
 
     @Override

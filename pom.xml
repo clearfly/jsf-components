@@ -4,13 +4,13 @@
 	<groupId>com.outjected</groupId>
 	<artifactId>jsf-components</artifactId>
 	<packaging>jar</packaging>
-	<version>5.0.6.jakarta-SNAPSHOT</version>
+	<version>5.0.10.jakarta-SNAPSHOT</version>
 	<name>JSF Components</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.java>17</version.java>
-		<version.plugin.compiler>3.10.1</version.plugin.compiler>
+		<version.plugin.compiler>3.11.0</version.plugin.compiler>
 		<version.plugin.source>3.2.1</version.plugin.source>
 	</properties>
 
@@ -64,8 +64,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${version.plugin.compiler}</version>
 				<configuration>
-					<source>${version.java}</source>
-					<target>${version.java}</target>
+					<release>${version.java}</release>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -84,7 +83,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M5</version>
+				<version>3.0.0-M9</version>
 			</plugin>
 		</plugins>
 	</build>

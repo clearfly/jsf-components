@@ -2,5 +2,9 @@
 .project
 .settings
 target
-.idea
-*.iml
+.idea/libraries
+.idea/artifacts
+.idea/*.xml
+!.idea/misc.xml
+!.idea/codeInsightSettings.xml.xml
+!.idea/dictionaries

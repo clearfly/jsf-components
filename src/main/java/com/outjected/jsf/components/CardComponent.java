@@ -26,14 +26,8 @@ public class CardComponent extends ComponentBase {
 
     @Override
     public boolean isRendered() {
-        if (!super.isRendered()) {
-            //If explicitly set to not render then don't render
-            return false;
-        }
-        else {
-            //Only Render if some of the children are set to render
-            return getChildren().stream().anyMatch(UIComponent::isRendered);
-        }
+        //Only Render if some of the children are set to render
+        return super.isRendered() && getChildren().stream().anyMatch(UIComponent::isRendered);
     }
 
     @Override

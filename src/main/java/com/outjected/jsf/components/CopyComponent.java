@@ -1,13 +1,13 @@
 package com.outjected.jsf.components;
 
-import java.io.IOException;
-import java.util.Objects;
+import com.outjected.jsf.utils.RendererTools;
 
 import jakarta.faces.component.FacesComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.context.ResponseWriter;
 
-import com.outjected.jsf.utils.RendererTools;
+import java.io.IOException;
+import java.util.Objects;
 
 @FacesComponent(value = "com.outjected.jsf.components.CopyComponent", namespace = Families.NAMESPACE)
 public class CopyComponent extends ComponentBase {
@@ -20,6 +20,7 @@ public class CopyComponent extends ComponentBase {
     @Override
     public void encodeBegin(FacesContext context) throws IOException {
         Object objectValue = getAttributes().get("value");
+        boolean hidden = getAttribute("hidden", false);
         if (Objects.nonNull(objectValue)) {
             final String value;
             if (objectValue instanceof String) {
@@ -28,6 +29,7 @@ public class CopyComponent extends ComponentBase {
             else {
                 value = objectValue.toString();
             }
+
             ResponseWriter writer = context.getResponseWriter();
             writer.startElement("button", this);
             writer.writeAttribute("type", "button", "type");
@@ -38,6 +40,10 @@ public class CopyComponent extends ComponentBase {
             writeAttributeIfExists("style", "style", context);
             writeAttribute("data-clipboard-text", value, context);
             writeAttribute("data-clipboard-action", "copy", context);
+
+            if (hidden) {
+                writeAttribute("hidden", "hidden", context);
+            }
 
             writer.startElement("i", this);
             writer.writeAttribute("class", "far fa-copy", "class");

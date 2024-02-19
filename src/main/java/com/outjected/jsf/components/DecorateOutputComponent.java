@@ -1,6 +1,7 @@
 package com.outjected.jsf.components;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import jakarta.faces.component.FacesComponent;
 import jakarta.faces.context.FacesContext;
@@ -40,16 +41,13 @@ public class DecorateOutputComponent extends ComponentBase {
         writeAttribute("class", divComputedStyleClass, context);
         writeAttribute("style", style, context);
 
-        final String clientId = getClientId();
-
         // Write Label
         final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("col-form-label", labelClass);
-        writer.startElement("label", this); // Label
-        writeAttribute("for", clientId, context);
+        writer.startElement("div", this); // Label
         writeAttribute("class", labelComputedStyleClass, context);
         writer.startElement("span", this);
-        if (help != null) {
-            writeAttribute("class", "popover-source", context);
+        if (Objects.nonNull(help)) {
+            writeAttribute("class", "popover-source label-content", context);
             writeAttribute("data-bs-toggle", "popover", context);
             writeAttributeIfExists("helpContainer", "data-bs-container", context);
             writeAttributeIfExists("help", "data-bs-content", context);
@@ -58,10 +56,14 @@ public class DecorateOutputComponent extends ComponentBase {
             writeAttributeIfExistsOrDefault("helpTrigger", "data-bs-trigger", "hover", context);
             writeAttributeIfExistsOrDefault("helpDelay", "data-bs-delay", "0", context);
             writeAttributeIfExistsOrDefault("helpHtml", "data-bs-html", "true", context);
+            writer.write(label);
         }
-        writer.write(label);
+        else {
+            writeAttribute("class", "label-content", context);
+            writer.write(label);
+        }
         writer.endElement("span");
-        writer.endElement("label");
+        writer.endElement("div");
 
         // Write Value Div
         writer.startElement("div", this); // Value Div
