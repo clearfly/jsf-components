@@ -7,15 +7,15 @@ import jakarta.faces.component.FacesComponent;
 import jakarta.faces.component.UIInput;
 import jakarta.faces.component.behavior.ClientBehaviorHolder;
 
-import com.outjected.jsf.renderers.Select2AutoCompleteRenderer;
+import com.outjected.jsf.renderers.ChoicesAutoCompleteRenderer;
 
-@FacesComponent(value = "com.outjected.jsf.components.Select2AutoCompleteComponent", namespace = Families.NAMESPACE)
-public class Select2AutoCompleteComponent extends UIInput implements ClientBehaviorHolder {
+@FacesComponent(value = "com.outjected.jsf.components.ChoicesAutoCompleteComponent", namespace = Families.NAMESPACE)
+public class ChoicesAutoCompleteComponent extends UIInput implements ClientBehaviorHolder {
 
     private static final Collection<String> EVENT_NAMES = Collections.singletonList("valueChange");
 
-    public Select2AutoCompleteComponent() {
-        setRendererType(Select2AutoCompleteRenderer.RENDERER_TYPE);
+    public ChoicesAutoCompleteComponent() {
+        setRendererType(ChoicesAutoCompleteRenderer.RENDERER_TYPE);
     }
 
     @Override
