@@ -429,7 +429,7 @@
 		<description>Renders a Choices Autocomplete Component</description>
 		<tag-name>choicesAutoComplete</tag-name>
 		<component>
-			<component-type>co.cfly.faces.components.ChoicesAutoCompleteRenderer</component-type>
+			<component-type>co.cfly.faces.components.ChoicesAutoCompleteComponent</component-type>
 			<renderer-type>co.cfly.faces.renderers.ChoicesAutoCompleteRenderer</renderer-type>
 		</component>
 		<attribute>
