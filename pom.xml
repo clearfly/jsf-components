@@ -10,7 +10,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.java>17</version.java>
-		<version.plugin.compiler>3.11.0</version.plugin.compiler>
+		<version.plugin.compiler>3.12.1</version.plugin.compiler>
 		<version.plugin.source>3.3.0</version.plugin.source>
 	</properties>
 
