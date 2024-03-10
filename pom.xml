@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.outjected</groupId>
+	<groupId>co.cfly</groupId>
 	<artifactId>jsf-components</artifactId>
 	<packaging>jar</packaging>
-	<version>5.1</version>
+	<version>6.0.0-SNAPSHOT</version>
 	<name>JSF Components</name>
 
 	<properties>
@@ -15,9 +15,9 @@
 	</properties>
 
 	<scm>
-		<connection>scm:git:git://github.com/codylerum/jsf-components.git</connection>
-		<developerConnection>scm:git:git@github.com:codylerum/jsf-components.git</developerConnection>
-		<url>https://github.com/codylerum/jsf-components</url>
+		<connection>scm:git:git://github.com/clearfly/jsf-components.git</connection>
+		<developerConnection>scm:git:git@github.com:clearfly/jsf-components.git</developerConnection>
+		<url>https://github.com/clearfly/jsf-components</url>
 	</scm>
 
 	<distributionManagement>
@@ -36,9 +36,16 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>jakarta.faces</groupId>
+			<artifactId>jakarta.faces-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>jakarta.faces</artifactId>
-			<version>2.3.18</version>
+			<version>4.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 
