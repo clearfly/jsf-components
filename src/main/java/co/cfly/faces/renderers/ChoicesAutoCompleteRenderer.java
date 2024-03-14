@@ -8,7 +8,6 @@ import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIInput;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.context.ResponseWriter;
-import jakarta.faces.convert.ConverterException;
 import jakarta.faces.render.FacesRenderer;
 
 @FacesRenderer(componentFamily = Families.INPUT_COMPONENT_FAMILY, rendererType = ChoicesAutoCompleteRenderer.RENDERER_TYPE)
@@ -17,56 +16,42 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
     public static final String RENDERER_TYPE = "co.cfly.faces.renderers.ChoicesAutoCompleteRenderer";
 
     @Override
-    public Object getConvertedValue(FacesContext context, UIComponent component, Object val) throws ConverterException {
-        UIInput input = (UIInput) component;
-        if (input.getConverter() != null) {
-            return input.getConverter().getAsObject(context, component, (String) input.getSubmittedValue());
-        }
-        else {
-            return null;
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-        UIInput inputComponent = (UIInput) component;
-        final boolean disabled = (boolean) inputComponent.getAttributes().getOrDefault("disabled", false);
-        String placeholder = (String) component.getAttributes().getOrDefault("placeholder", "Choose");
+        if (component instanceof UIInput inputComponent) {
+            final String currentValue = getCurrentValue(context, component);
 
-        final String value;
-        if (inputComponent.getConverter() != null) {
-            value = inputComponent.getConverter().getAsString(context, component, inputComponent.getValue());
+            final boolean disabled = (boolean) inputComponent.getAttributes().getOrDefault("disabled", false);
+            String placeholder = (String) inputComponent.getAttributes().getOrDefault("placeholder", "Choose");
+
+            ResponseWriter writer = context.getResponseWriter();
+            writer.startElement("select", inputComponent);
+            writeId(context, inputComponent);
+            String divId = inputComponent.getClientId();
+            writeAttribute("value", currentValue, context);
+            writeAttribute("name", divId, context);
+            writeAttribute("class", "form-select", context);
+            writeAttribute("style", "width:100%", context);
+            if (disabled) {
+                writeAttribute("disabled", "true", context);
+            }
+
+            RenderKitUtils.renderOnchange(context, inputComponent, false);
+
+            writer.startElement("option", inputComponent);
+            writer.writeAttribute("value", "", "value");
+            writer.write(placeholder);
+            writer.endElement("option");
+
+            writer.endElement("select");
+            writeScript(context, writer, inputComponent, currentValue, divId);
         }
         else {
-            value = inputComponent.getValue().toString();
+            throw new RuntimeException("%s is not an instance of UIInput".formatted(component));
         }
-
-        ResponseWriter writer = context.getResponseWriter();
-        writer.startElement("select", component);
-        writeId(context, component);
-        String divId = component.getClientId();
-        writeAttribute("value", value, context);
-        writeAttribute("name", divId, context);
-        writeAttribute("class", "form-select", context);
-        writeAttribute("style", "width:100%", context);
-        if (disabled) {
-            writeAttribute("disabled", "true", context);
-        }
-
-        RenderKitUtils.renderOnchange(context, component, false);
-
-        writer.startElement("option", inputComponent);
-        writer.writeAttribute("value", "", "value");
-        writer.write(placeholder);
-        writer.endElement("option");
-
-        writer.endElement("select");
-        writeScript(context, writer, component, value, divId);
     }
 
     @Override
-    public void encodeEnd(FacesContext context, UIComponent component) {
+    public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         // NOOP
     }
 
@@ -82,9 +67,8 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
             throw new IOException("searchPath was not defined");
         }
 
-        final String initOptions = (initPath != null && !initPath.isEmpty() && value != null && !value.isEmpty())
-                ? String.format(", initPath: '%s', value: '%s'", requestContextPath + initPath, value)
-                : "";
+        final String initOptions =
+                (initPath != null && !initPath.isEmpty() && value != null && !value.isEmpty()) ? String.format(", initPath: '%s', value: '%s'", requestContextPath + initPath, value) : "";
         final String options = String.format("{searchPath: '%s'%s}", requestContextPath + searchPath, initOptions);
         final String baseScript = String.format("upgradeChoicesAutoComplete(document.getElementById('%s'), %s);", divId, options);
         writer.write(baseScript);

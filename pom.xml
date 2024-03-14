@@ -4,7 +4,7 @@
 	<groupId>co.cfly</groupId>
 	<artifactId>jsf-components</artifactId>
 	<packaging>jar</packaging>
-	<version>6.0.0</version>
+	<version>6.0.1-SNAPSHOT</version>
 	<name>JSF Components</name>
 
 	<properties>
@@ -36,16 +36,16 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>jakarta.faces</groupId>
-			<artifactId>jakarta.faces-api</artifactId>
-			<version>4.0.1</version>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-api</artifactId>
+			<version>10.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>jakarta.faces</artifactId>
-			<version>4.0.0</version>
+			<version>4.0.5</version>
 			<scope>provided</scope>
 		</dependency>
 
