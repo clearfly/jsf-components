@@ -25,7 +25,7 @@ public class ModalComponent extends ComponentBase {
     public void encodeBegin(FacesContext context) throws IOException {
 
         final String maxWidth = (String) getAttributes().get("maxWidth");
-        final String size = (String) getAttributes().getOrDefault("size", "default");
+        final String size = (String) getAttributes().getOrDefault("size", "lg");
         final String header = (String) getAttributes().get("header");
         final String styleClass = (String) getAttributes().get("styleClass");
         final String computedStyleClass = RendererTools.spaceSeperateStrings("modal fade", styleClass);
@@ -44,18 +44,11 @@ public class ModalComponent extends ComponentBase {
         writer.startElement("div", this);
 
         switch (size) {
-            case ("xl"):
-                writer.writeAttribute("class", "modal-dialog modal-xl", null);
-                break;
-            case ("lg"):
-                writer.writeAttribute("class", "modal-dialog modal-lg", null);
-                break;
-            case ("sm"):
-                writer.writeAttribute("class", "modal-dialog modal-sm", null);
-                break;
-            default:
-                writer.writeAttribute("class", "modal-dialog", null);
-                break;
+            case ("xl") -> writer.writeAttribute("class", "modal-dialog modal-xl", null);
+            case ("lg") -> writer.writeAttribute("class", "modal-dialog modal-lg", null);
+            case ("sm") -> writer.writeAttribute("class", "modal-dialog modal-sm", null);
+            case ("std") -> writer.writeAttribute("class", "modal-dialog", null);
+            default -> throw new IllegalArgumentException("Unsupported modal size definition: %s".formatted(size));
         }
 
         if (Objects.nonNull(maxWidth)) {
