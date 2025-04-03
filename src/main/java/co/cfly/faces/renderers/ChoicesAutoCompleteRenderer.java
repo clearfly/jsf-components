@@ -19,6 +19,7 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         if (component instanceof UIInput inputComponent) {
             final String currentValue = getCurrentValue(context, component);
+            final String requestContextPath = context.getExternalContext().getRequestContextPath();
 
             final boolean disabled = (boolean) inputComponent.getAttributes().getOrDefault("disabled", false);
             String placeholder = (String) inputComponent.getAttributes().getOrDefault("placeholder", "Choose");
@@ -29,8 +30,12 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
             String divId = inputComponent.getClientId();
             writeAttribute("value", currentValue, context);
             writeAttribute("name", divId, context);
-            writeAttribute("class", "form-select", context);
+            writeAttribute("class", "form-select choices-select", context);
             writeAttribute("style", "width:100%", context);
+            writeAttribute("data-init-value", currentValue, context);
+            writeAttribute("data-choices-autocomplete", "true", context);
+            writeAttribute("data-init-path", requestContextPath + inputComponent.getAttributes().get("initPath"), context);
+            writeAttribute("data-search-path", requestContextPath + inputComponent.getAttributes().get("searchPath"), context);
             if (disabled) {
                 writeAttribute("disabled", "true", context);
             }
@@ -43,7 +48,6 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
             writer.endElement("option");
 
             writer.endElement("select");
-            writeScript(context, writer, inputComponent, currentValue, divId);
         }
         else {
             throw new RuntimeException("%s is not an instance of UIInput".formatted(component));
@@ -53,25 +57,5 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         // NOOP
-    }
-
-    private void writeScript(FacesContext context, ResponseWriter writer, UIComponent component, String value, String divId) throws IOException {
-        writer.startElement("script", component);
-        writer.writeAttribute("type", "text/javascript", null);
-
-        String searchPath = (String) component.getAttributes().get("searchPath");
-        String initPath = (String) component.getAttributes().get("initPath");
-        String requestContextPath = context.getExternalContext().getRequestContextPath();
-
-        if (searchPath == null) {
-            throw new IOException("searchPath was not defined");
-        }
-
-        final String initOptions =
-                (initPath != null && !initPath.isEmpty() && value != null && !value.isEmpty()) ? String.format(", initPath: '%s', value: '%s'", requestContextPath + initPath, value) : "";
-        final String options = String.format("{searchPath: '%s'%s}", requestContextPath + searchPath, initOptions);
-        final String baseScript = String.format("upgradeChoicesAutoComplete(document.getElementById('%s'), %s);", divId, options);
-        writer.write(baseScript);
-        writer.endElement("script");
     }
 }
