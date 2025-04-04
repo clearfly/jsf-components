@@ -30,7 +30,7 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
             String divId = inputComponent.getClientId();
             writeAttribute("value", currentValue, context);
             writeAttribute("name", divId, context);
-            writeAttribute("class", "form-select choices-select", context);
+            writeAttribute("class", "form-select choices-autocomplete", context);
             writeAttribute("style", "width:100%", context);
             writeAttribute("data-init-value", currentValue, context);
             writeAttribute("data-choices-autocomplete", "true", context);
@@ -46,7 +46,7 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
             writer.writeAttribute("value", "", "value");
             writer.write(placeholder);
             writer.endElement("option");
-
+            writeScript(context, writer, inputComponent);
             writer.endElement("select");
         }
         else {
@@ -57,5 +57,12 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         // NOOP
+    }
+
+    private void writeScript(FacesContext context, ResponseWriter writer, UIComponent component) throws IOException {
+        writer.startElement("script", component);
+        writer.writeAttribute("type", "text/javascript", null);
+        writer.write("upgradeChoicesAutocompletes();");
+        writer.endElement("script");
     }
 }
