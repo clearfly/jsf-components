@@ -1,6 +1,7 @@
 package co.cfly.faces.renderers;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import co.cfly.faces.components.Families;
 import com.sun.faces.renderkit.RenderKitUtils;
@@ -18,36 +19,33 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
         if (component instanceof UIInput inputComponent) {
-            final String currentValue = getCurrentValue(context, component);
             final String requestContextPath = context.getExternalContext().getRequestContextPath();
+            final ResponseWriter writer = context.getResponseWriter();
 
-            final boolean disabled = (boolean) inputComponent.getAttributes().getOrDefault("disabled", false);
-            String placeholder = (String) inputComponent.getAttributes().getOrDefault("placeholder", "Choose");
-
-            ResponseWriter writer = context.getResponseWriter();
             writer.startElement("select", inputComponent);
-            writeId(context, inputComponent);
-            String divId = inputComponent.getClientId();
-            writeAttribute("value", currentValue, context);
-            writeAttribute("name", divId, context);
-            writeAttribute("class", "form-select choices-autocomplete", context);
-            writeAttribute("style", "width:100%", context);
-            writeAttribute("data-init-value", currentValue, context);
-            writeAttribute("data-choices-autocomplete", "true", context);
-            writeAttribute("data-init-path", requestContextPath + inputComponent.getAttributes().get("initPath"), context);
-            writeAttribute("data-search-path", requestContextPath + inputComponent.getAttributes().get("searchPath"), context);
-            if (disabled) {
+            if (Objects.isNull(inputComponent.getAttributes().get("searchPath"))) {
+                throw new IOException("searchPath was not defined");
+            }
+            if ((boolean) inputComponent.getAttributes().getOrDefault("disabled", false)) {
                 writeAttribute("disabled", "true", context);
             }
 
-            RenderKitUtils.renderOnchange(context, inputComponent, false);
+            writeId(context, inputComponent);
+            writeAttribute("name", inputComponent.getClientId(), context);
+            writeAttribute("class", "form-select choices-autocomplete", context);
+            writeAttribute("style", "width:100%", context);
+            writeAttribute("data-init-value", getCurrentValue(context, component), context);
+            writeAttribute("data-choices-autocomplete", "true", context);
+            writeAttribute("data-init-path", requestContextPath + inputComponent.getAttributes().get("initPath"), context);
+            writeAttribute("data-search-path", requestContextPath + inputComponent.getAttributes().get("searchPath"), context);
 
+            RenderKitUtils.renderOnchange(context, inputComponent, false);
             writer.startElement("option", inputComponent);
             writer.writeAttribute("value", "", "value");
-            writer.write(placeholder);
+            writer.write((String) inputComponent.getAttributes().getOrDefault("placeholder", "Choose"));
             writer.endElement("option");
-            writeScript(context, writer, inputComponent);
             writer.endElement("select");
+            writeScript(writer, inputComponent);
         }
         else {
             throw new RuntimeException("%s is not an instance of UIInput".formatted(component));
@@ -59,7 +57,7 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
         // NOOP
     }
 
-    private void writeScript(FacesContext context, ResponseWriter writer, UIComponent component) throws IOException {
+    private void writeScript(ResponseWriter writer, UIComponent component) throws IOException {
         writer.startElement("script", component);
         writer.writeAttribute("type", "text/javascript", null);
         writer.write("upgradeChoicesAutocompletes();");
