@@ -24,7 +24,7 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
 
             writer.startElement("select", inputComponent);
             if (Objects.isNull(inputComponent.getAttributes().get("searchPath"))) {
-                throw new IOException("searchPath was not defined");
+                throw new IllegalStateException("searchPath was not defined");
             }
             if ((boolean) inputComponent.getAttributes().getOrDefault("disabled", false)) {
                 writeAttribute("disabled", "true", context);
