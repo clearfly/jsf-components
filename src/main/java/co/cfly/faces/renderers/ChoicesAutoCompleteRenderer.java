@@ -45,7 +45,6 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
             writer.write((String) inputComponent.getAttributes().getOrDefault("placeholder", "Choose"));
             writer.endElement("option");
             writer.endElement("select");
-            writeScript(writer, inputComponent);
         }
         else {
             throw new RuntimeException("%s is not an instance of UIInput".formatted(component));
@@ -55,12 +54,5 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         // NOOP
-    }
-
-    private void writeScript(ResponseWriter writer, UIComponent component) throws IOException {
-        writer.startElement("script", component);
-        writer.writeAttribute("type", "text/javascript", null);
-        writer.write("upgradeChoicesAutocompletes();");
-        writer.endElement("script");
     }
 }
