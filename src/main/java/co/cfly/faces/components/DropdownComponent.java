@@ -34,7 +34,7 @@ public class DropdownComponent extends ComponentBase {
         final ResponseWriter writer = context.getResponseWriter();
         final UIComponent toggleFacet = getFacet("toggle");
         final boolean alignRight = getAttribute("alignRight", true);
-        final boolean positionStatic = getAttribute("positionStatic", false);
+        final boolean positionStatic = getAttribute("positionStatic", true);
 
         if (Objects.isNull(toggleFacet)) {
             throw new IllegalArgumentException("Toggle Facet must be defined");
