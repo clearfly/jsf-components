@@ -70,7 +70,7 @@ public class ModalComponent extends ComponentBase {
             writer.writeAttribute("class", "btn-close", null);
             writer.writeAttribute("type", "button", null);
             writer.writeAttribute("data-bs-dismiss", "modal", null);
-            writer.writeAttribute("aria-hidden", "true", null);
+            writer.writeAttribute("aria-label", "Close", null);
             writer.endElement("button");
             writer.endElement("div");// End Modal Header Div
         }
