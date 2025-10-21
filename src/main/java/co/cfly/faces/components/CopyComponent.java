@@ -32,8 +32,7 @@ public class CopyComponent extends ComponentBase {
             ResponseWriter writer = context.getResponseWriter();
             writer.startElement("a", this);
             writeId(context);
-            String styleClass = (String) getAttributes().getOrDefault("styleClass", "link");
-            String styleClassValue = RendererTools.spaceSeperateStrings("clipboard-copy-button", styleClass);
+            String styleClassValue = RendererTools.spaceSeperateStrings("clipboard-copy-element", (String) getAttributes().get("styleClass"));
             writeAttribute("class", styleClassValue, context);
             writeAttributeIfExists("style", "style", context);
             writeAttribute("data-clipboard-text", value, context);
