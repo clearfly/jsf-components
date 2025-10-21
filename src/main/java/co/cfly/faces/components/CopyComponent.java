@@ -31,6 +31,11 @@ public class CopyComponent extends ComponentBase {
 
             ResponseWriter writer = context.getResponseWriter();
             writer.startElement("a", this);
+            writer.writeAttribute("role", "button", "role");
+            writer.writeAttribute("href", "javascript:void(0)", "href");
+            writer.writeAttribute("tabindex", "0", "tabindex");
+            writer.writeAttribute("aria-label", "Copy to clipboard", "aria-label");
+            writer.writeAttribute("onkeydown", "if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}", "onkeydown");
             writeId(context);
             String styleClassValue = RendererTools.spaceSeperateStrings("clipboard-copy-element", (String) getAttributes().get("styleClass"));
             writeAttribute("class", styleClassValue, context);
