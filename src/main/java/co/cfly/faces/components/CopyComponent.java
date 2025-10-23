@@ -34,6 +34,7 @@ public class CopyComponent extends ComponentBase {
             writer.writeAttribute("role", "button", "role");
             writer.writeAttribute("href", "javascript:void(0)", "href");
             writer.writeAttribute("aria-label", "Copy to clipboard", "aria-label");
+            writer.writeAttribute("title", "Copy to clipboard", "title");
             writeId(context);
             String styleClassValue = RendererTools.spaceSeperateStrings("clipboard-copy-element", (String) getAttributes().get("styleClass"));
             writeAttribute("class", styleClassValue, context);
