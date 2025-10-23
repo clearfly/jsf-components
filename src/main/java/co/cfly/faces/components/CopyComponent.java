@@ -30,11 +30,13 @@ public class CopyComponent extends ComponentBase {
             }
 
             ResponseWriter writer = context.getResponseWriter();
-            writer.startElement("button", this);
-            writer.writeAttribute("type", "button", "type");
+            writer.startElement("a", this);
+            writer.writeAttribute("role", "button", "role");
+            writer.writeAttribute("href", "javascript:void(0)", "href");
+            writer.writeAttribute("aria-label", "Copy to clipboard", "aria-label");
+            writer.writeAttribute("title", "Copy to clipboard", "title");
             writeId(context);
-            String styleClass = (String) getAttributes().getOrDefault("styleClass", "btn btn-outline-secondary btn-sm");
-            String styleClassValue = RendererTools.spaceSeperateStrings("clipboard-copy-button", styleClass);
+            String styleClassValue = RendererTools.spaceSeperateStrings("clipboard-copy-element", (String) getAttributes().get("styleClass"));
             writeAttribute("class", styleClassValue, context);
             writeAttributeIfExists("style", "style", context);
             writeAttribute("data-clipboard-text", value, context);
@@ -47,7 +49,7 @@ public class CopyComponent extends ComponentBase {
             writer.startElement("i", this);
             writer.writeAttribute("class", "far fa-copy", "class");
             writer.endElement("i");
-            writer.endElement("button");
+            writer.endElement("a");
         }
     }
 }
