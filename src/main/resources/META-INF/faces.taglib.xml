@@ -567,6 +567,7 @@
 			<type>boolean</type>
 		</attribute>
 		<attribute>
+			<description>Modal Component which will be toggled when clicked</description>
 			<name>modal</name>
 			<required>true</required>
 			<type>jakarta.faces.component.UIComponent</type>
