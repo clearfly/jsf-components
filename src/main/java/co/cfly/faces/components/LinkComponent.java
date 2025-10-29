@@ -17,12 +17,15 @@ public class LinkComponent extends ComponentBase {
     public boolean getRendersChildren() {return true;}
 
     @Override
-    public void encodeBegin(jakarta.faces.context.FacesContext context) throws java.io.IOException {
-        jakarta.faces.context.ResponseWriter writer = context.getResponseWriter();
+    public void encodeBegin(FacesContext context) throws IOException {
+        ResponseWriter writer = context.getResponseWriter();
         writer.startElement("a", this);
         writeStandardAttributes(context);
+        writer.writeAttribute("href", "#", "href");
+        writeAttributeIfExists("style", "style", context);
 
-        if (getAttributes().get("modal") instanceof UIComponent modalComponent) {
+        Object modal = getAttributes().get("modal");
+        if (modal instanceof UIComponent modalComponent) {
             writeAttribute("data-bs-toggle", "modal", context);
             writeAttribute("data-bs-target", "#" + modalComponent.getClientId(), context);
         }
