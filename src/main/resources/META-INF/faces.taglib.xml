@@ -563,16 +563,6 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description>CSS Style</description>
-			<name>style</name>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description>CSS Style Classes</description>
-			<name>styleClass</name>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<name>rendered</name>
 			<type>boolean</type>
 		</attribute>
