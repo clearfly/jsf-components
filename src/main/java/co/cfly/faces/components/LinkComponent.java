@@ -23,6 +23,7 @@ public class LinkComponent extends ComponentBase {
         writeStandardAttributes(context);
         writer.writeAttribute("href", "#", "href");
         writeAttributeIfExists("style", "style", context);
+        writer.writeAttribute("title", "Open Modal", "title");
 
         Object modal = getAttributes().get("modal");
         if (modal instanceof UIComponent modalComponent) {
