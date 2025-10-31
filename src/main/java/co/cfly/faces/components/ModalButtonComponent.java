@@ -9,7 +9,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.context.ResponseWriter;
 
 @FacesComponent(value = "co.cfly.faces.components.ModalButtonComponent", namespace = Families.NAMESPACE)
-public class ModalButtonComponent extends ComponentBase{
+public class ModalButtonComponent extends ComponentBase {
 
     @Override
     public String getFamily() {
