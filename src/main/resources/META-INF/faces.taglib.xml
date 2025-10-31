@@ -563,6 +563,11 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description>CSS style(s) to apply to the link element</description>
+			<name>style</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>rendered</name>
 			<type>boolean</type>
 		</attribute>
