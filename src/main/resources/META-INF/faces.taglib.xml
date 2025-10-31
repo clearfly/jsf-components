@@ -553,9 +553,9 @@
 		</attribute>
 	</tag>
 	<tag>
-		<tag-name>link</tag-name>
+		<tag-name>modalLink</tag-name>
 		<component>
-			<component-type>co.cfly.faces.components.LinkComponent</component-type>
+			<component-type>co.cfly.faces.components.ModalLinkComponent</component-type>
 		</component>
 		<attribute>
 			<description>id</description>
@@ -576,6 +576,52 @@
 			<name>modal</name>
 			<required>true</required>
 			<type>jakarta.faces.component.UIComponent</type>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Renders a simple Button</description>
+		<tag-name>modalButton</tag-name>
+		<component>
+			<component-type>co.cfly.faces.components.ModalButtonComponent</component-type>
+		</component>
+		<attribute>
+			<description>id</description>
+			<name>id</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Text value of the button</description>
+			<name>value</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>CSS Style</description>
+			<name>style</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>CSS Style Classes</description>
+			<name>styleClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>onclick</description>
+			<name>onclick</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Type of the Button (submit,button,reset). Default is button</description>
+			<name>type</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Modal Component which will be toggled when clicked</description>
+			<name>modal</name>
+			<type>jakarta.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<type>boolean</type>
 		</attribute>
 	</tag>
 </facelet-taglib>
