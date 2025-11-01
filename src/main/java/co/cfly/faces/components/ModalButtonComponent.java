@@ -27,13 +27,13 @@ public class ModalButtonComponent extends ComponentBase {
         writer.startElement("button", this);
         writeStandardAttributes(context);
         writeAttributeIfExistsOrDefault("type", "type", "button", context);
-        String value = (String) getAttributes().get("value");
 
         if (getAttributes().get("modal") instanceof UIComponent modalComponent) {
             writeAttribute("data-bs-toggle", "modal", context);
             writeAttribute("data-bs-target", "#" + modalComponent.getClientId(), context);
         }
 
+        final String value = (String) getAttributes().get("value");
         if (Objects.nonNull(value)) {
             writer.startElement("span", this);
             writer.write(value);

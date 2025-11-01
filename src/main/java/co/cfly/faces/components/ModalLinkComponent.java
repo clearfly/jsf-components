@@ -1,20 +1,25 @@
 package co.cfly.faces.components;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import jakarta.faces.component.FacesComponent;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.context.ResponseWriter;
 
-@FacesComponent(value= "co.cfly.faces.components.ModalLinkComponent", namespace=Families.NAMESPACE)
+@FacesComponent(value = "co.cfly.faces.components.ModalLinkComponent", namespace = Families.NAMESPACE)
 public class ModalLinkComponent extends ComponentBase {
 
     @Override
-    public String getFamily() {return Families.OUTPUT_COMPONENT_FAMILY;}
+    public String getFamily() {
+        return Families.OUTPUT_COMPONENT_FAMILY;
+    }
 
     @Override
-    public boolean getRendersChildren() {return true;}
+    public boolean getRendersChildren() {
+        return true;
+    }
 
     @Override
     public void encodeBegin(FacesContext context) throws IOException {
@@ -29,6 +34,11 @@ public class ModalLinkComponent extends ComponentBase {
         if (modal instanceof UIComponent modalComponent) {
             writeAttribute("data-bs-toggle", "modal", context);
             writeAttribute("data-bs-target", "#" + modalComponent.getClientId(), context);
+        }
+
+        final String value = (String) getAttributes().get("value");
+        if (Objects.nonNull(value)) {
+            writer.write(value);
         }
     }
 
