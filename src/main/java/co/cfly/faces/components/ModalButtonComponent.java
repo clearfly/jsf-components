@@ -2,6 +2,8 @@ package co.cfly.faces.components;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 import jakarta.faces.component.FacesComponent;
 import jakarta.faces.component.UIComponent;
@@ -10,6 +12,8 @@ import jakarta.faces.context.ResponseWriter;
 
 @FacesComponent(value = "co.cfly.faces.components.ModalButtonComponent", namespace = Families.NAMESPACE)
 public class ModalButtonComponent extends ComponentBase {
+
+    static final Logger log = Logger.getLogger(ModalButtonComponent.class.getName());
 
     @Override
     public String getFamily() {
@@ -28,9 +32,14 @@ public class ModalButtonComponent extends ComponentBase {
         writeStandardAttributes(context);
         writeAttributeIfExistsOrDefault("type", "type", "button", context);
 
-        if (getAttributes().get("modal") instanceof UIComponent modalComponent) {
+        final Object modalAttributeObject = getAttributes().get("modal");
+        if (modalAttributeObject instanceof UIComponent modalComponent) {
             writeAttribute("data-bs-toggle", "modal", context);
             writeAttribute("data-bs-target", "#" + modalComponent.getClientId(), context);
+        }
+        else {
+            log.info("The modalButton component %s attribute 'modal' must reference a UIComponent. Was: %s".formatted(getClientId(),
+                    Optional.ofNullable(modalAttributeObject).map(Objects::toString).orElse("Unset")));
         }
 
         final String value = (String) getAttributes().get("value");
