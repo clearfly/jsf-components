@@ -4,12 +4,12 @@
 	<groupId>co.cfly</groupId>
 	<artifactId>jsf-components</artifactId>
 	<packaging>jar</packaging>
-	<version>6.0.8</version>
+	<version>6.0.9-SNAPSHOT</version>
 	<name>JSF Components</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.java>17</version.java>
+		<version.java>21</version.java>
 		<version.plugin.compiler>3.14.1</version.plugin.compiler>
 		<version.plugin.source>3.3.1</version.plugin.source>
 	</properties>
