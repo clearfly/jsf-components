@@ -38,7 +38,7 @@ public class ModalButtonComponent extends ComponentBase {
             writeAttribute("data-bs-target", "#" + modalComponent.getClientId(), context);
         }
         else {
-            log.info("The modalButton component %s attribute 'modal' must reference a UIComponent. Was: %s".formatted(getClientId(),
+            log.info("On %s the modalButton component %s attribute 'modal' must reference a UIComponent. Was: %s".formatted(context.getViewRoot().getViewId(), getClientId(),
                     Optional.ofNullable(modalAttributeObject).map(Objects::toString).orElse("Unset")));
         }
 
