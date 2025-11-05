@@ -635,5 +635,9 @@
 			<name>container</name>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<name>label</name>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
 </facelet-taglib>

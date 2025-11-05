@@ -42,16 +42,34 @@ public class InlineEditLinkComponent extends ComponentBase {
             writeAttributeIfExistsOrDefault("trigger", "data-bs-trigger", "hover", context);
             writeAttributeIfExistsOrDefault("html", "data-bs-html", "true", context);
             writeAttributeIfExistsOrDefault("delay", "data-bs-delay", "{\"show\":0,\"hide\":5000}", context);
-            writeAttributeIfExists("content", "data-bs-content", context);
             writeAttributeIfExistsOrDefault("container", "data-bs-container", "false", context);
 
-            // Modal attributes for Bootstrap
             if (getAttributes().get("modal") instanceof UIComponent modalComponent) {
                 writeAttribute("data-bs-toggle", "modal", context);
                 writeAttribute("data-bs-target", "#" + modalComponent.getClientId(), context);
             }
+
+            // Write label text
+            String label = (String) getAttributes().getOrDefault("label", "");
+            writer.writeText(label, "label");
         }
     }
+
+    @Override
+    public void encodeChildren(FacesContext context) throws IOException {
+        final boolean editable = getAttribute("editable", true);
+        if (editable && getChildCount() > 0) {
+            final ResponseWriter writer = context.getResponseWriter();
+            writer.startElement("div", this);
+            writeAttribute("style", "display:none;", context); // Hidden by default
+            for (UIComponent child : getChildren()) {
+                child.encodeAll(context);
+            }
+            writer.endElement("div");
+            //            writeAttributeIfExists(this, "data-bs-content", context);
+        }
+    }
+
 
 
     @Override
