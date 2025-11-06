@@ -42,15 +42,33 @@ public class InlineEditLinkComponent extends ComponentBase {
             writeAttributeIfExistsOrDefault("trigger", "data-bs-trigger", "hover", context);
             writeAttributeIfExistsOrDefault("html", "data-bs-html", "true", context);
             writeAttributeIfExistsOrDefault("delay", "data-bs-delay", "{\"show\":0,\"hide\":5000}", context);
-            writeAttributeIfExists("content", "data-bs-content", context);
             writeAttributeIfExistsOrDefault("container", "data-bs-container", "false", context);
 
-            // Modal attributes for Bootstrap
             if (getAttributes().get("modal") instanceof UIComponent modalComponent) {
                 writeAttribute("data-bs-toggle", "modal", context);
                 writeAttribute("data-bs-target", "#" + modalComponent.getClientId(), context);
             }
+
+            // Write label text
+            String label = (String) getAttributes().getOrDefault("label", "test label");
+            writer.writeText(label, "label");
+
+            // Render children in a hidden template for popover content
+            writer.startElement("template", this);
+            writer.writeAttribute("id", getClientId(context) + "_popoverContent", null);
+            for (UIComponent child : getChildren()) {
+                child.encodeAll(context);
+            }
+            writer.endElement("template");
+
+            // Reference the template in the popover content attribute
+            writeAttribute("data-bs-content", "document.getElementById('" + getClientId(context) + "_popoverContent').innerHTML", context);
         }
+    }
+
+    @Override
+    public void encodeChildren(FacesContext context) {
+        // Since Children are rendered manually in the encodeBegin we don't want to render them twice
     }
 
 
