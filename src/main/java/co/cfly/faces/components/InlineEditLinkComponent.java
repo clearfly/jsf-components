@@ -38,10 +38,10 @@ public class InlineEditLinkComponent extends ComponentBase {
 
             // Popover attributes for JS initialization
             writeAttribute("data-bs-dual-toggle", "popover", context);
-            writeAttributeIfExistsOrDefault("placement", "data-bs-placement", "right", context);
-            writeAttributeIfExistsOrDefault("trigger", "data-bs-trigger", "hover", context);
+            writeAttributeIfExistsOrDefault("title", "data-bs-title", "test title", context);
+            writeAttributeIfExistsOrDefault("placement", "data-bs-placement", "bottom", context);
             writeAttributeIfExistsOrDefault("html", "data-bs-html", "true", context);
-            writeAttributeIfExistsOrDefault("delay", "data-bs-delay", "{\"show\":0,\"hide\":5000}", context);
+            writeAttributeIfExistsOrDefault("delay", "data-bs-delay", "{\"show\":500,\"hide\":5000}", context);
             writeAttributeIfExistsOrDefault("container", "data-bs-container", "false", context);
 
             if (getAttributes().get("modal") instanceof UIComponent modalComponent) {

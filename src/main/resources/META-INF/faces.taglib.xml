@@ -634,5 +634,9 @@
 			<name>label</name>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<name>title</name>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
 </facelet-taglib>
