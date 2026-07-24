@@ -585,4 +585,28 @@
 			<type>boolean</type>
 		</attribute>
 	</tag>
+	<tag>
+		<tag-name>popoverContainer</tag-name>
+		<component>
+			<component-type>co.cfly.faces.components.PopoverContainerComponent</component-type>
+		</component>
+		<attribute>
+			<description>CSS Style</description>
+			<name>style</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>CSS Style Classes</description>
+			<name>styleClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>label</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
 </facelet-taglib>
