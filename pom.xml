@@ -1,17 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>co.cfly</groupId>
 	<artifactId>jsf-components</artifactId>
 	<packaging>jar</packaging>
-	<version>6.0.10</version>
+	<version>26.08.18.00-SNAPSHOT</version>
 	<name>JSF Components</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.java>21</version.java>
+		<version.errorprone>2.50.0</version.errorprone>
+		<version.faces>4.0.5</version.faces>
+		<version.junit>4.13.2</version.junit>
 		<version.plugin.compiler>3.15.0</version.plugin.compiler>
 		<version.plugin.source>3.4.0</version.plugin.source>
+		<version.plugin.surefire>3.5.6</version.plugin.surefire>
 	</properties>
 
 	<scm>
@@ -20,16 +25,15 @@
 		<url>https://github.com/clearfly/jsf-components</url>
 	</scm>
 
+	<!-- mvn deploy writes to a local staging directory, which is then uploaded to S3 in CI. -->
 	<distributionManagement>
 		<repository>
-			<id>central</id>
-			<name>clearfly-releases</name>
-			<url>https://mvn.clearfly.net/artifactory/libs-release</url>
+			<id>local-releases</id>
+			<url>file://${project.build.directory}/staging/releases</url>
 		</repository>
 		<snapshotRepository>
-			<id>snapshots</id>
-			<name>clearfly-snapshots</name>
-			<url>https://mvn.clearfly.net/artifactory/libs-snapshot</url>
+			<id>local-snapshots</id>
+			<url>file://${project.build.directory}/staging/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 
@@ -45,14 +49,14 @@
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>jakarta.faces</artifactId>
-			<version>4.0.5</version>
+			<version>${version.faces}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13.2</version>
+			<version>${version.junit}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -83,10 +87,58 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.5.6</version>
+				<version>${version.plugin.surefire}</version>
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>errorprone</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>${version.plugin.compiler}</version>
+						<configuration>
+							<release>${version.java}</release>
+							<showWarnings>true</showWarnings>
+							<failOnWarning>true</failOnWarning>
+							<maxmem>2048m</maxmem>
+							<fork>true</fork>
+							<compilerArgs>
+								<arg>-parameters</arg>
+								<arg>-XDcompilePolicy=simple</arg>
+								<arg>--should-stop=ifError=FLOW</arg>
+								<arg>-Xplugin:ErrorProne -Xep:UnusedMethod:OFF -Xep:JavaTimeDefaultTimeZone:OFF -Xep:ObjectEqualsForPrimitives:OFF -Xep:StringCaseLocaleUsage:OFF</arg>
+								<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+								<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+								<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+								<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+								<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
+								<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+								<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+								<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+								<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+								<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+							</compilerArgs>
+							<annotationProcessorPaths>
+								<path>
+									<groupId>com.google.errorprone</groupId>
+									<artifactId>error_prone_core</artifactId>
+									<version>${version.errorprone}</version>
+								</path>
+							</annotationProcessorPaths>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
 
 
