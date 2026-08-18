@@ -164,7 +164,7 @@ public class DecorateInputComponent extends ComponentBase {
 
     private void encodeValue(FacesContext context, UIComponent component) throws IOException {
         for (UIComponent c : component.getChildren()) {
-            final Boolean skipControlClass = (Boolean.valueOf((String) component.getAttributes().getOrDefault(SKIP_CONTROL_CLASS_ATTR_NAME, "false")));
+            final boolean skipControlClass = Boolean.parseBoolean((String) component.getAttributes().getOrDefault(SKIP_CONTROL_CLASS_ATTR_NAME, "false"));
             if (!skipControlClass && c instanceof EditableValueHolder) {
                 String styleClass = (String) c.getAttributes().get(STYLE_CLASS_ATTR_NAME);
                 if (c instanceof HtmlSelectOneMenu || c instanceof HtmlSelectManyListbox) {
