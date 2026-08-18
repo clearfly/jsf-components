@@ -2,11 +2,6 @@ package co.cfly.faces.core;
 
 import java.util.List;
 
-/**
- * 
- * @author Cody Lerum
- * 
- */
 public class Notices {
 
     private List<String> errors;

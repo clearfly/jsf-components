@@ -30,7 +30,7 @@ public class DecorateOutputComponent extends ComponentBase {
         // Write Outer Div
         final String style = (String) getAttributes().get("style");
         final String styleClass = (String) getAttributes().get("styleClass");
-        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("o-decorate-output form-group", styleClass);
+        final String divComputedStyleClass = RendererTools.spaceSeparateStrings("o-decorate-output form-group", styleClass);
 
         final String labelClass = (String) getAttributes().get("labelClass");
         final String help = (String) getAttributes().get("help");
@@ -41,7 +41,7 @@ public class DecorateOutputComponent extends ComponentBase {
         writeAttribute("style", style, context);
 
         // Write Label
-        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("col-form-label", labelClass);
+        final String labelComputedStyleClass = RendererTools.spaceSeparateStrings("col-form-label", labelClass);
         writer.startElement("div", this); // Label
         writeAttribute("class", labelComputedStyleClass, context);
         writer.startElement("span", this);
@@ -66,7 +66,7 @@ public class DecorateOutputComponent extends ComponentBase {
 
         // Write Value Div
         writer.startElement("div", this); // Value Div
-        writeAttribute("class", RendererTools.spaceSeperateStrings("form-control-plaintext", valueClass), context);
+        writeAttribute("class", RendererTools.spaceSeparateStrings("form-control-plaintext", valueClass), context);
     }
 
     @Override

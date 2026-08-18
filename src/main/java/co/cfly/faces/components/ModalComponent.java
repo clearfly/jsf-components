@@ -28,7 +28,7 @@ public class ModalComponent extends ComponentBase {
         final String size = (String) getAttributes().getOrDefault("size", "lg");
         final String header = (String) getAttributes().get("header");
         final String styleClass = (String) getAttributes().get("styleClass");
-        final String computedStyleClass = RendererTools.spaceSeperateStrings("modal fade", styleClass);
+        final String computedStyleClass = RendererTools.spaceSeparateStrings("modal fade", styleClass);
 
         ResponseWriter writer = context.getResponseWriter();
 
@@ -44,10 +44,10 @@ public class ModalComponent extends ComponentBase {
         writer.startElement("div", this);
 
         switch (size) {
-            case ("xl") -> writer.writeAttribute("class", "modal-dialog modal-xl", null);
-            case ("lg") -> writer.writeAttribute("class", "modal-dialog modal-lg", null);
-            case ("sm") -> writer.writeAttribute("class", "modal-dialog modal-sm", null);
-            case ("std") -> writer.writeAttribute("class", "modal-dialog", null);
+            case "xl" -> writer.writeAttribute("class", "modal-dialog modal-xl", null);
+            case "lg" -> writer.writeAttribute("class", "modal-dialog modal-lg", null);
+            case "sm" -> writer.writeAttribute("class", "modal-dialog modal-sm", null);
+            case "std" -> writer.writeAttribute("class", "modal-dialog", null);
             default -> throw new IllegalArgumentException("Unsupported modal size definition: %s".formatted(size));
         }
 

@@ -41,7 +41,7 @@ public class CardComponent extends ComponentBase {
         // Write Outer Div
         final String style = (String) getAttributes().get("style");
         final String styleClass = (String) getAttributes().get("styleClass");
-        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("card", styleClass);
+        final String divComputedStyleClass = RendererTools.spaceSeparateStrings("card", styleClass);
         writer.startElement("div", this); // Outer Div
         writeId(context);
         writeAttribute("class", divComputedStyleClass, context);

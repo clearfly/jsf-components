@@ -21,8 +21,8 @@ public class PopoverComponent extends ComponentBase {
         writer.startElement("span", this);
         writeId(context);
         writeAttribute("data-bs-toggle", "popover", context);
-        final String computedStyleClass = RendererTools.spaceSeperateStrings("popover-source", (String) getAttributes().get("styleClass"));
-        writeAttribute("class", (computedStyleClass), context);
+        final String computedStyleClass = RendererTools.spaceSeparateStrings("popover-source", (String) getAttributes().get("styleClass"));
+        writeAttribute("class", computedStyleClass, context);
         writeAttributeIfExists("style", "style", context);
         writeStandardAttributes(context);
         writeAttributeIfExistsOrDefault("placement", "data-bs-placement", "right", context);
