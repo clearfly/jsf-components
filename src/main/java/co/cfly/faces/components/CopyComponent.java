@@ -22,8 +22,8 @@ public class CopyComponent extends ComponentBase {
         boolean hidden = getAttribute("hidden", false);
         if (Objects.nonNull(objectValue)) {
             final String value;
-            if (objectValue instanceof String) {
-                value = (String) objectValue;
+            if (objectValue instanceof String stringValue) {
+                value = stringValue;
             }
             else {
                 value = objectValue.toString();
