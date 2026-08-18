@@ -46,7 +46,7 @@ public class DecorateInputComponent extends ComponentBase {
         final String style = (String) getAttributes().get("style");
         final String styleClass = (String) getAttributes().get("styleClass");
         final String errorsClass = hasErrors(context, valueComponent) ? HAS_ERROR_STYLE : null;
-        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("o-decorate-input form-group", styleClass, errorsClass);
+        final String divComputedStyleClass = RendererTools.spaceSeparateStrings("o-decorate-input form-group", styleClass, errorsClass);
 
         final String labelClass = (String) getAttributes().get("labelClass");
         final String help = (String) getAttributes().get("help");
@@ -60,13 +60,13 @@ public class DecorateInputComponent extends ComponentBase {
         final String valueComponentId = valueComponent.getClientId();
 
         // Write Label
-        final String labelComputedStyleClass = RendererTools.spaceSeperateStrings("form-label", labelClass);
+        final String labelComputedStyleClass = RendererTools.spaceSeparateStrings("form-label", labelClass);
         writer.startElement("label", this); // Label
         writeAttribute("class", labelComputedStyleClass, context);
 
         if (Objects.nonNull(help)) {
             writer.startElement("span", this);
-            writeAttribute("class", RendererTools.spaceSeperateStrings("popover-source", "label-content", labelClass), context);
+            writeAttribute("class", RendererTools.spaceSeparateStrings("popover-source", "label-content", labelClass), context);
             writeAttribute("data-bs-toggle", "popover", context);
             writeAttributeIfExists("helpContainer", "data-bs-container", context);
             writeAttributeIfExists("help", "data-bs-content", context);

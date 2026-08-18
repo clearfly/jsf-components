@@ -36,8 +36,8 @@ public class TabsComponent extends ComponentBase {
         List<TabComponent> tabs = new ArrayList<>();
 
         for (UIComponent child : getChildren()) {
-            if (child instanceof TabComponent && child.isRendered()) {
-                tabs.add((TabComponent) child);
+            if (child instanceof TabComponent tabComponent && child.isRendered()) {
+                tabs.add(tabComponent);
             }
         }
 
@@ -49,7 +49,7 @@ public class TabsComponent extends ComponentBase {
         // Write Outer Div
         final String style = (String) getAttributes().get("style");
         final String styleClass = (String) getAttributes().get("styleClass");
-        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("tabs", styleClass);
+        final String divComputedStyleClass = RendererTools.spaceSeparateStrings("tabs", styleClass);
         writer.startElement("div", this); // Outer Div
         writeId(context);
         writeAttribute("class", divComputedStyleClass, context);

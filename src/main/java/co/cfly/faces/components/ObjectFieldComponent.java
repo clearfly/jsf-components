@@ -44,7 +44,7 @@ public class ObjectFieldComponent extends ComponentBase {
         // Write Outer Div
         final String style = (String) getAttributes().get("style");
         final String styleClass = (String) getAttributes().get("styleClass");
-        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("object-field row", styleClass);
+        final String divComputedStyleClass = RendererTools.spaceSeparateStrings("object-field row", styleClass);
 
         final String labelDivClass = (String) getAttributes().getOrDefault("labelClass", "col-5");
         final String help = (String) getAttributes().get("help");
@@ -56,7 +56,7 @@ public class ObjectFieldComponent extends ComponentBase {
 
         // Write Label
         writer.startElement("div", this); // Label div
-        writeAttribute("class", RendererTools.spaceSeperateStrings("object-field-label", labelDivClass), context);
+        writeAttribute("class", RendererTools.spaceSeparateStrings("object-field-label", labelDivClass), context);
         writer.startElement("span", this); // Label span
         if (Objects.nonNull(help)) {
             writeAttribute("class", "popover-source label-content", context);
@@ -79,7 +79,7 @@ public class ObjectFieldComponent extends ComponentBase {
 
         // Write Value Div
         writer.startElement("div", this); // Value Div
-        writeAttribute("class", RendererTools.spaceSeperateStrings("object-field-value", valueClass), context);
+        writeAttribute("class", RendererTools.spaceSeparateStrings("object-field-value", valueClass), context);
     }
 
     @Override

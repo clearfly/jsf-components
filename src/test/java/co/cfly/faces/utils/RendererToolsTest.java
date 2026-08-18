@@ -6,51 +6,51 @@ import org.junit.Test;
 public class RendererToolsTest {
 
     @Test
-    public void spaceSeperatedString1() {
+    public void spaceSeparatedString1() {
         String one = "one";
         String two = "two";
         String three = "three";
-        Assert.assertEquals("one two three", RendererTools.spaceSeperateStrings(one, two, three));
+        Assert.assertEquals("one two three", RendererTools.spaceSeparateStrings(one, two, three));
     }
 
     @Test
-    public void spaceSeperatedString2() {
+    public void spaceSeparatedString2() {
         String one = "one";
         String two = "two bar";
         String three = "three";
-        Assert.assertEquals("one two bar three", RendererTools.spaceSeperateStrings(one, two, three));
+        Assert.assertEquals("one two bar three", RendererTools.spaceSeparateStrings(one, two, three));
     }
 
     @Test
-    public void spaceSeperatedString3() {
+    public void spaceSeparatedString3() {
         String one = "one";
         String two = null;
         String three = "three";
-        Assert.assertEquals("one three", RendererTools.spaceSeperateStrings(one, two, three));
+        Assert.assertEquals("one three", RendererTools.spaceSeparateStrings(one, two, three));
     }
 
     @Test
-    public void spaceSeperatedString4() {
+    public void spaceSeparatedString4() {
         String one = "one";
         String two = null;
         String three = null;
-        Assert.assertEquals("one", RendererTools.spaceSeperateStrings(one, two, three));
+        Assert.assertEquals("one", RendererTools.spaceSeparateStrings(one, two, three));
     }
 
     @Test
-    public void spaceSeperatedString5() {
+    public void spaceSeparatedString5() {
         String one_one = "one";
         String one_two = "one";
         String one_three = "one";
-        Assert.assertEquals("one", RendererTools.spaceSeperateStrings(one_one, one_two, one_three));
+        Assert.assertEquals("one", RendererTools.spaceSeparateStrings(one_one, one_two, one_three));
     }
 
     @Test
     public void attributeValueAsBoolean() {
         Object stringTrue = "true";
         Object stringFalse = "false";
-        Object booleanTrue = Boolean.TRUE;
-        Object booleanFalse = Boolean.FALSE;
+        Object booleanTrue = true;
+        Object booleanFalse = false;
         Object booleanTruePrimitive = true;
         Object booleanFalsePrimitive = false;
 

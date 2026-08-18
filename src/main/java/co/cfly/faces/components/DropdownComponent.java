@@ -42,7 +42,7 @@ public class DropdownComponent extends ComponentBase {
 
         final String styleClass = (String) getAttributes().get("styleClass");
         final String positionClass = positionStatic ? "position-static" : null;
-        final String divComputedStyleClass = RendererTools.spaceSeperateStrings("dropdown", positionClass, styleClass);
+        final String divComputedStyleClass = RendererTools.spaceSeparateStrings("dropdown", positionClass, styleClass);
 
         writer.startElement("div", this);
         writer.writeAttribute("class", divComputedStyleClass, null);

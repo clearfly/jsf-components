@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class RendererTools {
 
-    public static String spaceSeperateStrings(String... values) {
+    public static String spaceSeparateStrings(String... values) {
         if (values.length == 1) {
             return values[0];
         }
@@ -16,8 +16,8 @@ public class RendererTools {
     }
 
     public static Long asLong(Object o) {
-        if (o instanceof Number) {
-            return ((Number) o).longValue();
+        if (o instanceof Number n) {
+            return n.longValue();
         }
         else {
             return null;
@@ -25,11 +25,11 @@ public class RendererTools {
     }
 
     public static boolean attributeValueAsBoolean(Object attributeValue, boolean defaultValue) {
-        if (attributeValue instanceof String) {
-            return Boolean.parseBoolean((String) attributeValue);
+        if (attributeValue instanceof String stringValue) {
+            return Boolean.parseBoolean(stringValue);
         }
-        else if (attributeValue instanceof Boolean) {
-            return (boolean) attributeValue;
+        else if (attributeValue instanceof Boolean booleanValue) {
+            return booleanValue;
         }
         else {
             return defaultValue;

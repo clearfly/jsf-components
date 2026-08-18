@@ -30,7 +30,7 @@ public class InlineEditComponent extends ComponentBase {
             writeStandardAttributes(context);
 
             String styleClass = (String) getAttributes().getOrDefault("styleClass", "");
-            String styleClassValue = RendererTools.spaceSeperateStrings("inline-edit", styleClass);
+            String styleClassValue = RendererTools.spaceSeparateStrings("inline-edit", styleClass);
             writeAttribute("class", styleClassValue, context);
 
             if (getAttributes().get("modal") instanceof UIComponent modalComponent) {

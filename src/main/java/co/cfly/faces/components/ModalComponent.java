@@ -28,7 +28,7 @@ public class ModalComponent extends ComponentBase {
         final String size = (String) getAttributes().getOrDefault("size", "lg");
         final String header = (String) getAttributes().get("header");
         final String styleClass = (String) getAttributes().get("styleClass");
-        final String computedStyleClass = RendererTools.spaceSeperateStrings("modal fade", styleClass);
+        final String computedStyleClass = RendererTools.spaceSeparateStrings("modal fade", styleClass);
 
         ResponseWriter writer = context.getResponseWriter();
 
