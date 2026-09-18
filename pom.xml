@@ -5,14 +5,13 @@
 	<groupId>co.cfly</groupId>
 	<artifactId>jsf-components</artifactId>
 	<packaging>jar</packaging>
-	<version>26.08.18.00-SNAPSHOT</version>
+	<version>26.09.18.00-SNAPSHOT</version>
 	<name>JSF Components</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.java>21</version.java>
+		<version.java>25</version.java>
 		<version.errorprone>2.50.0</version.errorprone>
-		<version.faces>4.0.5</version.faces>
 		<version.junit>4.13.2</version.junit>
 		<version.plugin.compiler>3.15.0</version.plugin.compiler>
 		<version.plugin.source>3.4.0</version.plugin.source>
@@ -42,14 +41,14 @@
 		<dependency>
 			<groupId>jakarta.platform</groupId>
 			<artifactId>jakarta.jakartaee-api</artifactId>
-			<version>10.0.0</version>
+			<version>11.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>jakarta.faces</artifactId>
-			<version>${version.faces}</version>
+			<version>4.1.13</version>
 			<scope>provided</scope>
 		</dependency>
 
