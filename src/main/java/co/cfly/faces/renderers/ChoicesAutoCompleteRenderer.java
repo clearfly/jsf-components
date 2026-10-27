@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 import co.cfly.faces.components.Families;
+import com.sun.faces.renderkit.Attribute;
 import com.sun.faces.renderkit.RenderKitUtils;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIInput;
@@ -39,7 +40,8 @@ public class ChoicesAutoCompleteRenderer extends RendererBase {
             writeAttribute("data-init-path", requestContextPath + inputComponent.getAttributes().get("initPath"), context);
             writeAttribute("data-search-path", requestContextPath + inputComponent.getAttributes().get("searchPath"), context);
 
-            RenderKitUtils.renderOnchange(context, inputComponent, false);
+            RenderKitUtils.renderPassThruAttributes(context, writer, inputComponent, null, false, new Attribute[] { Attribute.attr("onchange", "change") }, "change", "valueChange");
+
             writer.startElement("option", inputComponent);
             writer.writeAttribute("value", "", "value");
             writer.write((String) inputComponent.getAttributes().getOrDefault("placeholder", "Choose"));
